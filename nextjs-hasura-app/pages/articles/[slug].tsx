@@ -7,7 +7,10 @@ import { GetArticleBySlugQuery, Articles } from '../../src/gql/graphql'
 interface Props {
   article: {
     __typename?: 'articles'
-  } & Pick<Articles, 'id' | 'slug' | 'title' | 'content' | 'status' | 'created_at' | 'updated_at' >
+  } & Pick<
+    Articles,
+    'id' | 'slug' | 'title' | 'content' | 'status' | 'created_at' | 'updated_at'
+  >
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
@@ -18,19 +21,20 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   })
   return {
     props: {
-      article: data.articles[0]
-    }
+      article: data.articles[0],
+    },
   }
 }
 
-const Article: FC<Props> = ({ article }) => { 
+const Article: FC<Props> = ({ article }) => {
   if (!article) {
     return <>Loading...</>
   }
   return (
-  <>
-    id: ${article.id}, slug: ${article.slug}, title: ${article.title}
-  </>)
+    <>
+      id: ${article.id}, slug: ${article.slug}, title: ${article.title}
+    </>
+  )
 }
 
 export default Article

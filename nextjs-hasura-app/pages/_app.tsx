@@ -5,11 +5,11 @@ import { initializeApollo } from '../lib/apolloClient'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const client = initializeApollo()
-  return(
+  return (
     <ApolloProvider client={client}>
       <Component {...pageProps} />
     </ApolloProvider>
-    )
+  )
 }
 
 export default MyApp
