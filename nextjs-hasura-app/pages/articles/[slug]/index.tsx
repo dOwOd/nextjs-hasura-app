@@ -1,8 +1,9 @@
 import { FC } from 'react'
 import { GetServerSideProps } from 'next'
-import { initializeApollo } from '../../lib/apolloClient'
-import { GET_ARTICLE_BY_SLUG } from '../../queries/queries'
-import { GetArticleBySlugQuery, Articles } from '../../src/gql/graphql'
+import { initializeApollo } from '../../../lib/apolloClient'
+import { GET_ARTICLE_BY_SLUG } from '../../../queries/queries'
+import { GetArticleBySlugQuery, Articles } from '../../../src/gql/graphql'
+import { Layout } from '../../../components/Layout'
 
 interface Props {
   article: {
@@ -31,9 +32,9 @@ const Article: FC<Props> = ({ article }) => {
     return <>Loading...</>
   }
   return (
-    <>
+    <Layout title={article.title}>
       id: ${article.id}, slug: ${article.slug}, title: ${article.title}
-    </>
+    </Layout>
   )
 }
 
