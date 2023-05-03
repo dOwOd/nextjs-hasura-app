@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next'
 import { initializeApollo } from 'lib/apolloClient'
 import { GetArticlesByStatusQuery, Articles } from 'src/gql/graphql'
 import { GET_ARTICLES_BY_STATUS } from 'src/queries/queries'
+import { BreadCrumb } from 'src/components/BreadCrumb'
 import Link from 'next/link'
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -31,8 +32,9 @@ const Article: FC<Props> = ({ articles }) => {
 
   return (
     <Layout title="Articles">
+      <BreadCrumb />
       <div>
-        {articles.map(({ id, slug, title, created_at }) => (
+        {articles.map(({ id, slug, title }) => (
           <Link href={`/articles/${slug}`} key={id}>
             <article>
               title: {title}
