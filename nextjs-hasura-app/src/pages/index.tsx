@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { Layout } from '../components/Layout'
 import Image from 'next/image'
-import CaroImage from '../public/images/IMG_4236.png'
+import CaroImage from '../../public/images/IMG_4236.png'
 
 const Home: NextPage = () => {
   return (

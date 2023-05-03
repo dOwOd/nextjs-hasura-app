@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { Layout } from '../../components/Layout'
 import { GetServerSideProps } from 'next'
-import { initializeApollo } from '../../lib/apolloClient'
-import { GetArticlesByStatusQuery, Articles } from '../../src/gql/graphql'
+import { initializeApollo } from '../../../lib/apolloClient'
+import { GetArticlesByStatusQuery, Articles } from '../../gql/graphql'
 import { GET_ARTICLES_BY_STATUS } from '../../queries/queries'
 import Link from 'next/link'
 
