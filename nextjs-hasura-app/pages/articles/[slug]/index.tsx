@@ -4,6 +4,8 @@ import { initializeApollo } from '../../../lib/apolloClient'
 import { GET_ARTICLE_BY_SLUG } from '../../../queries/queries'
 import { GetArticleBySlugQuery, Articles } from '../../../src/gql/graphql'
 import { Layout } from '../../../components/Layout'
+import { BreadCrumb } from '../../../components/BreadCrumb'
+import { dateFromat } from '../../../lib/utils/DateFormat'
 
 interface Props {
   article: {
@@ -31,9 +33,15 @@ const Article: FC<Props> = ({ article }) => {
   if (!article) {
     return <>Loading...</>
   }
+
   return (
     <Layout title={article.title}>
-      id: ${article.id}, slug: ${article.slug}, title: ${article.title}
+      <BreadCrumb />
+      <hgroup>
+        <h1>{article.title}</h1>
+        <h6>created_at: {dateFromat(article.created_at)}</h6>
+      </hgroup>
+      {article.content}
     </Layout>
   )
 }

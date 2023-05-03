@@ -14,34 +14,44 @@ export const Layout: FC<Props> = ({
   return (
     <div>
       <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{title}</title>
       </Head>
-      <header>
-        <nav>
-          <div>
-            <div className="flex space-x-4">
-              <Link href="/">
-                Home
-              </Link>
-              <Link href="/articles">
-                記事一覧
-              </Link>
-            </div>
-          </div>
-        </nav>
-      </header>
-      <main>{children}</main>
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          {/* <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" /> */}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
+      <article>
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <Link href='/' className='secondary'>
+                  Home
+                </Link>
+                {/* <Link href="/">Home</Link> */}
+              </li>
+              <li>
+                {/* <a href="/articles" className="secondary">
+                  記事一覧
+                </a> */}
+                <Link href="/articles">記事一覧</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+        <main className="container">{children}</main>
+
+        <footer>
+          <a
+            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Powered by{' '}
+            {/* <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" /> */}
+            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+          </a>
+        </footer>
+      </article>
     </div>
   )
 }

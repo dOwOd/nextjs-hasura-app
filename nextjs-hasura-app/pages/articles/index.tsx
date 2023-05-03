@@ -34,7 +34,9 @@ const Article: FC<Props> = ({ articles }) => {
       <div>
         {articles.map(({ id, slug, title, created_at }) => (
           <Link href={`/articles/${slug}`} key={id}>
-            title: ${title}
+            <article>
+              title: {title}
+            </article>
           </Link>
         ))}
       </div>
