@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { Layout } from '../../components/Layout'
+import { Layout } from 'src/components/Layout'
 import { GetServerSideProps } from 'next'
-import { initializeApollo } from '../../../lib/apolloClient'
-import { GetArticlesByStatusQuery, Articles } from '../../gql/graphql'
-import { GET_ARTICLES_BY_STATUS } from '../../queries/queries'
+import { initializeApollo } from 'lib/apolloClient'
+import { GetArticlesByStatusQuery, Articles } from 'src/gql/graphql'
+import { GET_ARTICLES_BY_STATUS } from 'src/queries/queries'
 import Link from 'next/link'
 
 export const getServerSideProps: GetServerSideProps = async () => {

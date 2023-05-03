@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { GetServerSideProps } from 'next'
-import { initializeApollo } from '../../../../lib/apolloClient'
-import { GET_ARTICLE_BY_SLUG } from '../../../queries/queries'
-import { GetArticleBySlugQuery, Articles } from '../../../gql/graphql'
-import { Layout } from '../../../components/Layout'
-import { BreadCrumb } from '../../../components/BreadCrumb'
-import { dateFromat } from '../../../../lib/utils/DateFormat'
+import { initializeApollo } from 'lib/apolloClient'
+import { GET_ARTICLE_BY_SLUG } from 'src/queries/queries'
+import { GetArticleBySlugQuery, Articles } from 'src/gql/graphql'
+import { Layout } from 'src/components/Layout'
+import { BreadCrumb } from 'src/components/BreadCrumb'
+import { dateFromat } from 'lib/utils/DateFormat'
 
 interface Props {
   article: {
