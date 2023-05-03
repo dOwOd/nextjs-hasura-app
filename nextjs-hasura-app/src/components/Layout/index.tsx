@@ -23,16 +23,9 @@ export const Layout: FC<Props> = ({
           <nav>
             <ul>
               <li>
-                <Link href='/' className='secondary'>
+                <Link href="/" className="secondary">
                   Home
                 </Link>
-                {/* <Link href="/">Home</Link> */}
-              </li>
-              <li>
-                {/* <a href="/articles" className="secondary">
-                  記事一覧
-                </a> */}
-                <Link href="/articles">記事一覧</Link>
               </li>
             </ul>
           </nav>

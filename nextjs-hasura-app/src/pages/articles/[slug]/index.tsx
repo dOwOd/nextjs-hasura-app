@@ -37,11 +37,13 @@ const Article: FC<Props> = ({ article }) => {
   return (
     <Layout title={article.title}>
       <BreadCrumb />
-      <hgroup>
-        <h1>{article.title}</h1>
-        <h6>created_at: {dateFromat(article.created_at)}</h6>
-      </hgroup>
-      {article.content}
+      <article>
+        <hgroup>
+          <h1>{article.title}</h1>
+          <h6>created_at: {dateFromat(article.created_at)}</h6>
+        </hgroup>
+        {article.content}
+      </article>
     </Layout>
   )
 }
