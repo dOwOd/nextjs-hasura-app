@@ -7,10 +7,7 @@ interface Props {
   children: ReactNode
   title: string
 }
-export const Layout: FC<Props> = ({
-  children,
-  title = 'Welcome to Nextjs',
-}) => {
+export const Layout: FC<Props> = ({ children, title = "dOwOd's logs" }) => {
   return (
     <div>
       <Head>
@@ -20,17 +17,12 @@ export const Layout: FC<Props> = ({
       </Head>
       <article>
         <header>
-          <nav>
-            <ul>
-              <li>
-                <Link href="/" className="secondary">
-                  Home
-                </Link>
-              </li>
-            </ul>
-          </nav>
+          <strong>
+            <Link href="/">
+              dOwOd's logs
+            </Link>
+          </strong>
         </header>
-
         <main className="container">{children}</main>
 
         <footer>

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router"
+import Link from "next/link"
 
 export const BreadCrumb = () => {
   const router = useRouter()
@@ -11,7 +12,7 @@ export const BreadCrumb = () => {
             fullPath.length === i + 1 ? (
               path
             ) : (
-              <a href={ `/${path}` || '/'}>{path || 'Home'}</a>
+              <Link href={ `/${path}` || '/'}>{path || 'Home'}</Link>
             )
           return <li key={path}>{children}</li>
         })}
