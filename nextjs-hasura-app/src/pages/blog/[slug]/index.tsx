@@ -1,8 +1,15 @@
 import { FC } from 'react'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import { initializeApollo } from 'lib/apolloClient'
-import { GET_ARTICLE_BY_SLUG } from 'src/queries/queries'
-import { GetArticleBySlugQuery, Articles } from 'src/gql/graphql'
+import {
+  GET_ARTICLE_BY_SLUG,
+  GET_ARTICLES_BY_STATUS,
+} from 'src/queries/queries'
+import {
+  GetArticleBySlugQuery,
+  GetArticlesByStatusQuery,
+  Articles,
+} from 'src/gql/graphql'
 import { Layout } from 'src/components/Layout'
 import { BreadCrumb } from 'src/components/BreadCrumb'
 import { dateFromat } from 'lib/utils/DateFormat'
@@ -16,16 +23,41 @@ interface Props {
   >
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const apolloClient = initializeApollo()
-  const { data } = await apolloClient.query<GetArticleBySlugQuery>({
-    query: GET_ARTICLE_BY_SLUG,
-    variables: { slug: query.slug },
+  const { data } = await apolloClient.query<GetArticlesByStatusQuery>({
+    query: GET_ARTICLES_BY_STATUS,
+    variables: { status: 'public' },
   })
-  return {
-    props: {
-      article: data.articles[0],
+  const paths = data.articles.map(({ slug }) => ({
+    params: {
+      slug: slug,
     },
+  }))
+  return {
+    paths,
+    fallback: true,
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const apolloClient = initializeApollo()
+
+  if (params !== undefined) {
+    const { data } = await apolloClient.query<GetArticleBySlugQuery>({
+      query: GET_ARTICLE_BY_SLUG,
+      variables: { slug: params.slug },
+    })
+    return {
+      props: {
+        article: data.articles[0],
+      },
+      revalidate: 1,
+    }
+  }
+
+  return {
+    props: { error: true },
   }
 }
 

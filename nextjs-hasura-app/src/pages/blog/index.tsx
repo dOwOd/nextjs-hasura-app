@@ -1,13 +1,13 @@
 import { FC } from 'react'
 import { Layout } from 'src/components/Layout'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { initializeApollo } from 'lib/apolloClient'
 import { GetArticlesByStatusQuery, Articles } from 'src/gql/graphql'
 import { GET_ARTICLES_BY_STATUS } from 'src/queries/queries'
 import { BreadCrumb } from 'src/components/BreadCrumb'
 import Link from 'next/link'
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo()
   const { data } = await apolloClient.query<GetArticlesByStatusQuery>({
     query: GET_ARTICLES_BY_STATUS,
@@ -17,6 +17,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       articles: data.articles,
     },
+    revalidate: 1,
   }
 }
 
@@ -25,25 +26,17 @@ interface Props {
     __typename?: 'articles'
   } & Pick<Articles, 'id' | 'slug' | 'title' | 'created_at' | 'updated_at'>[]
 }
-const Article: FC<Props> = ({ articles }) => {
-  if (!articles) {
-    return <>Loading...</>
-  }
-
-  return (
-    <Layout title="Blog">
-      <BreadCrumb />
-      <div>
-        {articles.map(({ id, slug, title }) => (
-          <Link href={`/blog/${slug}`} key={id}>
-            <article>
-              title: {title}
-            </article>
-          </Link>
-        ))}
-      </div>
-    </Layout>
-  )
-}
+const Article: FC<Props> = ({ articles }) => (
+  <Layout title="Blog">
+    <BreadCrumb />
+    <div>
+      {articles.map(({ id, slug, title }) => (
+        <Link href={`/blog/${slug}`} key={id}>
+          <article>title: {title}</article>
+        </Link>
+      ))}
+    </div>
+  </Layout>
+)
 
 export default Article
