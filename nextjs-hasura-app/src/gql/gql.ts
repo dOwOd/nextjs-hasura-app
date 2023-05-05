@@ -15,6 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n  query GetArticleBySlug($slug: String!) {\n    articles(where: {slug: {_eq: $slug}}) {\n      id\n      slug\n      status\n      title\n      content\n      updated_at\n      created_at\n    }\n  }\n": types.GetArticleBySlugDocument,
     "\n  query GetArticlesByStatus($status: String!) {\n    articles(where: {status: {_eq: $status}}) {\n      id\n      slug\n      title\n      updated_at\n      created_at\n    }\n  }\n": types.GetArticlesByStatusDocument,
+    "\n  query GetArticles {\n    articles {\n      id\n      slug\n      title\n      status\n      updated_at\n      created_at\n    }\n  }\n": types.GetArticlesDocument,
 };
 
 /**
@@ -39,6 +40,10 @@ export function graphql(source: "\n  query GetArticleBySlug($slug: String!) {\n 
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query GetArticlesByStatus($status: String!) {\n    articles(where: {status: {_eq: $status}}) {\n      id\n      slug\n      title\n      updated_at\n      created_at\n    }\n  }\n"): (typeof documents)["\n  query GetArticlesByStatus($status: String!) {\n    articles(where: {status: {_eq: $status}}) {\n      id\n      slug\n      title\n      updated_at\n      created_at\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query GetArticles {\n    articles {\n      id\n      slug\n      title\n      status\n      updated_at\n      created_at\n    }\n  }\n"): (typeof documents)["\n  query GetArticles {\n    articles {\n      id\n      slug\n      title\n      status\n      updated_at\n      created_at\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

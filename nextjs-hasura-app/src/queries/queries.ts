@@ -25,3 +25,16 @@ export const GET_ARTICLES_BY_STATUS = gql`
     }
   }
 `
+
+export const GET_ARTICLES = gql`
+  query GetArticles {
+    articles {
+      id
+      slug
+      title
+      status
+      updated_at
+      created_at
+    }
+  }
+`
