@@ -31,11 +31,11 @@ const Article: FC<Props> = ({ articles }) => {
   }
 
   return (
-    <Layout title="Articles">
+    <Layout title="Blog">
       <BreadCrumb />
       <div>
         {articles.map(({ id, slug, title }) => (
-          <Link href={`/articles/${slug}`} key={id}>
+          <Link href={`/blog/${slug}`} key={id}>
             <article>
               title: {title}
             </article>
