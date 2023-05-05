@@ -1,3 +1,11 @@
 .navbar {
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline-block;
+  margin: 15px;
 }

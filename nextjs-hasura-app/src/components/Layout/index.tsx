@@ -17,11 +17,20 @@ export const Layout: FC<Props> = ({ children, title = "dOwOd's logs" }) => {
       </Head>
       <article>
         <header>
-          <strong>
-            <Link href="/">
-              dOwOd's logs
-            </Link>
-          </strong>
+          <nav>
+            <ul>
+              <li>
+                <strong>
+                  <Link href="/">dOwOd's logs</Link>
+                </strong>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link href="/articles">Blog</Link>
+              </li>
+            </ul>
+          </nav>
         </header>
         <main className="container">{children}</main>
 
