@@ -38,7 +38,7 @@ export const Layout: FC<Props> = ({ children, title = "dOwOd's logs" }) => {
         <footer>
           <div className={style.footer}>
           <div className="grid">
-            <small>© 2023 dowod.dev</small>
+            <small>© 2023- dowod.dev</small>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
               target="_blank"
