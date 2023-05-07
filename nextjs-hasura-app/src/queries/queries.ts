@@ -14,6 +14,20 @@ export const GET_ARTICLE_BY_SLUG = gql`
   }
 `
 
+export const GET_ARTICLE_BY_ID = gql`
+  query GetArticleById($id: uuid!) {
+    articles_by_pk(id: $id) {
+      id
+      created_at
+      content
+      slug
+      status
+      title
+      updated_at
+    }
+  }
+`
+
 export const GET_ARTICLES_BY_STATUS = gql`
   query GetArticlesByStatus($status: String!) {
     articles(where: { status: { _eq: $status } }) {
