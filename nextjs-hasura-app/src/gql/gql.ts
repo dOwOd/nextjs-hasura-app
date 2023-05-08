@@ -17,6 +17,7 @@ const documents = {
     "\n  query GetArticleById($id: uuid!) {\n    articles_by_pk(id: $id) {\n      id\n      created_at\n      content\n      slug\n      status\n      title\n      updated_at\n    }\n  }\n": types.GetArticleByIdDocument,
     "\n  query GetArticlesByStatus($status: String!) {\n    articles(where: { status: { _eq: $status } }) {\n      id\n      slug\n      title\n      updated_at\n      created_at\n    }\n  }\n": types.GetArticlesByStatusDocument,
     "\n  query GetArticles {\n    articles {\n      id\n      slug\n      title\n      status\n      updated_at\n      created_at\n    }\n  }\n": types.GetArticlesDocument,
+    "\n  mutation UpdateArticle(\n    $id: uuid!\n    $slug: String!\n    $title: String!\n    $content: String\n    $status: String!\n  ) {\n    update_articles_by_pk(\n      pk_columns: { id: $id }\n      _set: { slug: $slug, title: $title, content: $content, status: $status }\n    ) {\n      id\n    }\n  }\n": types.UpdateArticleDocument,
     "\n  mutation DeleteArticleById($id: uuid!) {\n    delete_articles_by_pk(id: $id) {\n      id\n      slug\n      title\n    }\n  }\n": types.DeleteArticleByIdDocument,
 };
 
@@ -50,6 +51,10 @@ export function graphql(source: "\n  query GetArticlesByStatus($status: String!)
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query GetArticles {\n    articles {\n      id\n      slug\n      title\n      status\n      updated_at\n      created_at\n    }\n  }\n"): (typeof documents)["\n  query GetArticles {\n    articles {\n      id\n      slug\n      title\n      status\n      updated_at\n      created_at\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation UpdateArticle(\n    $id: uuid!\n    $slug: String!\n    $title: String!\n    $content: String\n    $status: String!\n  ) {\n    update_articles_by_pk(\n      pk_columns: { id: $id }\n      _set: { slug: $slug, title: $title, content: $content, status: $status }\n    ) {\n      id\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateArticle(\n    $id: uuid!\n    $slug: String!\n    $title: String!\n    $content: String\n    $status: String!\n  ) {\n    update_articles_by_pk(\n      pk_columns: { id: $id }\n      _set: { slug: $slug, title: $title, content: $content, status: $status }\n    ) {\n      id\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

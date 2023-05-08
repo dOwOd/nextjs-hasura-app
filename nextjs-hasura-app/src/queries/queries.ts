@@ -53,6 +53,23 @@ export const GET_ARTICLES = gql`
   }
 `
 
+export const UPDATE_ARTICLE = gql`
+  mutation UpdateArticle(
+    $id: uuid!
+    $slug: String!
+    $title: String!
+    $content: String
+    $status: String!
+  ) {
+    update_articles_by_pk(
+      pk_columns: { id: $id }
+      _set: { slug: $slug, title: $title, content: $content, status: $status }
+    ) {
+      id
+    }
+  }
+`
+
 export const DELETE_ARTICLE_BY_ID = gql`
   mutation DeleteArticleById($id: uuid!) {
     delete_articles_by_pk(id: $id) {

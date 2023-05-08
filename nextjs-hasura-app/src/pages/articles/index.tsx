@@ -55,6 +55,13 @@ const Article: FC<Props> = () => {
                 <td>
                   <div className={style.buttonWrap}>
                     <Link
+                      href={`/articles/${id}`}
+                      className="primary"
+                      role="button"
+                    >
+                      編集
+                    </Link>
+                    <Link
                       href="#"
                       className="secondary outline"
                       role="button"
