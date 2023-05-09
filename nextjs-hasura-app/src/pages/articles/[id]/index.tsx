@@ -6,7 +6,6 @@ import { GetServerSideProps } from 'next'
 import { initializeApollo } from 'lib/apolloClient'
 import { Articles } from 'src/gql/graphql'
 import { useMutation } from '@apollo/client'
-import { useRouter } from 'next/navigation'
 
 interface Props {
   article: {
@@ -42,7 +41,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 const ArticleDetail: FC<Props> = ({ article }) => {
   if (article === undefined) <Layout title="Articles">error...</Layout>
 
-  const router = useRouter()
   const [editedArticle, setEditedArticle] = useState(article)
   const [update_users_by_pk] =
     useMutation<UpdateArticleMutation>(UPDATE_ARTICLE)
@@ -107,12 +105,16 @@ const ArticleDetail: FC<Props> = ({ article }) => {
           }
           required
         >
-          <option value={article.status}>{article.status === 'draft' ? '下書き' : '公開'}</option>
-          {status.map((item) => {
-            if (item === article.status) return
-            return (
-            <option value={item}>{item === 'draft' ? '下書き' : '公開'}</option>
-          )})}
+          <option value={article.status}>
+            {article.status === 'draft' ? '下書き' : '公開'}
+          </option>
+          {status.map((item) =>
+            item === article.status ? null : (
+              <option value={item}>
+                {item === 'draft' ? '下書き' : '公開'}
+              </option>
+            )
+          )}
         </select>
         <button type="submit">更新</button>
       </form>
