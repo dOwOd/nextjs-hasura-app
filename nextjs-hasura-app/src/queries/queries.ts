@@ -53,6 +53,21 @@ export const GET_ARTICLES = gql`
   }
 `
 
+export const CREATE_ARTICLE = gql`
+  mutation CreateArticle(
+    $slug: String!
+    $title: String!
+    $content: String
+    $status: String!
+  ) {
+    insert_articles_one(
+      object: { slug: $slug, title: $title, content: $content, status: $status }
+    ) {
+      id
+    }
+  }
+`
+
 export const UPDATE_ARTICLE = gql`
   mutation UpdateArticle(
     $id: uuid!
