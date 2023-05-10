@@ -1,3 +1,7 @@
 .buttonWrap {
   display: flex;
 }
+
+.newButton {
+  text-align: right;
+}

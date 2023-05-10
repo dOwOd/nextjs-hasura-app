@@ -30,6 +30,11 @@ const Article: FC<Props> = () => {
 
   return (
     <Layout title="Articles">
+      <div className={style.newButton}>
+        <Link href={`/articles/new`} className="contrast" role="button">
+          New
+        </Link>
+      </div>
       <table>
         <thead>
           <tr>
