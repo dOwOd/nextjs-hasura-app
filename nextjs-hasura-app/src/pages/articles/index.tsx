@@ -64,7 +64,7 @@ const Article: FC<Props> = () => {
                       className="primary"
                       role="button"
                     >
-                      編集
+                      Edit
                     </Link>
                     <Link
                       href="#"
@@ -75,7 +75,7 @@ const Article: FC<Props> = () => {
                         router.refresh()
                       }}
                     >
-                      削除
+                      Delete
                     </Link>
                   </div>
                 </td>
