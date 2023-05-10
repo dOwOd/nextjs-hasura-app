@@ -67,8 +67,8 @@ const ArticleDetail: FC<Props> = ({ article }) => {
             id="slug"
             name="slug"
             value={editedArticle.slug}
-            onChange={(e) =>
-              setEditedArticle({ ...editedArticle, slug: e.target.value })
+            onChange={({ target }) =>
+              setEditedArticle({ ...editedArticle, slug: target.value })
             }
             required
           />
@@ -80,8 +80,8 @@ const ArticleDetail: FC<Props> = ({ article }) => {
             id="title"
             name="title"
             value={editedArticle.title}
-            onChange={(e) =>
-              setEditedArticle({ ...editedArticle, title: e.target.value })
+            onChange={({ target }) =>
+              setEditedArticle({ ...editedArticle, title: target.value })
             }
             required
           />
@@ -92,16 +92,16 @@ const ArticleDetail: FC<Props> = ({ article }) => {
             name="content"
             rows={10}
             value={editedArticle.content}
-            onChange={(e) =>
-              setEditedArticle({ ...editedArticle, content: e.target.value })
+            onChange={({ target }) =>
+              setEditedArticle({ ...editedArticle, content: target.value })
             }
           />
         </label>
         <label htmlFor="status">article status</label>
         <select
           id="status"
-          onChange={(e) =>
-            setEditedArticle({ ...editedArticle, status: e.target.value })
+          onChange={({ target }) =>
+            setEditedArticle({ ...editedArticle, status: target.value })
           }
           required
         >
