@@ -6,6 +6,7 @@ import { GetServerSideProps } from 'next'
 import { initializeApollo } from 'lib/apolloClient'
 import { Articles } from 'src/gql/graphql'
 import { useMutation } from '@apollo/client'
+import { BackButton } from 'src/components/BackButton'
 
 interface Props {
   article: {
@@ -59,6 +60,7 @@ const ArticleDetail: FC<Props> = ({ article }) => {
 
   return (
     <Layout title="Articles">
+      <BackButton />
       <form onSubmit={updateArticle}>
         <label htmlFor="articleSlug">
           article slug

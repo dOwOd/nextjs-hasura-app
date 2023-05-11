@@ -4,7 +4,6 @@ import { CREATE_ARTICLE } from 'src/queries/queries'
 import { Layout } from 'src/components/Layout'
 import { Articles } from 'src/gql/graphql'
 import { useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 
 interface Props {
   article: {
