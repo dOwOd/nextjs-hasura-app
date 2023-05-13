@@ -5,8 +5,7 @@ const config: CodegenConfig = {
   schema: 'https://dowod-nextjs-app.hasura.app/v1/graphql',
   documents: 'src/queries/**/*.ts',
   generates: {
-    'src/gql/': {
-      preset: 'client',
+    'src/gql/graphql.ts': {
       plugins: [
         'typescript-operations',
         'typescript',
