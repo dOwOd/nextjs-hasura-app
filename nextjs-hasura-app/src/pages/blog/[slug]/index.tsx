@@ -13,7 +13,7 @@ import {
 import { Layout } from 'src/components/Layout'
 import { BreadCrumb } from 'src/components/BreadCrumb'
 import { dateFromat } from 'lib/utils/DateFormat'
-import { useGetArticleContent } from 'src/hooks/useGetArticleContent'
+import { markdownToReactElement } from 'src/lib/utils/markdownToReactElement'
 
 interface Props {
   article: {
@@ -66,7 +66,7 @@ const Article: FC<Props> = ({ article }) => {
   if (!article) {
     return <>Loading...</>
   }
-  const content = useGetArticleContent(article.content)
+  const content = markdownToReactElement(article.content)
 
   return (
     <Layout title={article.title}>
@@ -76,7 +76,7 @@ const Article: FC<Props> = ({ article }) => {
           <h1>{article.title}</h1>
           <h6>created_at: {dateFromat(article.created_at)}</h6>
         </hgroup>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div>{content}</div>
       </article>
     </Layout>
   )
