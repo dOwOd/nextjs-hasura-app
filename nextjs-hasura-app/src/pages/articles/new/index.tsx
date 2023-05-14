@@ -75,7 +75,7 @@ const New: FC<Props> = () => {
           required
         >
           {['public', 'draft'].map((item) => (
-            <option value={item}>{item === 'draft' ? '下書き' : '公開'}</option>
+            <option value={item} key={item}>{item === 'draft' ? '下書き' : '公開'}</option>
           ))}
         </select>
         <button type="submit">新規作成</button>

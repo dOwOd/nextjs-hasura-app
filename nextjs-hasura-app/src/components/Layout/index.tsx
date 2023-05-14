@@ -22,7 +22,7 @@ export const Layout: FC<Props> = ({ children, title = "dOwOd's logs" }) => {
             <ul>
               <li>
                 <strong>
-                  <Link href="/">dOwOd's logs</Link>
+                  <Link href="/">{`dOwOd's logs`}</Link>
                 </strong>
               </li>
             </ul>

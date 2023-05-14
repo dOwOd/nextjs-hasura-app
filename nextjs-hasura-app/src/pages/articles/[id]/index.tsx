@@ -112,7 +112,7 @@ const ArticleDetail: FC<Props> = ({ article }) => {
           </option>
           {status.map((item) =>
             item === article.status ? null : (
-              <option value={item}>
+              <option value={item} key={item}>
                 {item === 'draft' ? '下書き' : '公開'}
               </option>
             )

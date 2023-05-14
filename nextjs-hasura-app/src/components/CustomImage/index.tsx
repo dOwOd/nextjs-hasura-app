@@ -12,6 +12,6 @@ export const CustomImage: FC<ImgHTMLAttributes<HTMLImageElement>> = ({
   return width && alt ? (
     <Image src={src} alt={alt} width={Number(width)} height={Number(height)} />
   ) : (
-    <img src={src} alt={alt} />
+    <Image src={src} alt={alt || ''} width={400} height={400} />
   )
 }
