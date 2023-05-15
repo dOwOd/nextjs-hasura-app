@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { initializeApollo } from 'lib/apolloClient'
+import { initializeApollo } from 'src/lib/apolloClient'
 import {
   GET_ARTICLE_BY_SLUG,
   GET_ARTICLES_BY_STATUS,
@@ -12,7 +12,7 @@ import {
 } from 'src/gql/graphql'
 import { Layout } from 'src/components/Layout'
 import { BreadCrumb } from 'src/components/BreadCrumb'
-import { dateFromat } from 'lib/utils/DateFormat'
+import { dateFromat } from 'src/lib/utils/DateFormat'
 import { markdownToReactElement } from 'src/lib/utils/markdownToReactElement'
 
 interface Props {

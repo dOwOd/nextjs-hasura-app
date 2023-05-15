@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Layout } from 'src/components/Layout'
 import { GetStaticProps } from 'next'
-import { initializeApollo } from 'lib/apolloClient'
+import { initializeApollo } from 'src/lib/apolloClient'
 import { GetArticlesByStatusQuery, Articles } from 'src/gql/graphql'
 import { GET_ARTICLES_BY_STATUS } from 'src/queries/queries'
 import { BreadCrumb } from 'src/components/BreadCrumb'

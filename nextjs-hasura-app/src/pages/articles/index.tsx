@@ -6,7 +6,7 @@ import {
   Articles,
 } from 'src/gql/graphql'
 import { GET_ARTICLES, DELETE_ARTICLE_BY_ID } from 'src/queries/queries'
-import { dateFromat } from 'lib/utils/DateFormat'
+import { dateFromat } from 'src/lib/utils/DateFormat'
 import { Layout } from 'src/components/Layout'
 import style from 'src/pages/articles/index.module.css'
 import { useQuery, useMutation } from '@apollo/client'

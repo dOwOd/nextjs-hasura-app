@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
-import { initializeApollo } from 'lib/apolloClient'
+import { initializeApollo } from 'src/lib/apolloClient'
 import '@picocss/pico'
 
 function MyApp({ Component, pageProps }: AppProps) {
