@@ -11,6 +11,7 @@ import { Layout } from 'src/components/Layout'
 import style from 'src/pages/articles/index.module.css'
 import { useQuery, useMutation } from '@apollo/client'
 import { useRouter } from 'next/navigation'
+import { useSession, signIn, signOut } from 'next-auth/react'
 
 interface Props {
   articles: {
@@ -25,13 +26,14 @@ const Article: FC<Props> = () => {
   const [delete_articles_by_pk] =
     useMutation<DeleteArticleByIdMutation>(DELETE_ARTICLE_BY_ID)
   const router = useRouter()
+  const { data: session } = useSession()
 
   if (loading) <Layout title="Articles">Loading...</Layout>
 
-  return (
-    <Layout title="Articles">
+  const detail = session ? (
+    <>
       <div className={style.newButton}>
-        <Link href={`/articles/new`} className="contrast" role="button">
+        <Link href={`/articles/new`} className="co  ntrast" role="button">
           New
         </Link>
       </div>
@@ -84,8 +86,14 @@ const Article: FC<Props> = () => {
           )}
         </tbody>
       </table>
-    </Layout>
+    </>
+  ) : (
+    <>
+      <button onClick={() => signIn()}>Sign in</button>
+    </>
   )
+
+  return <Layout title="Articles">{detail}</Layout>
 }
 
 export default Article
