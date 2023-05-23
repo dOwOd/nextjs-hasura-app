@@ -30,9 +30,6 @@ export const Layout: FC<Props> = ({ children, title = "dOwOd's logs" }) => {
               <li>
                 <Link href="/blog">Blog</Link>
               </li>
-              <li>
-                <Link href="/prototypes">Prototypes</Link>
-              </li>
             </ul>
           </nav>
         </header>
