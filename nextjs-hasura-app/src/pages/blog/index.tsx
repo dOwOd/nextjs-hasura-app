@@ -26,7 +26,7 @@ interface Props {
     __typename?: 'articles'
   } & Pick<Articles, 'id' | 'slug' | 'title' | 'created_at' | 'updated_at'>[]
 }
-const Article: FC<Props> = ({ articles }) => (
+const Index: FC<Props> = ({ articles }) => (
   <Layout title="Blog">
     <BreadCrumb />
     <div>
@@ -39,4 +39,4 @@ const Article: FC<Props> = ({ articles }) => (
   </Layout>
 )
 
-export default Article
+export default Index
