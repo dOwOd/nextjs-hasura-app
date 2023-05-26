@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
 
-const ArticleDetail: FC = () => {
+const Index: FC = () => {
   return (
     <Layout title='Prototypes'>
       <article>
@@ -21,4 +21,4 @@ const ArticleDetail: FC = () => {
   )
 }
 
-export default ArticleDetail
+export default Index
