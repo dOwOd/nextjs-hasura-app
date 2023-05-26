@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-const Article: FC<Props> = ({ article }) => {
+const Index: FC<Props> = ({ article }) => {
   if (!article) {
     return <>Loading...</>
   }
@@ -82,4 +82,4 @@ const Article: FC<Props> = ({ article }) => {
   )
 }
 
-export default Article
+export default Index
