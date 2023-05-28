@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 }
 
-const ArticleDetail: FC<Props> = ({ article }) => {
+const Index: FC<Props> = ({ article }) => {
   if (article === undefined) <Layout title="Articles">error...</Layout>
 
   const [editedArticle, setEditedArticle] = useState(article)
@@ -124,4 +124,4 @@ const ArticleDetail: FC<Props> = ({ article }) => {
   )
 }
 
-export default ArticleDetail
+export default Index
