@@ -14,7 +14,7 @@ interface Props {
   >
 }
 
-const New: FC<Props> = () => {
+const Index: FC<Props> = () => {
   const [slug, setSlug] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
@@ -84,4 +84,4 @@ const New: FC<Props> = () => {
   )
 }
 
-export default New
+export default Index
