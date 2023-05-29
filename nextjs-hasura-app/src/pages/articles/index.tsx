@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client'
 import { useSession, signIn } from 'next-auth/react'
 import { Articles } from 'src/components/Articles'
 import { isVerifyEmailAddress } from 'src/lib/utils/isVerifyEmailAddress'
-import styles from 'src/pages/articles/index.module.css'
+import { SeeYou } from 'src/components/SeeYou'
 
 const Index: FC = () => {
   const { data, loading } = useQuery<GetArticlesQuery>(GET_ARTICLES)
@@ -24,9 +24,7 @@ const Index: FC = () => {
   const detail = isVerifyEmailAddress(session.user?.email) && data?.articles ? (
     <Articles articles={data.articles} />
   ) : (
-    <>
-      <p className={styles.text}>hello &#x1F44B;</p>
-    </>
+    <SeeYou />
   )
 
   return <Layout title="Articles">{detail}</Layout>
