@@ -32,7 +32,7 @@ const Index: FC<Props> = ({ articles }) => (
     <div>
       {articles.map(({ id, slug, title }) => (
         <Link href={`/blog/${slug}`} key={id}>
-          <article>title: {title}</article>
+          <article>Title: {title}</article>
         </Link>
       ))}
     </div>
