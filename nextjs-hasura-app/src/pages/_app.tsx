@@ -3,6 +3,7 @@ import { ApolloProvider } from '@apollo/client'
 import { initializeApollo } from 'src/lib/apolloClient'
 import { SessionProvider } from 'next-auth/react'
 import '@picocss/pico'
+import { Analytics } from '@vercel/analytics/react';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const client = initializeApollo()
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <SessionProvider>
       <ApolloProvider client={client}>
         <Component {...pageProps} />
+        <Analytics />
       </ApolloProvider>
     </SessionProvider>
   )
