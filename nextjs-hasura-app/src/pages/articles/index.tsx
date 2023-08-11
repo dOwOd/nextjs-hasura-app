@@ -12,11 +12,11 @@ const Index: FC = () => {
   const { data, loading } = useQuery<GetArticlesQuery>(GET_ARTICLES)
   const { data: session } = useSession()
 
-  if (loading) return <Layout title="Articles">Loading...</Layout>
+  if (loading) return <Layout>Loading...</Layout>
 
   if (session == undefined)
     return (
-      <Layout title="Articles">
+      <Layout>
         <button onClick={() => signIn()}>Sign in</button>
       </Layout>
     )
@@ -27,7 +27,7 @@ const Index: FC = () => {
     <SeeYou />
   )
 
-  return <Layout title="Articles">{detail}</Layout>
+  return <Layout>{detail}</Layout>
 }
 
 export default Index

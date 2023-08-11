@@ -69,7 +69,7 @@ const Index: FC<Props> = ({ article }) => {
   const content = markdownToReactElement(article.content)
 
   return (
-    <Layout title={article.title}>
+    <Layout>
       <BreadCrumb />
       <article>
         <hgroup>

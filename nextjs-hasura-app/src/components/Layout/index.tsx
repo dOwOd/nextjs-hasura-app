@@ -6,7 +6,6 @@ import { Metadata } from 'next'
 
 interface Props {
   children: ReactNode
-  title: string
 }
 
 export const metadata: Metadata = {

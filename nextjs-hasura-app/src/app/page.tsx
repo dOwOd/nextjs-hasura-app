@@ -7,7 +7,7 @@ import style from 'src/pages/index.module.css'
 
 const Page: NextPage = () => {
   return (
-    <Layout title={`dOwOd\'s logs`}>
+    <Layout>
       <div className={style.topList}>
         <TopIcon />
         <Profile />

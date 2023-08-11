@@ -17,7 +17,7 @@ const Page = async () => {
   })
 
   return (
-    <Layout title="Blog">
+    <Layout>
       <BreadCrumb />
       <div>
         {data.articles.map(({ id, slug, title }) => (
