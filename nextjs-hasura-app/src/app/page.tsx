@@ -3,7 +3,7 @@ import { Layout } from 'src/components/Layout'
 import { TopIcon } from 'src/components/TopIcon'
 import { Accounts } from 'src/components/Accounts'
 import { Profile } from 'src/components/Profile'
-import style from 'src/pages/index.module.css'
+import style from 'src/app/index.module.css'
 
 const Page: NextPage = () => {
   return (
