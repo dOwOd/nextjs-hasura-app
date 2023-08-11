@@ -1,20 +1,12 @@
-import { FC, useState, FormEvent } from 'react'
+'use client'
+
+import { useState, FormEvent } from 'react'
 import { CreateArticleMutation } from 'src/gql/graphql'
 import { CREATE_ARTICLE } from 'src/queries/queries'
 import { Layout } from 'src/components/Layout'
-import { Articles } from 'src/gql/graphql'
 import { useMutation } from '@apollo/client'
 
-interface Props {
-  article: {
-    __typename?: 'articles'
-  } & Pick<
-    Articles,
-    'id' | 'slug' | 'title' | 'status' | 'content' | 'created_at' | 'updated_at'
-  >
-}
-
-const Index: FC<Props> = () => {
+const Page = () => {
   const [slug, setSlug] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
@@ -84,4 +76,4 @@ const Index: FC<Props> = () => {
   )
 }
 
-export default Index
+export default Page
