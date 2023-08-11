@@ -1,11 +1,13 @@
-import { useRouter } from "next/router"
-import Link from "next/link"
+'use client'
+
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export const BreadCrumb = () => {
-  const router = useRouter()
-  const fullPath = `${router.asPath}`.split('/')
+  const pathname = usePathname()
+  const fullPath = `${pathname}`.split('/')
   return (
-    <nav aria-label="breadcrumb">
+    <nav aria-label='breadcrumb'>
       <ul>
         {fullPath.map((path, i) => {
           const children =

@@ -10,7 +10,8 @@
     "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.13",
+    "@apollo/client": "^3.8.0-rc.2",
+    "@apollo/experimental-nextjs-app-support": "^0.4.1",
     "@picocss/pico": "^1.5.10",
     "@vercel/analytics": "^1.0.2",
     "cdate": "^0.0.5",
@@ -38,8 +39,9 @@
     "@types/node": "18.16.3",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
+    "encoding": "^0.1.13",
     "eslint": "8.39.0",
-    "eslint-config-next": "13.3.2",
+    "eslint-config-next": "^13.4.13",
     "eslint-config-prettier": "^8.8.0",
     "graphql-tag": "^2.0.0",
     "prettier": "^2.8.8",

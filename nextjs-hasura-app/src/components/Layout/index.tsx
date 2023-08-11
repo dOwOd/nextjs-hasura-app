@@ -1,42 +1,40 @@
 import { ReactNode, FC } from 'react'
-import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import style from 'src/components/Layout/index.module.css'
+import { Metadata } from 'next'
 
 interface Props {
   children: ReactNode
-  title: string
 }
-export const Layout: FC<Props> = ({ children, title = "dOwOd's logs" }) => {
-  return (
-    <div>
-      <Head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{title}</title>
-      </Head>
-      <article>
-        <header>
-          <nav>
-            <ul>
-              <li>
-                <strong>
-                  <Link href="/">{`dOwOd's logs`}</Link>
-                </strong>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <Link href="/blog">Blog</Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
-        <main className="container">{children}</main>
 
-        <footer>
-          <div className={style.footer}>
+export const metadata: Metadata = {
+  title: "dOwOd's logs",
+}
+
+export const Layout: FC<Props> = ({ children }) => {
+  return (
+    <article>
+      <header>
+        <nav>
+          <ul>
+            <li>
+              <strong>
+                <Link href="/">{`dOwOd's logs`}</Link>
+              </strong>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <Link href="/blog">Blog</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main className="container">{children}</main>
+
+      <footer>
+        <div className={style.footer}>
           <div className="grid">
             <small>© 2023- dowod.dev</small>
             <a
@@ -53,9 +51,8 @@ export const Layout: FC<Props> = ({ children, title = "dOwOd's logs" }) => {
               />
             </a>
           </div>
-          </div>
-        </footer>
-      </article>
-    </div>
+        </div>
+      </footer>
+    </article>
   )
 }

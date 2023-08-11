@@ -3,11 +3,11 @@ import { Layout } from 'src/components/Layout'
 import { TopIcon } from 'src/components/TopIcon'
 import { Accounts } from 'src/components/Accounts'
 import { Profile } from 'src/components/Profile'
-import style from 'src/pages/index.module.css'
+import style from 'src/app/index.module.css'
 
-const Home: NextPage = () => {
+const Page: NextPage = () => {
   return (
-    <Layout title={`dOwOd\'s logs`}>
+    <Layout>
       <div className={style.topList}>
         <TopIcon />
         <Profile />
@@ -17,4 +17,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Page

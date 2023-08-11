@@ -1,65 +1,40 @@
-import { FC, useState, FormEvent } from 'react'
+'use client'
+
+import { useState, FormEvent } from 'react'
 import { GetArticleByIdQuery, UpdateArticleMutation } from 'src/gql/graphql'
 import { GET_ARTICLE_BY_ID, UPDATE_ARTICLE } from 'src/queries/queries'
 import { Layout } from 'src/components/Layout'
-import { GetServerSideProps } from 'next'
-import { initializeApollo } from 'src/lib/apolloClient'
-import { Articles } from 'src/gql/graphql'
 import { useMutation } from '@apollo/client'
 import { BackButton } from 'src/components/BackButton'
-
-interface Props {
-  article: {
-    __typename?: 'articles'
-  } & Pick<
-    Articles,
-    'id' | 'slug' | 'title' | 'status' | 'content' | 'created_at' | 'updated_at'
-  >
-}
+import { useSuspenseQuery } from '@apollo/client'
 
 const status = ['draft', 'public']
-
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const apolloClient = initializeApollo()
-
-  if (params !== undefined) {
-    const { data } = await apolloClient.query<GetArticleByIdQuery>({
-      query: GET_ARTICLE_BY_ID,
-      variables: { id: params.id },
-    })
-    return {
-      props: {
-        article: data.articles_by_pk,
-      },
-    }
-  }
-
-  return {
-    props: { error: true },
-  }
-}
-
-const Index: FC<Props> = ({ article }) => {
-  if (article === undefined) <Layout title="Articles">error...</Layout>
-
+const Page = ({ params }: { params: { id: string } }) => {
+  const { data } = useSuspenseQuery<GetArticleByIdQuery>(GET_ARTICLE_BY_ID, {variables: { id: params.id }})
+  const article = data.articles_by_pk
   const [editedArticle, setEditedArticle] = useState(article)
+
   const [update_users_by_pk] =
     useMutation<UpdateArticleMutation>(UPDATE_ARTICLE)
   const updateArticle = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     await update_users_by_pk({
       variables: {
-        id: editedArticle.id,
-        slug: editedArticle.slug,
-        title: editedArticle.title,
-        content: editedArticle.content,
-        status: editedArticle.status,
+        id: editedArticle?.id,
+        slug: editedArticle?.slug,
+        title: editedArticle?.title,
+        content: editedArticle?.content,
+        status: editedArticle?.status,
       },
     })
   }
 
+  if (!editedArticle) {
+    return <Layout>error...</Layout>
+  }
+
   return (
-    <Layout title="Articles">
+    <Layout>
       <BackButton />
       <form onSubmit={updateArticle}>
         <label htmlFor="articleSlug">
@@ -107,11 +82,11 @@ const Index: FC<Props> = ({ article }) => {
           }
           required
         >
-          <option value={article.status}>
-            {article.status === 'draft' ? '下書き' : '公開'}
+          <option value={article?.status}>
+            {article?.status === 'draft' ? '下書き' : '公開'}
           </option>
           {status.map((item) =>
-            item === article.status ? null : (
+            item === article?.status ? null : (
               <option value={item} key={item}>
                 {item === 'draft' ? '下書き' : '公開'}
               </option>
@@ -124,4 +99,4 @@ const Index: FC<Props> = ({ article }) => {
   )
 }
 
-export default Index
+export default Page
