@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 }
 
 const Index: FC<Props> = ({ article }) => {
-  if (article === undefined) <Layout title="Articles">error...</Layout>
+  if (article === undefined) <Layout>error...</Layout>
 
   const [editedArticle, setEditedArticle] = useState(article)
   const [update_users_by_pk] =
@@ -59,7 +59,7 @@ const Index: FC<Props> = ({ article }) => {
   }
 
   return (
-    <Layout title="Articles">
+    <Layout>
       <BackButton />
       <form onSubmit={updateArticle}>
         <label htmlFor="articleSlug">

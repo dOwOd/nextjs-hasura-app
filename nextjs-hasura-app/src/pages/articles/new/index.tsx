@@ -35,7 +35,7 @@ const Index: FC<Props> = () => {
   }
 
   return (
-    <Layout title="Articles">
+    <Layout>
       <form onSubmit={intertArticle}>
         <label htmlFor="articleSlug">
           article slug

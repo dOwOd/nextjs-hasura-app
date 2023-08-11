@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 const Index: FC = () => {
   return (
-    <Layout title='Prototypes'>
+    <Layout>
       <article>
         <h1>Timer</h1>
         <Timer />
