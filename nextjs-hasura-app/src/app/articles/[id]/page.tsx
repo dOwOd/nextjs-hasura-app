@@ -8,9 +8,17 @@ import { useMutation } from '@apollo/client'
 import { BackButton } from 'src/components/BackButton'
 import { useSuspenseQuery } from '@apollo/client'
 
+type Props = {
+  params: {
+    id: string
+  }
+}
+
 const status = ['draft', 'public']
-const Page = ({ params }: { params: { id: string } }) => {
-  const { data } = useSuspenseQuery<GetArticleByIdQuery>(GET_ARTICLE_BY_ID, {variables: { id: params.id }})
+const Page = ({ params }: Props) => {
+  const { data } = useSuspenseQuery<GetArticleByIdQuery>(GET_ARTICLE_BY_ID, {
+    variables: { id: params.id },
+  })
   const article = data.articles_by_pk
   const [editedArticle, setEditedArticle] = useState(article)
 

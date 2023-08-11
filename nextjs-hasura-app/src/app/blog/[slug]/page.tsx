@@ -5,8 +5,25 @@ import { Layout } from 'src/components/Layout'
 import { BreadCrumb } from 'src/components/BreadCrumb'
 import { dateFromat } from 'src/lib/utils/DateFormat'
 import { markdownToReactElement } from 'src/lib/utils/markdownToReactElement'
+import { Metadata } from 'next'
 
-const Page = async ({ params }: { params: { slug: string } }) => {
+type Props = {
+  params: {
+    slug: string
+  }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
+    query: GET_ARTICLE_BY_SLUG,
+    variables: { slug: params.slug },
+  })
+  return {
+    title: data.articles[0].title,
+  }
+}
+
+const Page = async ({ params }: Props) => {
   const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
     query: GET_ARTICLE_BY_SLUG,
     variables: { slug: params.slug },
