@@ -5,7 +5,7 @@ import { Accounts } from 'src/components/Accounts'
 import { Profile } from 'src/components/Profile'
 import style from 'src/pages/index.module.css'
 
-const Home: NextPage = () => {
+const Page: NextPage = () => {
   return (
     <Layout title={`dOwOd\'s logs`}>
       <div className={style.topList}>
@@ -17,4 +17,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Page
