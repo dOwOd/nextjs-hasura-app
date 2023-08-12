@@ -29,6 +29,9 @@ const Page = async ({ params }: Props) => {
     variables: { slug: params.slug },
   })
   const article = data.articles[0]
+
+  console.log(data);
+
   const content = markdownToReactElement(article.content)
 
   return (

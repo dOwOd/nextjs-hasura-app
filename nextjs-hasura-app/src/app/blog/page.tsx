@@ -16,6 +16,9 @@ const Page = async () => {
     variables: { status: 'public' },
   })
 
+  console.log(data);
+  
+
   return (
     <Layout>
       <BreadCrumb />
