@@ -17,6 +17,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
     query: GET_ARTICLE_BY_SLUG,
     variables: { slug: params.slug },
+    context: {
+      fetchOptions: {
+        next: { revalidate: 1 },
+      },
+    }
   })
   return {
     title: data.articles[0].title,
@@ -29,9 +34,6 @@ const Page = async ({ params }: Props) => {
     variables: { slug: params.slug },
   })
   const article = data.articles[0]
-
-  console.log(data);
-
   const content = markdownToReactElement(article.content)
 
   return (

@@ -14,10 +14,12 @@ const Page = async () => {
   const { data } = await initializeApollo().query<GetArticlesByStatusQuery>({
     query: GET_ARTICLES_BY_STATUS,
     variables: { status: 'public' },
+    context: {
+      fetchOptions: {
+        next: { revalidate: 1 },
+      },
+    }
   })
-
-  console.log(data);
-  
 
   return (
     <Layout>
