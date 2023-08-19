@@ -28,7 +28,7 @@ export const Articles: FC<Props> = ({ articles }) => {
           New
         </Link>
         <>
-          <button onClick={() => signOut()}>Sign out</button>
+          <button onClick={() => signOut({callbackUrl: '/login'})}>Sign out</button>
         </>
       </div>
       <table>
