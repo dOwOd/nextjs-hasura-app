@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import style from 'src/components/Articles/index.module.css'
 import { Articles as ArticleType } from 'src/gql/graphql'
@@ -8,17 +10,20 @@ import { useMutation } from '@apollo/client'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { FC } from 'react'
+import { initializeApollo } from 'src/lib/apolloClient'
 
 interface Props {
-  articles: Pick<
-  ArticleType,
-  'id' | 'slug' | 'title' | 'status' | 'created_at' | 'updated_at'
->[] | undefined
+  articles:
+    | Pick<
+        ArticleType,
+        'id' | 'slug' | 'title' | 'status' | 'created_at' | 'updated_at'
+      >[]
+    | undefined
 }
 
 export const Articles: FC<Props> = ({ articles }) => {
   const [delete_articles_by_pk] =
-    useMutation<DeleteArticleByIdMutation>(DELETE_ARTICLE_BY_ID)
+    useMutation<DeleteArticleByIdMutation>(DELETE_ARTICLE_BY_ID, {client: initializeApollo()})
   const router = useRouter()
 
   return (
@@ -28,7 +33,9 @@ export const Articles: FC<Props> = ({ articles }) => {
           New
         </Link>
         <>
-          <button onClick={() => signOut({callbackUrl: '/login'})}>Sign out</button>
+          <button onClick={() => signOut({ callbackUrl: '/login' })}>
+            Sign out
+          </button>
         </>
       </div>
       <table>

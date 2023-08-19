@@ -1,4 +1,3 @@
-import { Layout } from 'src/components/Layout'
 import { initializeApollo } from 'src/lib/apolloClient'
 import { GetArticlesByStatusQuery } from 'src/gql/graphql'
 import { GET_ARTICLES_BY_STATUS } from 'src/queries/queries'
@@ -18,11 +17,11 @@ const Page = async () => {
       fetchOptions: {
         next: { revalidate: 1 },
       },
-    }
+    },
   })
 
   return (
-    <Layout>
+    <>
       <BreadCrumb />
       <div>
         {data.articles.map(({ id, slug, title }) => (
@@ -31,7 +30,7 @@ const Page = async () => {
           </Link>
         ))}
       </div>
-    </Layout>
+    </>
   )
 }
 

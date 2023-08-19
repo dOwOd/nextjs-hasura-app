@@ -1,7 +1,6 @@
 import { initializeApollo } from 'src/lib/apolloClient'
 import { GET_ARTICLE_BY_SLUG } from 'src/queries/queries'
 import { GetArticleBySlugQuery } from 'src/gql/graphql'
-import { Layout } from 'src/components/Layout'
 import { BreadCrumb } from 'src/components/BreadCrumb'
 import { dateFromat } from 'src/lib/utils/DateFormat'
 import { markdownToReactElement } from 'src/lib/utils/markdownToReactElement'
@@ -21,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       fetchOptions: {
         next: { revalidate: 1 },
       },
-    }
+    },
   })
   return {
     title: data.articles[0].title,
@@ -37,7 +36,7 @@ const Page = async ({ params }: Props) => {
   const content = markdownToReactElement(article.content)
 
   return (
-    <Layout>
+    <>
       <BreadCrumb />
       <article>
         <hgroup>
@@ -46,7 +45,7 @@ const Page = async ({ params }: Props) => {
         </hgroup>
         <div>{content}</div>
       </article>
-    </Layout>
+    </>
   )
 }
 

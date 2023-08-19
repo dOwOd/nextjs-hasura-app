@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import { Layout } from 'src/components/Layout'
 import { TopIcon } from 'src/components/TopIcon'
 import { Accounts } from 'src/components/Accounts'
 import { Profile } from 'src/components/Profile'
@@ -10,16 +9,12 @@ export const metadata: Metadata = {
   title: "dOwOd's logs",
 }
 
-const Page: NextPage = () => {
-  return (
-    <Layout>
-      <div className={style.topList}>
-        <TopIcon />
-        <Profile />
-        <Accounts />
-      </div>
-    </Layout>
-  )
-}
+const Page: NextPage = () => (
+  <div className={style.topList}>
+    <TopIcon />
+    <Profile />
+    <Accounts />
+  </div>
+)
 
 export default Page
