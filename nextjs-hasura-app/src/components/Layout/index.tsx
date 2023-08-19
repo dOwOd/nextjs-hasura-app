@@ -5,6 +5,7 @@ import style from 'src/components/Layout/index.module.css'
 import { Metadata } from 'next'
 import { SignoutButton } from '../Button/SignoutButton'
 import { PropsWithChildren } from 'react'
+import { ArticlesButton } from 'src/components/Button/ArticlesButton'
 
 export const metadata: Metadata = {
   title: "dOwOd's logs",
@@ -24,6 +25,9 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
         <ul>
           <li>
             <Link href="/blog">Blog</Link>
+          </li>
+          <li>
+            <ArticlesButton />
           </li>
           <li>
             <SignoutButton />
