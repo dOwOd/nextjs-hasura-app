@@ -3,7 +3,6 @@
 import { useState, FormEvent } from 'react'
 import { GetArticleByIdQuery, UpdateArticleMutation } from 'src/gql/graphql'
 import { GET_ARTICLE_BY_ID, UPDATE_ARTICLE } from 'src/queries/queries'
-import { Layout } from 'src/components/Layout'
 import { useMutation } from '@apollo/client'
 import { BackButton } from 'src/components/BackButton'
 import { useSuspenseQuery } from '@apollo/client'
@@ -38,11 +37,11 @@ const Page = ({ params }: Props) => {
   }
 
   if (!editedArticle) {
-    return <Layout>error...</Layout>
+    return 'error...'
   }
 
   return (
-    <Layout>
+    <>
       <BackButton />
       <form onSubmit={updateArticle}>
         <label htmlFor="articleSlug">
@@ -103,7 +102,7 @@ const Page = ({ params }: Props) => {
         </select>
         <button type="submit">更新</button>
       </form>
-    </Layout>
+    </>
   )
 }
 

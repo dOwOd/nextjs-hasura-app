@@ -1,4 +1,3 @@
-import { Layout } from 'src/components/Layout'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -7,10 +6,8 @@ export const metadata: Metadata = {
 
 const NotFound = () => (
   <div>
-    <Layout>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-    </Layout>
+    <h2>Not Found</h2>
+    <p>Could not find requested resource</p>
   </div>
 )
 
