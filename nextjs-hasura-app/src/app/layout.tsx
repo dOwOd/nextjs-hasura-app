@@ -1,6 +1,7 @@
 import '@picocss/pico'
 import { Analytics } from '@vercel/analytics/react'
 import { Layout } from 'src/components/Layout'
+import { Session } from 'src/components/Providers/Session'
 
 export default function RootLayout({
   children,
@@ -10,10 +11,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <Layout>
-          {children}
-          <Analytics />
-        </Layout>
+        <Session>
+          <Layout>
+            {children}
+            <Analytics />
+          </Layout>
+        </Session>
       </body>
     </html>
   )
