@@ -7,5 +7,9 @@ export default NextAuth({
       clientId: process.env.GITHUB_ID || '',
       clientSecret: process.env.GITHUB_SECRET || ''
     })
-  ]
+  ],
+  session: {
+    strategy: 'jwt',
+    maxAge: 60 * 60 * 24 * 30,
+  },
 })

@@ -13,7 +13,7 @@ interface Props {
   articles: Pick<
   ArticleType,
   'id' | 'slug' | 'title' | 'status' | 'created_at' | 'updated_at'
->[]
+>[] | undefined
 }
 
 export const Articles: FC<Props> = ({ articles }) => {
@@ -43,7 +43,7 @@ export const Articles: FC<Props> = ({ articles }) => {
           </tr>
         </thead>
         <tbody>
-          {articles.map(
+          {articles?.map(
             ({ id, slug, title, status, updated_at, created_at }) => (
               <tr key={id}>
                 <td>{slug}</td>
