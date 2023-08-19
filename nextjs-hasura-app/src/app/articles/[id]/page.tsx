@@ -4,7 +4,6 @@ import { useState, FormEvent } from 'react'
 import { GetArticleByIdQuery, UpdateArticleMutation } from 'src/gql/graphql'
 import { GET_ARTICLE_BY_ID, UPDATE_ARTICLE } from 'src/queries/queries'
 import { useMutation } from '@apollo/client'
-import { ArticlesButton } from 'src/components/Button/ArticlesButton'
 import { useSuspenseQuery } from '@apollo/client'
 
 type Props = {
@@ -41,68 +40,65 @@ const Page = ({ params }: Props) => {
   }
 
   return (
-    <>
-      <ArticlesButton />
-      <form onSubmit={updateArticle}>
-        <label htmlFor="articleSlug">
-          article slug
-          <input
-            type="text"
-            id="slug"
-            name="slug"
-            value={editedArticle.slug}
-            onChange={({ target }) =>
-              setEditedArticle({ ...editedArticle, slug: target.value })
-            }
-            required
-          />
-        </label>
-        <label htmlFor="articleTitle">
-          article title
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={editedArticle.title}
-            onChange={({ target }) =>
-              setEditedArticle({ ...editedArticle, title: target.value })
-            }
-            required
-          />
-        </label>
-        <label htmlFor="articleContent">
-          article content
-          <textarea
-            name="content"
-            rows={10}
-            value={editedArticle.content}
-            onChange={({ target }) =>
-              setEditedArticle({ ...editedArticle, content: target.value })
-            }
-          />
-        </label>
-        <label htmlFor="status">article status</label>
-        <select
-          id="status"
+    <form onSubmit={updateArticle}>
+      <label htmlFor="articleSlug">
+        article slug
+        <input
+          type="text"
+          id="slug"
+          name="slug"
+          value={editedArticle.slug}
           onChange={({ target }) =>
-            setEditedArticle({ ...editedArticle, status: target.value })
+            setEditedArticle({ ...editedArticle, slug: target.value })
           }
           required
-        >
-          <option value={article?.status}>
-            {article?.status === 'draft' ? '下書き' : '公開'}
-          </option>
-          {status.map((item) =>
-            item === article?.status ? null : (
-              <option value={item} key={item}>
-                {item === 'draft' ? '下書き' : '公開'}
-              </option>
-            )
-          )}
-        </select>
-        <button type="submit">更新</button>
-      </form>
-    </>
+        />
+      </label>
+      <label htmlFor="articleTitle">
+        article title
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value={editedArticle.title}
+          onChange={({ target }) =>
+            setEditedArticle({ ...editedArticle, title: target.value })
+          }
+          required
+        />
+      </label>
+      <label htmlFor="articleContent">
+        article content
+        <textarea
+          name="content"
+          rows={10}
+          value={editedArticle.content}
+          onChange={({ target }) =>
+            setEditedArticle({ ...editedArticle, content: target.value })
+          }
+        />
+      </label>
+      <label htmlFor="status">article status</label>
+      <select
+        id="status"
+        onChange={({ target }) =>
+          setEditedArticle({ ...editedArticle, status: target.value })
+        }
+        required
+      >
+        <option value={article?.status}>
+          {article?.status === 'draft' ? '下書き' : '公開'}
+        </option>
+        {status.map((item) =>
+          item === article?.status ? null : (
+            <option value={item} key={item}>
+              {item === 'draft' ? '下書き' : '公開'}
+            </option>
+          )
+        )}
+      </select>
+      <button type="submit">更新</button>
+    </form>
   )
 }
 
