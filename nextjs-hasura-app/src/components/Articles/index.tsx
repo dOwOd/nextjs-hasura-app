@@ -7,36 +7,34 @@ import { DELETE_ARTICLE_BY_ID } from 'src/queries/queries'
 import { DeleteArticleByIdMutation } from 'src/gql/graphql'
 import { dateFromat } from 'src/lib/utils/DateFormat'
 import { useMutation } from '@apollo/client'
-import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { FC } from 'react'
 import { initializeApollo } from 'src/lib/apolloClient'
+import { SignoutButton } from 'src/components/Button/SignoutButton'
 
 interface Props {
   articles:
-    | Pick<
-        ArticleType,
-        'id' | 'slug' | 'title' | 'status' | 'created_at' | 'updated_at'
-      >[]
-    | undefined
+  | Pick<
+    ArticleType,
+    'id' | 'slug' | 'title' | 'status' | 'created_at' | 'updated_at'
+  >[]
+  | undefined
 }
 
 export const Articles: FC<Props> = ({ articles }) => {
   const [delete_articles_by_pk] =
-    useMutation<DeleteArticleByIdMutation>(DELETE_ARTICLE_BY_ID, {client: initializeApollo()})
+    useMutation<DeleteArticleByIdMutation>(DELETE_ARTICLE_BY_ID, { client: initializeApollo() })
   const router = useRouter()
 
   return (
     <>
-      <div className={style.newButton}>
-        <Link href={`/articles/new`} className="co  ntrast" role="button">
-          New
-        </Link>
-        <>
-          <button onClick={() => signOut({ callbackUrl: '/login' })}>
-            Sign out
-          </button>
-        </>
+      <div className='grid'>
+        <div className={style.newButton}>
+          <Link href={`/articles/new`} className="contrast" role="button">
+            New
+          </Link>
+        </div>
+
       </div>
       <table>
         <thead>

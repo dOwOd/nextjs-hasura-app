@@ -4,7 +4,7 @@ import { useState, FormEvent } from 'react'
 import { GetArticleByIdQuery, UpdateArticleMutation } from 'src/gql/graphql'
 import { GET_ARTICLE_BY_ID, UPDATE_ARTICLE } from 'src/queries/queries'
 import { useMutation } from '@apollo/client'
-import { BackButton } from 'src/components/BackButton'
+import { BackButton } from 'src/components/Button/BackButton'
 import { useSuspenseQuery } from '@apollo/client'
 
 type Props = {

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import style from 'src/components/BackButton/index.module.css'
+import style from 'src/components/Button/BackButton/index.module.css'
 
 export const BackButton = () => (
   <div className={style.backButton}>
