@@ -1,6 +1,6 @@
 import { GetArticlesQuery } from 'src/gql/graphql'
 import { GET_ARTICLES } from 'src/queries/queries'
-import { Articles } from 'src/components/Articles'
+import { Articles } from 'src/components/List/Articles'
 import { isVerifyEmailAddress } from 'src/lib/utils/isVerifyEmailAddress'
 import { initializeApollo } from 'src/lib/apolloClient'
 import { getServerSession } from 'next-auth'

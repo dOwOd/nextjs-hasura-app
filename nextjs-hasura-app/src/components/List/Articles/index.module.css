@@ -1,0 +1,11 @@
+.buttonWrap {
+  display: flex;
+}
+
+.buttonWrap a {
+  margin-right: 5%;
+}
+
+.newButton {
+  text-align: right;
+}
