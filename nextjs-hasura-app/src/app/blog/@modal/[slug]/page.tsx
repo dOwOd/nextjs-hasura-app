@@ -11,13 +11,14 @@ type Props = {
 }
 
 const Page = async ({ params }: Props) => {
+  console.log(params);
+
   const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
     query: GET_ARTICLE_BY_SLUG,
     variables: { slug: params.slug },
   })
 
   const article = data.articles[0]
-  console.log('aaaaaaaaaaaaaaaaaa')
 
   return (
     <Modal>
