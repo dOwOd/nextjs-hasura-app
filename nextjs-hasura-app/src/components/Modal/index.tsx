@@ -1,54 +1,28 @@
 // https://github.com/vercel-labs/nextgram/blob/main/src/components/modal/Modal.tsx
 'use client'
 
-import { useCallback, useRef, useEffect, MouseEventHandler } from 'react'
-import { useRouter } from 'next/navigation'
 import { FC } from 'react'
+import style from './index.module.css'
+import { useCloseModal } from 'src/lib/hooks/useCloseModal'
 
 interface Props {
   children: React.ReactNode
 }
 
 export const Modal: FC<Props> = ({ children }) => {
-  const overlay = useRef(null)
-  const wrapper = useRef(null)
-  const router = useRouter()
-
-  const onDismiss = useCallback(() => {
-    router.back()
-  }, [router])
-
-  const onClick: MouseEventHandler = useCallback(
-    (e) => {
-      if (e.target === overlay.current || e.target === wrapper.current) {
-        if (onDismiss) onDismiss()
-      }
-    },
-    [onDismiss, overlay, wrapper]
-  )
-
-  const onKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onDismiss()
-    },
-    [onDismiss]
-  )
-
-  useEffect(() => {
-    document.addEventListener('keydown', onKeyDown)
-    return () => document.removeEventListener('keydown', onKeyDown)
-  }, [onKeyDown])
+  const { onClick, overlay } = useCloseModal()
 
   return (
     <dialog
       open
       ref={overlay}
-      onClick={onClick}>
-      <div
-        ref={wrapper}
-      >
+      onClick={onClick}
+      className={style.dialog}
+    >
+      <div>
         {children}
       </div>
     </dialog>
+
   )
 }

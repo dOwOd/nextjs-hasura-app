@@ -24,9 +24,6 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
         </ul>
         <ul>
           <li>
-            <Link href="/blog">Blog</Link>
-          </li>
-          <li>
             <ArticlesButton />
           </li>
           <li>

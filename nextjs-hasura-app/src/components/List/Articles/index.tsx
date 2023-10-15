@@ -10,7 +10,6 @@ import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/navigation'
 import { FC } from 'react'
 import { initializeApollo } from 'src/lib/apolloClient'
-import { SignoutButton } from 'src/components/Button/SignoutButton'
 
 interface Props {
   articles:
@@ -56,8 +55,8 @@ export const Articles: FC<Props> = ({ articles }) => {
                   <Link href={`/blog/${slug}`}>{title}</Link>
                 </td>
                 <td>{status}</td>
-                <td>{dateFromat(updated_at, 'YYYY-MM-DD hh:mm:ss')}</td>
-                <td>{dateFromat(created_at, 'YYYY-MM-DD hh:mm:ss')}</td>
+                <td>{dateFromat(updated_at, '-')}</td>
+                <td>{dateFromat(created_at, '-')}</td>
                 <td>
                   <div className={style.buttonWrap}>
                     <Link
