@@ -1,6 +1,7 @@
 import { initializeApollo } from 'src/lib/apolloClient'
 import { GET_ARTICLE_BY_SLUG } from 'src/queries/queries'
 import { GetArticleBySlugQuery } from 'src/gql/graphql'
+import { Modal } from 'src/components/Modal'
 import { Article } from 'src/components/Article'
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
 }
 
 const Page = async ({ params }: Props) => {
+
   const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
     query: GET_ARTICLE_BY_SLUG,
     variables: { slug: params.slug },
@@ -17,7 +19,11 @@ const Page = async ({ params }: Props) => {
 
   const article = data.articles[0]
 
-  return <Article article={article} />
+  return (
+    <Modal>
+      <Article article={article} />
+    </Modal>
+  )
 }
 
 export default Page

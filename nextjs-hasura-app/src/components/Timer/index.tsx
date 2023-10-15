@@ -8,7 +8,7 @@ export const Timer: FC = () => {
   const formatDate = (hour: number, minute: number, second: number, millisecond: number) => {
     setDate(`${hour}:${minute}:${second} ${millisecond}`)
   }
-  
+
   useEffect(() => {
     setInterval(() => {
       const nowDate = new Date()
