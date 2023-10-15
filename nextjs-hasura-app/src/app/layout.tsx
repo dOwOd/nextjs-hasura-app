@@ -1,3 +1,4 @@
+import '@picocss/pico'
 import { Analytics } from '@vercel/analytics/react'
 import { Layout } from 'src/components/Layout'
 import { Session } from 'src/components/Providers/Session'
