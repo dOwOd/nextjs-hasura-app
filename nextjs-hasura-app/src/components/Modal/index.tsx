@@ -1,10 +1,15 @@
 // https://github.com/vercel-labs/nextgram/blob/main/src/components/modal/Modal.tsx
-
 'use client'
+
 import { useCallback, useRef, useEffect, MouseEventHandler } from 'react'
 import { useRouter } from 'next/navigation'
+import { FC } from 'react'
 
-export default function Modal({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode
+}
+
+export const Modal: FC<Props> = ({ children }) => {
   const overlay = useRef(null)
   const wrapper = useRef(null)
   const router = useRouter()
