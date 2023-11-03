@@ -14,6 +14,11 @@ const Page = async ({ params }: Props) => {
   const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
     query: GET_ARTICLE_BY_SLUG,
     variables: { slug: params.slug },
+    context: {
+      fetchOptions: {
+        next: { revalidate: 1 },
+      }
+    },
   })
 
   const article = data.articles[0]
