@@ -16,36 +16,36 @@
       "groupName": "React",
       "matchPackageNames": ["@types/react", "@types/react-dom"],
       "matchPackagePrefixes": ["react"],
-      "schedule": ["after 23pm on friday", "before 0am on saturday"]
+      "schedule": ["every weekend"]
     },
     {
       "groupName": "eslint",
       "matchPackageNames": ["@types/eslint", "babel-eslint"],
       "matchPackagePrefixes": ["@typescript-eslint/", "eslint"],
-      "schedule": ["after 23pm on friday", "before 0am on saturday"]
+      "schedule": ["every weekend"]
     },
     {
       "groupName": "graphql",
       "matchPackagePrefixes": ["@graphql-codegen", "graphql"],
-      "schedule": ["after 23pm on friday", "before 0am on saturday"]
+      "schedule": ["every weekend"]
     },
     {
       "groupName": "remark",
       "matchPackageNames": ["remark", "remark-gfm", "remark-html", "remark-rehype"],
       "matchPackagePrefixes": ["remark"],
-      "schedule": ["after 23pm on friday", "before 0am on saturday"]
+      "schedule": ["every weekend"]
     },
     {
       "groupName": "rehype",
       "matchPackageNames": ["rehype-raw", "rehype-react", "rehype-stringify"],
       "matchPackagePrefixes": ["rehype"],
-      "schedule": ["after 23pm on friday", "before 0am on saturday"]
+      "schedule": ["every weekend"]
     },
     {
       "groupName": "apollo",
       "matchPackageNames": ["@apollo/client", "@apollo/experimental-nextjs-app-support"],
       "matchPackagePrefixes": ["@apollo"],
-      "schedule": ["after 23pm on friday", "before 0am on saturday"]
+      "schedule": ["every weekend"]
     }
   ]
 }
