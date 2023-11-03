@@ -2,7 +2,10 @@ import { gql } from '@apollo/client'
 
 export const GET_ARTICLE_BY_SLUG = gql`
   query GetArticleBySlug($slug: String!) {
-    articles(where: { slug: { _eq: $slug } }) {
+    articles(where: { 
+      slug: { _eq: $slug }
+      status: { _eq: "public" }
+    }) {
       id
       slug
       status
