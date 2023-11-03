@@ -1,11 +1,15 @@
-import { createElement, Fragment } from 'react'
 import { remark } from 'remark'
 import remarkGfm from 'remark-gfm'
-import remarkRehype from 'remark-rehype/lib'
+import remarkRehype from 'remark-rehype'
 import rehypeRaw from 'rehype-raw'
 import rehypeReact from 'rehype-react'
 import { CustomLink } from 'src/components/CustomLink'
 import { CustomImage } from 'src/components/CustomImage'
+import * as prod from 'react/jsx-runtime'
+
+// @see https://github.com/rehypejs/rehype-react
+// @ts-expect-error: the react types are missing.
+const production = { Fragment: prod.Fragment, jsx: prod.jsx, jsxs: prod.jsxs }
 
 export const markdownToReactElement = (content: string) => {
   return remark()
@@ -15,12 +19,11 @@ export const markdownToReactElement = (content: string) => {
     }) // mdastをhastに変換
     .use(rehypeRaw) // markdownに直接書かれたタグを表示させる
     .use(rehypeReact, {
-      Fragment,
+      ...production,
       components: {
         a: CustomLink,
         img: CustomImage,
       },
-      createElement,
     }) // hastをReactElementに変換
     .processSync(content).result
 }
