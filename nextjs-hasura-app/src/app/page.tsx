@@ -43,7 +43,7 @@ const Page = async () => {
               </h3>
               <cite>
                 <small>
-                  <FaPencilAlt /> {dateFromat(created_at, '.')}
+                  <FaPencilAlt /> {dateFromat(created_at, '-')}
                 </small>
               </cite >
             </>

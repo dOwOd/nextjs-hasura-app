@@ -16,7 +16,7 @@ export const Article: FC<Props> = ({ article }) => {
       <header>
         <CloseModalButton />
         <h1>{article.title}</h1>
-        <h6>created_at: {dateFromat(article.created_at, '-')}</h6>
+        <h6>{dateFromat(article.created_at, '-')}</h6>
       </header>
       <div>
         {content}
