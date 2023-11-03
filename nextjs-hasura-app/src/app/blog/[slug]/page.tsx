@@ -2,6 +2,7 @@ import { initializeApollo } from 'src/lib/apolloClient'
 import { GET_ARTICLE_BY_SLUG } from 'src/queries/queries'
 import { GetArticleBySlugQuery } from 'src/gql/graphql'
 import { Article } from 'src/components/Article'
+import { notFound } from 'next/navigation'
 
 type Props = {
   params: {
@@ -16,6 +17,8 @@ const Page = async ({ params }: Props) => {
   })
 
   const article = data.articles[0]
+  if (!article) return notFound()
+
 
   return <Article article={article} />
 }
