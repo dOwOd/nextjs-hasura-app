@@ -24,6 +24,7 @@ export const markdownToReactElement = (content: string) => {
         a: CustomLink,
         img: CustomImage,
       },
-    }) // hastをReactElementに変換
+    } as any) // hastをReactElementに変換.
+              // 型定義の互換性がないためanyを使用
     .processSync(content).result
 }
