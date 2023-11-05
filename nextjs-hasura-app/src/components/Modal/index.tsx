@@ -2,7 +2,6 @@
 'use client'
 
 import { FC } from 'react'
-import style from './index.module.css'
 import { useCloseModal } from 'src/lib/hooks/useCloseModal'
 
 interface Props {
@@ -17,7 +16,6 @@ export const Modal: FC<Props> = ({ children }) => {
       open
       ref={overlay}
       onClick={onClick}
-      className={style.dialog}
     >
       <div>
         {children}
