@@ -1,0 +1,17 @@
+.customImage {
+  display: block;
+  border-radius: 7.5px;
+}
+
+@media (min-width: 1024px) {
+  .customImage {
+    margin: 32px auto;
+    width: 60%;
+  }
+}
+
+@media (max-width: 767px) {
+  .customImage {
+    margin: 16px auto;
+  }
+}
