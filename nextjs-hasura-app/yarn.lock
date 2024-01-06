@@ -33,10 +33,10 @@
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
-"@apollo/experimental-nextjs-app-support@^0.5.0":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.5.2.tgz#622ccd25a393f7e6fff3bbe34c0def14d6bf51a1"
-  integrity sha512-qUopCHDocCBfL+XDhuPNwiWrJHf7rc75bdDBF2TxZyYwW32wo3vPPac6bGWrYy8lgkJ8K8Z5O56655WQOynFTg==
+"@apollo/experimental-nextjs-app-support@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.6.0.tgz#c1aab1d3e5db2292fe9da156fe89f88846392148"
+  integrity sha512-mtkbskOfzasBlqe5mLTu79pd1YuJ2fNuWHE+j5v4P//ZAHG30D2L+l0D/zuZISPFVEfFOdgSkIzR0U60uQ2GSg==
   dependencies:
     server-only "^0.0.1"
     superjson "^1.12.2"
