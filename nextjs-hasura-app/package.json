@@ -36,7 +36,7 @@
     "@graphql-codegen/client-preset": "3.0vscode-file://vscode-app/Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/code/electron-sandbox/workbench/workbench.html.1",
     "@graphql-codegen/typescript": "4.0.1",
     "@graphql-codegen/typescript-operations": "4.0.1",
-    "@graphql-codegen/typescript-react-apollo": "4.1.0",
+    "@graphql-codegen/typescript-react-apollo": "4.2.0",
     "@types/node": "20.11.16",
     "@types/react": "18.2.52",
     "@types/react-dom": "18.2.18",
