@@ -7,8 +7,6 @@ import { CustomLink } from 'src/components/CustomLink'
 import { CustomImage } from 'src/components/CustomImage'
 import * as prod from 'react/jsx-runtime'
 
-// @see https://github.com/rehypejs/rehype-react
-// @ts-expect-error: the react types are missing.
 const production = { Fragment: prod.Fragment, jsx: prod.jsx, jsxs: prod.jsxs }
 
 export const markdownToReactElement = (content: string) => {
@@ -25,6 +23,6 @@ export const markdownToReactElement = (content: string) => {
         img: CustomImage,
       },
     } as any) // hastをReactElementに変換.
-              // 型定義の互換性がないためanyを使用
+    // 型定義の互換性がないためanyを使用
     .processSync(content).result
 }
