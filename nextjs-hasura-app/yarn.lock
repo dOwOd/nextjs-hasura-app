@@ -15,10 +15,18 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@apollo/client-react-streaming@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.9.0.tgz#1f3ee149ef7b034c821599cc69b7813649ec1d38"
+  integrity sha512-cuOwhUeGWdHqbwKhr14xx5m2MS9QYB7cPAyr8FZvbCYQ44HpwBUJgPkwy4A7WBvPHkQ1gOMua5izzno6Hwlzlw==
+  dependencies:
+    superjson "^1.12.2 || ^2.0.0"
+    ts-invariant "^0.10.3"
+
 "@apollo/client@^3.8.0-rc.2":
-  version "3.9.7"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.9.7.tgz#e2b6f2d0240a6420753fb658a021dfd0637f2a56"
-  integrity sha512-OEEwt55bkFhqihCT5d75KUxZt50JZ9MuIYwG7VZlyPPIAb9K+qzVWlXWlf3tB5DaV43yXkUSLQfNpdIBFOB55Q==
+  version "3.9.9"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.9.9.tgz#38f983a1ad24e2687abfced0a9c1c3bef8d32616"
+  integrity sha512-/sMecU/M0WK9knrguts1lSLV8xFKzIgOMVb4mi6MOxgJXjliDB8PvOtmXhTqh2cVMMR4TzXgOnb+af/690zlQw==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/caches" "^1.0.0"
@@ -35,14 +43,12 @@
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
-"@apollo/experimental-nextjs-app-support@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.8.0.tgz#7c6627195d1895bd7698b29174afe85dc9013ddf"
-  integrity sha512-uyNIkOkew0T6ukC8ycbWBeTu8gtDSD5i+NVGEHU0DIEQaToFHObYcvIxaQ/8hvWzgvnpNU/KMsApfGXA9Xkpyw==
+"@apollo/experimental-nextjs-app-support@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.9.0.tgz#a60b8648cfebcb978eb2b492eb6da622e3b3b42b"
+  integrity sha512-w/iWbNKnnDFsbv65B3kFKJXIelhPRMPnzdsWmtDeDIZ1vhL468eRWBsgWIkg4WX+55EGp1GJRQx1WO15+dTE4w==
   dependencies:
-    server-only "^0.0.1"
-    superjson "^1.12.2 || ^2.0.0"
-    ts-invariant "^0.10.3"
+    "@apollo/client-react-streaming" "0.9.0"
 
 "@ardatan/relay-compiler@12.0.0":
   version "12.0.0"
