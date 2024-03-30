@@ -15,10 +15,10 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@apollo/client-react-streaming@0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.9.0.tgz#1f3ee149ef7b034c821599cc69b7813649ec1d38"
-  integrity sha512-cuOwhUeGWdHqbwKhr14xx5m2MS9QYB7cPAyr8FZvbCYQ44HpwBUJgPkwy4A7WBvPHkQ1gOMua5izzno6Hwlzlw==
+"@apollo/client-react-streaming@0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.9.1.tgz#f3a5c17dc57bf7d42bc5e13af17bb3a3a9a36603"
+  integrity sha512-Drzx/4/nGmJ+gjJe3DEQ/9ib3Uc2WoZ4V1SiuHRLXNjUFX65RGa88XgOLZmTNbivD43uF7BvbiaMi/1Vd8DNYA==
   dependencies:
     superjson "^1.12.2 || ^2.0.0"
     ts-invariant "^0.10.3"
@@ -44,11 +44,11 @@
     zen-observable-ts "^1.2.5"
 
 "@apollo/experimental-nextjs-app-support@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.9.0.tgz#a60b8648cfebcb978eb2b492eb6da622e3b3b42b"
-  integrity sha512-w/iWbNKnnDFsbv65B3kFKJXIelhPRMPnzdsWmtDeDIZ1vhL468eRWBsgWIkg4WX+55EGp1GJRQx1WO15+dTE4w==
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.9.1.tgz#6ee9e047a5e1f9e85b8c6bf40a8c8d6948bf6ef5"
+  integrity sha512-a7cqLbszqSjyR3RqEhOIG+zBO8wjN1oc9oswcRHQB4PSb+W0lKSN1zALCuaV7zCAEPlsxLotj/qLLVUyFyuwLQ==
   dependencies:
-    "@apollo/client-react-streaming" "0.9.0"
+    "@apollo/client-react-streaming" "0.9.1"
 
 "@ardatan/relay-compiler@12.0.0":
   version "12.0.0"
