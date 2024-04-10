@@ -46,6 +46,6 @@
     "eslint-config-prettier": "9.1.0",
     "graphql-tag": "2.12.6",
     "prettier": "3.2.5",
-    "typescript": "5.4.4"
+    "typescript": "5.4.5"
   }
 }
