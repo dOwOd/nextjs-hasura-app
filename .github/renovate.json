@@ -9,10 +9,6 @@
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
-    },
-    {
       "groupName": "React",
       "matchPackageNames": ["@types/react", "@types/react-dom"],
       "matchPackagePrefixes": ["react"],
