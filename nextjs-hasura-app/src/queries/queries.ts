@@ -33,7 +33,10 @@ export const GET_ARTICLE_BY_ID = gql`
 
 export const GET_ARTICLES_BY_STATUS = gql`
   query GetArticlesByStatus($status: String!) {
-    articles(where: { status: { _eq: $status } }) {
+    articles(
+      where: { status: { _eq: $status } }
+      order_by: { created_at: desc }
+    ) {
       id
       slug
       title
