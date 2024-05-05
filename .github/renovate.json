@@ -9,43 +9,33 @@
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
-    },
-    {
       "groupName": "React",
       "matchPackageNames": ["@types/react", "@types/react-dom"],
-      "matchPackagePrefixes": ["react"],
-      "schedule": ["every weekend"]
+      "matchPackagePrefixes": ["react"]
     },
     {
       "groupName": "eslint",
       "matchPackageNames": ["@types/eslint", "babel-eslint"],
-      "matchPackagePrefixes": ["@typescript-eslint/", "eslint"],
-      "schedule": ["every weekend"]
+      "matchPackagePrefixes": ["@typescript-eslint/", "eslint"]
     },
     {
       "groupName": "graphql",
-      "matchPackagePrefixes": ["@graphql-codegen", "graphql"],
-      "schedule": ["every weekend"]
+      "matchPackagePrefixes": ["@graphql-codegen", "graphql"]
     },
     {
       "groupName": "remark",
       "matchPackageNames": ["remark", "remark-gfm", "remark-html", "remark-rehype"],
-      "matchPackagePrefixes": ["remark"],
-      "schedule": ["every weekend"]
+      "matchPackagePrefixes": ["remark"]
     },
     {
       "groupName": "rehype",
       "matchPackageNames": ["rehype-raw", "rehype-react", "rehype-stringify"],
-      "matchPackagePrefixes": ["rehype"],
-      "schedule": ["every weekend"]
+      "matchPackagePrefixes": ["rehype"]
     },
     {
       "groupName": "apollo",
       "matchPackageNames": ["@apollo/client", "@apollo/experimental-nextjs-app-support"],
-      "matchPackagePrefixes": ["@apollo"],
-      "schedule": ["every weekend"]
+      "matchPackagePrefixes": ["@apollo"]
     }
   ]
 }
