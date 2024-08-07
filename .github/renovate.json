@@ -10,32 +10,54 @@
   "packageRules": [
     {
       "groupName": "React",
-      "matchPackageNames": ["@types/react", "@types/react-dom"],
-      "matchPackagePrefixes": ["react"]
+      "matchPackageNames": [
+        "@types/react",
+        "@types/react-dom",
+        "react{/,}**"
+      ]
     },
     {
       "groupName": "eslint",
-      "matchPackageNames": ["@types/eslint", "babel-eslint"],
-      "matchPackagePrefixes": ["@typescript-eslint/", "eslint"]
+      "matchPackageNames": [
+        "@types/eslint",
+        "babel-eslint",
+        "@typescript-eslint/{/,}**",
+        "eslint{/,}**"
+      ]
     },
     {
       "groupName": "graphql",
-      "matchPackagePrefixes": ["@graphql-codegen", "graphql"]
+      "matchPackageNames": [
+        "@graphql-codegen{/,}**",
+        "graphql{/,}**"
+      ]
     },
     {
       "groupName": "remark",
-      "matchPackageNames": ["remark", "remark-gfm", "remark-html", "remark-rehype"],
-      "matchPackagePrefixes": ["remark"]
+      "matchPackageNames": [
+        "remark",
+        "remark-gfm",
+        "remark-html",
+        "remark-rehype",
+        "remark{/,}**"
+      ]
     },
     {
       "groupName": "rehype",
-      "matchPackageNames": ["rehype-raw", "rehype-react", "rehype-stringify"],
-      "matchPackagePrefixes": ["rehype"]
+      "matchPackageNames": [
+        "rehype-raw",
+        "rehype-react",
+        "rehype-stringify",
+        "rehype{/,}**"
+      ]
     },
     {
       "groupName": "apollo",
-      "matchPackageNames": ["@apollo/client", "@apollo/experimental-nextjs-app-support"],
-      "matchPackagePrefixes": ["@apollo"]
+      "matchPackageNames": [
+        "@apollo/client",
+        "@apollo/experimental-nextjs-app-support",
+        "@apollo{/,}**"
+      ]
     }
   ]
 }
