@@ -15,17 +15,17 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@apollo/client-react-streaming@0.11.5":
-  version "0.11.5"
-  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.11.5.tgz#fb80f96b1abc31aa86f8e4b967560dce16b8d2ee"
-  integrity sha512-HK794oSbEdKa0e13E6rRTJY29da9FZnHAb/YZa7r+0/9EMbbEWe8Ll6BsBh1xN2RAR6BHJhZbo0c8yRMLnrGVQ==
+"@apollo/client-react-streaming@0.11.6":
+  version "0.11.6"
+  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.11.6.tgz#357f2e1b471c8b6055472164a297d177f2dd3f00"
+  integrity sha512-A1yQCV6+3SHNoqNa4G98qUQ6LZOOVlUE71tXbgArPKXyycVuP0CUJDWwULL5aoqY/HL4SyEWm/0MZaVO0j8aTw==
   dependencies:
     ts-invariant "^0.10.3"
 
 "@apollo/client@^3.8.0-rc.2":
-  version "3.11.9"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.11.9.tgz#d7f998a6e8496667f157823d50a746c4e5a20b46"
-  integrity sha512-aQ6VL+CPO1G4DLS/3FelfA+nl+ZQCP5qeN1NS6J8xh9wumUM/2W1ccneqCYmbTMDtoSunxE1BV2W6u0FF4axwQ==
+  version "3.11.10"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.11.10.tgz#e16ae82ea9b16536ffd109847d24f9293fab5c4d"
+  integrity sha512-IfGc+X4il0rDqVQBBWdxIKM+ciDCiDzBq9+Bg9z4tJMi87uF6po4v+ddiac1wP0ARgVPsFwEIGxK7jhN4pW8jg==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/caches" "^1.0.0"
@@ -43,11 +43,11 @@
     zen-observable-ts "^1.2.5"
 
 "@apollo/experimental-nextjs-app-support@^0.11.0":
-  version "0.11.5"
-  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.11.5.tgz#e988d48724fcff50c90eed98134067ca42eeb430"
-  integrity sha512-ifPDAQ/o+yko5UMhcH02yzR5WRkI0xocPMNMfKGjEDy7yNdrnd5o//m3B2oaiUMPOSOnqvlBO94CleeiFB5SoQ==
+  version "0.11.6"
+  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.11.6.tgz#52e6629f668c83ef2f83ad45334adceecc313971"
+  integrity sha512-ryJaZ8u0bl6IzDYhMlEVN2GVZlDB8DVLmAqrBk02rJo/v8iTA+HSrYz7VRnLEVF/VgmXKZRX16mkkRSHIxp2+A==
   dependencies:
-    "@apollo/client-react-streaming" "0.11.5"
+    "@apollo/client-react-streaming" "0.11.6"
 
 "@ardatan/relay-compiler@12.0.0":
   version "12.0.0"
