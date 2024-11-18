@@ -9,14 +9,6 @@
   ],
   "packageRules": [
     {
-      "groupName": "React",
-      "matchPackageNames": [
-        "@types/react",
-        "@types/react-dom",
-        "react{/,}**"
-      ]
-    },
-    {
       "groupName": "eslint",
       "matchPackageNames": [
         "@types/eslint",
