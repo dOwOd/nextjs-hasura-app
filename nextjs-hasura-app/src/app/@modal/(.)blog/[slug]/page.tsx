@@ -6,12 +6,13 @@ import { Article } from 'src/components/Article'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-const Page = async ({ params }: Props) => {
+const Page = async (props: Props) => {
+  const params = await props.params;
 
   const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
     query: GET_ARTICLE_BY_SLUG,

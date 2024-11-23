@@ -11,5 +11,7 @@ services:
     ports:  
       - 3000:3000
     command: yarn run dev
+    env_file:
+      - .env.development
 volumes:
   node_modules:
