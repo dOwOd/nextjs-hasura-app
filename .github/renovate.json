@@ -9,15 +9,6 @@
   ],
   "packageRules": [
     {
-      "groupName": "eslint",
-      "matchPackageNames": [
-        "@types/eslint",
-        "babel-eslint",
-        "@typescript-eslint/{/,}**",
-        "eslint{/,}**"
-      ]
-    },
-    {
       "groupName": "graphql",
       "matchPackageNames": [
         "@graphql-codegen{/,}**",
