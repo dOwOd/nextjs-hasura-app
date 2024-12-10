@@ -1,4 +1,4 @@
-FROM node:22-alpine@sha256:2806b421fa8e210696187da646823d2f5edfde2e6fe09e149a4ac715db8f15df
+FROM node:22-alpine@sha256:6e80991f69cc7722c561e5d14d5e72ab47c0d6b6cfb3ae50fb9cf9a7b30fdf97
 COPY ./nextjs-hasura-app app
 WORKDIR /app
 RUN yarn install
