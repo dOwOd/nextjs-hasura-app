@@ -15,17 +15,17 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@apollo/client-react-streaming@0.11.6":
-  version "0.11.6"
-  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.11.6.tgz#357f2e1b471c8b6055472164a297d177f2dd3f00"
-  integrity sha512-A1yQCV6+3SHNoqNa4G98qUQ6LZOOVlUE71tXbgArPKXyycVuP0CUJDWwULL5aoqY/HL4SyEWm/0MZaVO0j8aTw==
+"@apollo/client-react-streaming@0.11.7":
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.11.7.tgz#2737459387165b27f0a493ca5b83c387981a483a"
+  integrity sha512-Y1cSmA5lLFzKsbRCQsjffqEUnSl9NCgQCI0hiK+yShIvLEnAmQCpvIoG+AGeLuWYnmqMlC9mPupOpZ/iig0w6Q==
   dependencies:
     ts-invariant "^0.10.3"
 
 "@apollo/client@^3.8.0-rc.2":
-  version "3.11.10"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.11.10.tgz#e16ae82ea9b16536ffd109847d24f9293fab5c4d"
-  integrity sha512-IfGc+X4il0rDqVQBBWdxIKM+ciDCiDzBq9+Bg9z4tJMi87uF6po4v+ddiac1wP0ARgVPsFwEIGxK7jhN4pW8jg==
+  version "3.12.3"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.12.3.tgz#0d252749baad8328e06883fe118dc7e73e3bbb1f"
+  integrity sha512-KZ5zymRdb8bMbGUb1wP2U04ff7qIGgaC1BCdCVC+IPFiXkxEhHBc5fDEQOwAUT+vUo9KbBh3g7QK/JCOswn59w==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/caches" "^1.0.0"
@@ -43,11 +43,11 @@
     zen-observable-ts "^1.2.5"
 
 "@apollo/experimental-nextjs-app-support@^0.11.0":
-  version "0.11.6"
-  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.11.6.tgz#52e6629f668c83ef2f83ad45334adceecc313971"
-  integrity sha512-ryJaZ8u0bl6IzDYhMlEVN2GVZlDB8DVLmAqrBk02rJo/v8iTA+HSrYz7VRnLEVF/VgmXKZRX16mkkRSHIxp2+A==
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.11.7.tgz#eda6c0b704d025974ccb6b201fc665df52006230"
+  integrity sha512-mWyb01VYmTsxh91UwG5iO4FZEw27BKL6qldjBk0vDy3uLqALTRWvXAaOMnommjNL8uBTKm7xAcz3PHMUocFfFw==
   dependencies:
-    "@apollo/client-react-streaming" "0.11.6"
+    "@apollo/client-react-streaming" "0.11.7"
 
 "@ardatan/relay-compiler@12.0.0":
   version "12.0.0"
@@ -2230,13 +2230,6 @@
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@wry/equality/-/equality-0.5.7.tgz#72ec1a73760943d439d56b7b1e9985aec5d497bb"
   integrity sha512-BRFORjsTuQv5gxcXsuDXx6oGRhuVsEGwZy6LOzRRfgu+eSfxbhUQ9L9YtSEIuIjY/o7g3iWFjrc5eSY1GXP2Dw==
-  dependencies:
-    tslib "^2.3.0"
-
-"@wry/trie@^0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@wry/trie/-/trie-0.4.3.tgz#077d52c22365871bf3ffcbab8e95cb8bc5689af4"
-  integrity sha512-I6bHwH0fSf6RqQcnnXLJKhkSXG45MFral3GxPaY4uAl0LYDZM+YDVDAiU9bYwjTuysy1S0IeecWtmq1SZA3M1w==
   dependencies:
     tslib "^2.3.0"
 
@@ -5919,13 +5912,13 @@ openid-client@^5.4.0:
     oidc-token-hash "^5.0.3"
 
 optimism@^0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/optimism/-/optimism-0.18.0.tgz#e7bb38b24715f3fdad8a9a7fc18e999144bbfa63"
-  integrity sha512-tGn8+REwLRNFnb9WmcY5IfpOqeX2kpaYJ1s6Ae3mn12AeydLkR3j+jSCmVQFoXqU8D41PAJ1RG1rCRNWmNZVmQ==
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/optimism/-/optimism-0.18.1.tgz#5cf16847921413dbb0ac809907370388b9c6335f"
+  integrity sha512-mLXNwWPa9dgFyDqkNi54sjDyNJ9/fTI6WGBLgnXku1vdKY/jovHfZT5r+aiVeFFLOz+foPNOm5YJ4mqgld2GBQ==
   dependencies:
     "@wry/caches" "^1.0.0"
     "@wry/context" "^0.7.0"
-    "@wry/trie" "^0.4.3"
+    "@wry/trie" "^0.5.0"
     tslib "^2.3.0"
 
 optionator@^0.9.3:
