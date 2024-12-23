@@ -37,7 +37,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
     <footer>
       <div className={style.footer}>
         <div className="grid">
-          <small>© 2023- dowod.dev</small>
+          <small>{`© ${new Date().getFullYear()} - dowod.dev`}</small>
           <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             target="_blank"
