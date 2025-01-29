@@ -15,17 +15,17 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@apollo/client-react-streaming@0.11.7":
-  version "0.11.7"
-  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.11.7.tgz#2737459387165b27f0a493ca5b83c387981a483a"
-  integrity sha512-Y1cSmA5lLFzKsbRCQsjffqEUnSl9NCgQCI0hiK+yShIvLEnAmQCpvIoG+AGeLuWYnmqMlC9mPupOpZ/iig0w6Q==
+"@apollo/client-react-streaming@0.11.8":
+  version "0.11.8"
+  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.11.8.tgz#9d4ffc683f6f7eb1006474659d73dbb9375eb74d"
+  integrity sha512-BEAHvAMSEt+dEMBY39hIoTDcOkjGJX473tlRudt3KnLE/R8eR0dKMtsaIAfWep1F9kvxv4oYR8MWUg20wj3qiA==
   dependencies:
     ts-invariant "^0.10.3"
 
 "@apollo/client@^3.8.0-rc.2":
-  version "3.12.5"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.12.5.tgz#adfe168b8b0f635ca55c950eaa982b5b8b97bf15"
-  integrity sha512-lOE2TlHx1el4rHs8vaTE4IroyIO9/PD2w598YYiDahF0XSMDdsXMrTpOVh+FuQ6tZ+DXT+hsaMlilZqcFRgu+A==
+  version "3.12.8"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.12.8.tgz#99670386104f77ceba03f7e3dc0d91813f03cd3c"
+  integrity sha512-053z5eCM7zNl81Lxs/SqHv8e+x3sszrtmGS2TNuPW0ZTZzmKATMsIsoblx1Kt0E67Ze3jb99JSPiQHG9ozGc3g==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/caches" "^1.0.0"
@@ -36,18 +36,17 @@
     optimism "^0.18.0"
     prop-types "^15.7.2"
     rehackt "^0.1.0"
-    response-iterator "^0.2.6"
     symbol-observable "^4.0.0"
     ts-invariant "^0.10.3"
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
 "@apollo/experimental-nextjs-app-support@^0.11.0":
-  version "0.11.7"
-  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.11.7.tgz#eda6c0b704d025974ccb6b201fc665df52006230"
-  integrity sha512-mWyb01VYmTsxh91UwG5iO4FZEw27BKL6qldjBk0vDy3uLqALTRWvXAaOMnommjNL8uBTKm7xAcz3PHMUocFfFw==
+  version "0.11.8"
+  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.11.8.tgz#92a404f41c874e28bbe631f5a175fd66bd17ed77"
+  integrity sha512-p+dbOKu3Qas0knlPVOKwc4vCwYOUgCJcmyxHGIVZAjoCRk8XVVFInLIiS6WrES8yL69QTRw1Dn2BtDymyFLofw==
   dependencies:
-    "@apollo/client-react-streaming" "0.11.7"
+    "@apollo/client-react-streaming" "0.11.8"
 
 "@ardatan/relay-compiler@12.0.0":
   version "12.0.0"
@@ -6394,11 +6393,6 @@ resolve@^2.0.0-next.5:
     is-core-module "^2.13.0"
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
-
-response-iterator@^0.2.6:
-  version "0.2.11"
-  resolved "https://registry.yarnpkg.com/response-iterator/-/response-iterator-0.2.11.tgz#6d3e4f12d2e212f28bc742bc639a37939a4483ca"
-  integrity sha512-5tdhcAeGMSyM0/FoxAYjoOxQZ2tRR2H/S/t6kGRXu6iiWcGY5UnZgkVANbTwBVUSGqWu0ADctmoi6lOCIF8uKQ==
 
 restore-cursor@^3.1.0:
   version "3.1.0"
