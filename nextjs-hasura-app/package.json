@@ -43,7 +43,7 @@
     "encoding": "0.1.13",
     "eslint": "9.24.0",
     "eslint-config-next": "15.2.1",
-    "eslint-config-prettier": "10.1.2",
+    "eslint-config-prettier": "10.1.5",
     "graphql-tag": "2.12.6",
     "prettier": "3.5.2",
     "typescript": "5.8.3"
