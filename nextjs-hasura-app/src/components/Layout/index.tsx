@@ -39,7 +39,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
         <div className="grid">
           <small>{`© ${new Date().getFullYear()} - dowod.dev`}</small>
           <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            href="https://vercel.com"
             target="_blank"
             rel="noopener noreferrer"
             className={style.poweredByLink}
