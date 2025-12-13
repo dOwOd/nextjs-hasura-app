@@ -46,7 +46,7 @@
     "eslint-config-prettier": "10.1.8",
     "graphql-tag": "2.12.6",
     "prettier": "3.7.4",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   },
   "resolutions": {
     "@types/react": "npm:types-react@19.0.0-rc.1",
