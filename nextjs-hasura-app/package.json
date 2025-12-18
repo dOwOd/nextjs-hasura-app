@@ -32,10 +32,10 @@
   },
   "devDependencies": {
     "@babel/core": "7.28.5",
-    "@graphql-codegen/cli": "5.0.7",
+    "@graphql-codegen/cli": "6.1.0",
     "@graphql-codegen/client-preset": "3.0vscode-file://vscode-app/Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/code/electron-sandbox/workbench/workbench.html.1",
-    "@graphql-codegen/typescript": "4.1.6",
-    "@graphql-codegen/typescript-operations": "4.6.1",
+    "@graphql-codegen/typescript": "5.0.7",
+    "@graphql-codegen/typescript-operations": "5.0.7",
     "@graphql-codegen/typescript-react-apollo": "4.3.3",
     "@types/node": "22.14.1",
     "@types/react": "npm:types-react@19.0.0-rc.1",
