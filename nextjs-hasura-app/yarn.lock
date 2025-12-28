@@ -15,18 +15,25 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@apollo/client-react-streaming@0.11.11":
-  version "0.11.11"
-  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.11.11.tgz#7606cc998371be42f759056795e1b763ae52c2e6"
-  integrity sha512-h7u/D5GDq5mn2BXaWBiK9z+i90mzmBCnOeRt4Iarc1qwTt40Q4u2yEXPw8ma1BywZ2uLJyVuAb6EyA605eqeEQ==
+"@apollo/client-integration-nextjs@0.14.3":
+  version "0.14.3"
+  resolved "https://registry.yarnpkg.com/@apollo/client-integration-nextjs/-/client-integration-nextjs-0.14.3.tgz#8108e8aa18c3d4090b6a5ca8e6e9e7ebdf22a1f6"
+  integrity sha512-01Tq9wAmT0AUWqd9YtrqLUFSUIlNmWdb/U+UaX+j5pzJfzNUEg/rvN4KuDddfpQuC/axvvdJ5M6ZCUTOvqU9rQ==
   dependencies:
+    "@apollo/client-react-streaming" "0.14.3"
+
+"@apollo/client-react-streaming@0.14.3":
+  version "0.14.3"
+  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.14.3.tgz#a6e95a3240fdd11fd19a220b944457002a7fcc1e"
+  integrity sha512-84yD+DmHx9ZxHHoFTfhSNfrWELdOyDRxTIPIZ7i7taSyP0J5ZIm0hH6BW1g/hz+Dyuo4H9Je3NaYLX66gFpszw==
+  dependencies:
+    "@types/react-dom" "^19.0.0"
     "@wry/equality" "^0.5.6"
-    ts-invariant "^0.10.3"
 
 "@apollo/client@^3.8.0-rc.2":
-  version "3.13.5"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.13.5.tgz#588ac60c751c38d50ce0286fcefcc4994aa9c5d6"
-  integrity sha512-ceHa1lApLAiGmUur4V+G/CrjwVwHYujfB7U5HM++poCgHpfGn6eet8YGM93fgeWjYX85SaqwdZbQk18IVwhRHg==
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.14.0.tgz#eda34b85ee03c6c0828ba21782419c8699feaf0b"
+  integrity sha512-0YQKKRIxiMlIou+SekQqdCo0ZTHxOcES+K8vKB53cIDpwABNR0P0yRzPgsbgcj3zRJniD93S/ontsnZsCLZrxQ==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/caches" "^1.0.0"
@@ -42,12 +49,12 @@
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
-"@apollo/experimental-nextjs-app-support@^0.11.0":
-  version "0.11.11"
-  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.11.11.tgz#5d70a6d1ff6ad9dc0e645dfbd546bdac1c0d6440"
-  integrity sha512-q/vtKn2V9NE1YPU7WpPx2PGpLsYSGwRcPy8pa90glrHqlEVVqTWTGraDLe3wG0K/0NnnO1U4IcFoRYKoBfjRag==
+"@apollo/experimental-nextjs-app-support@^0.14.0":
+  version "0.14.3"
+  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.14.3.tgz#e8a03536d2cc630cb5bf2debb8e26218cd1ddfe7"
+  integrity sha512-g+XjX+1k/vHVFGdK/l4rwCi9BC8/Nku/05aoPASdxvMDeDD9qMVA3iAjWknCuwbOM/9dMlRWKnRoavRQuV8ZHQ==
   dependencies:
-    "@apollo/client-react-streaming" "0.11.11"
+    "@apollo/client-integration-nextjs" "0.14.3"
 
 "@ardatan/relay-compiler@12.0.0":
   version "12.0.0"
@@ -2077,7 +2084,7 @@
   dependencies:
     undici-types "~7.16.0"
 
-"@types/react-dom@npm:types-react-dom@19.0.0":
+"@types/react-dom@^19.0.0", "@types/react-dom@npm:types-react-dom@19.0.0":
   version "19.0.0"
   resolved "https://registry.yarnpkg.com/types-react-dom/-/types-react-dom-19.0.0.tgz#48286ba504ac48e9345cc860f76845344c5a633a"
   integrity sha512-qtWBYduBCmrgf4wqnTrGttEJJSZ6cTGmzuvmWd/34TJNKz/Pp69Islc1+txHF3nRxSuRvmhxztFXvLyxhp8G2w==
