@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
@@ -17,7 +17,7 @@
     "cdate": "^0.0.7",
     "cross-fetch": "^4.0.0",
     "graphql": "^16.6.0",
-    "next": "15.5.9",
+    "next": "^16.0.0",
     "next-auth": "^4.22.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@babel/core": "7.28.5",
     "@graphql-codegen/cli": "6.1.0",
-    "@graphql-codegen/client-preset": "3.0vscode-file://vscode-app/Applications/Visual%20Studio%20Code.app/Contents/Resources/app/out/vs/code/electron-sandbox/workbench/workbench.html.1",
+    "@graphql-codegen/client-preset": "5.2.2",
     "@graphql-codegen/typescript": "5.0.7",
     "@graphql-codegen/typescript-operations": "5.0.7",
     "@graphql-codegen/typescript-react-apollo": "4.3.4",
@@ -42,7 +42,7 @@
     "@types/react-dom": "npm:types-react-dom@19.0.0",
     "encoding": "0.1.13",
     "eslint": "9.39.2",
-    "eslint-config-next": "15.5.9",
+    "eslint-config-next": "^16.0.0",
     "eslint-config-prettier": "10.1.8",
     "graphql-tag": "2.12.6",
     "prettier": "3.7.4",
