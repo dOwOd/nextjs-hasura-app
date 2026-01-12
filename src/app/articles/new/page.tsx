@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react'
 import { CreateArticleMutation } from 'src/gql/graphql'
 import { CREATE_ARTICLE } from 'src/queries/queries'
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client/react'
 
 const Page = () => {
   const [slug, setSlug] = useState('')

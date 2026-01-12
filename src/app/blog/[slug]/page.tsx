@@ -19,7 +19,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     variables: { slug: params.slug },
   })
 
-  const article = data.articles[0]
+  const article = data?.articles[0]
   if (!article) {
     return { title: 'Not Found' }
   }
@@ -41,7 +41,7 @@ const Page = async (props: Props) => {
     },
   })
 
-  const article = data.articles[0]
+  const article = data?.articles[0]
   if (!article) return notFound()
 
 

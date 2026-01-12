@@ -11,6 +11,9 @@ const config: CodegenConfig = {
         'typescript',
         'typescript-react-apollo',
       ],
+      config: {
+        apolloReactHooksImportFrom: '@apollo/client/react',
+      },
     },
   },
 }
