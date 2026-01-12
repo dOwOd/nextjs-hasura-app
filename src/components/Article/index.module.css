@@ -2,3 +2,27 @@
   max-width: 1000px;
   margin: 0 auto;
 }
+
+.article>header {
+  background-color: inherit;
+  border-bottom: 2px solid var(--pico-muted-border-color, #e0e0e0);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.article>header h1 {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .article {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .article>header,
+  .article>div {
+    padding: 0 1rem;
+  }
+}

@@ -13,9 +13,11 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-  children
+  children,
+  modal,
 }: {
   children: React.ReactNode
+  modal: React.ReactNode
 }) {
   return (
     <html lang="ja">
@@ -23,6 +25,7 @@ export default function RootLayout({
         <Session>
           <Layout>
             {children}
+            {modal}
             <Analytics />
           </Layout>
         </Session>
