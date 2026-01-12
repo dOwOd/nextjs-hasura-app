@@ -1,8 +1,16 @@
 import '@picocss/pico'
+import { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
 import { GoogleAnalytics } from 'src/components/GoogleAnalytics'
 import { Layout } from 'src/components/Layout'
 import { Session } from 'src/components/Providers/Session'
+
+export const metadata: Metadata = {
+  title: {
+    default: "dOwOd's logs",
+    template: "%s | dOwOd's logs",
+  },
+}
 
 export default function RootLayout({
   children
