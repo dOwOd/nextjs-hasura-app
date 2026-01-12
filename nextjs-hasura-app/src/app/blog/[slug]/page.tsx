@@ -3,6 +3,7 @@ import { initializeApollo } from 'src/lib/apolloClient'
 import { GET_ARTICLE_BY_SLUG } from 'src/queries/queries'
 import { GetArticleBySlugQuery } from 'src/gql/graphql'
 import { Article } from 'src/components/Article'
+import { PageTitle } from 'src/components/PageTitle'
 import { notFound } from 'next/navigation'
 
 type Props = {
@@ -24,7 +25,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${article.title} | dOwOd's logs`,
+    title: article.title,
   }
 }
 
@@ -44,7 +45,12 @@ const Page = async (props: Props) => {
   if (!article) return notFound()
 
 
-  return <Article article={article} />
+  return (
+    <>
+      <PageTitle title={article.title} />
+      <Article article={article} />
+    </>
+  )
 }
 
 export default Page
