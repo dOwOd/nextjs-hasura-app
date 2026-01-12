@@ -1,6 +1,6 @@
 'use client'
 
-import { ApolloProvider } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client/react'
 import { initializeApollo } from 'src/lib/apolloClient'
 
 export default function RootLayout({

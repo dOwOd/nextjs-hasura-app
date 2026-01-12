@@ -4,7 +4,7 @@ import { GET_ARTICLES_BY_STATUS } from 'src/queries/queries'
 import Link from 'next/link'
 
 export const Articles = async () => {
-  const { data } = await initializeApollo().query<GetArticlesQuery>({
+  const result = await initializeApollo().query<GetArticlesQuery>({
     query: GET_ARTICLES_BY_STATUS,
     variables: { status: 'public' },
     context: {
@@ -13,12 +13,13 @@ export const Articles = async () => {
       },
     },
   })
+  const data = result.data as GetArticlesQuery
 
   return (
     <>
-      {data.articles.map(({ id, slug, title }) => (
-        <Link href={`/blog/${slug}`} key={id}>
-          <article>{title}</article>
+      {data.articles.map((article) => (
+        <Link href={`/blog/${article.slug}`} key={article.id}>
+          <article>{article.title}</article>
         </Link>
       ))}
     </>

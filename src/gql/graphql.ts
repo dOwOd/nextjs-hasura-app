@@ -1,5 +1,23 @@
 import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import * as ApolloReact from '@apollo/client/react';
+import type { useMutation } from '@apollo/client/react';
+import type { OperationVariables } from '@apollo/client/core';
+
+// Apollo Client v4 compatibility - re-export with added types
+namespace Apollo {
+  export const useQuery = ApolloReact.useQuery;
+  export const useLazyQuery = ApolloReact.useLazyQuery;
+  export const useMutation = ApolloReact.useMutation;
+  export type QueryHookOptions<TData, TVariables extends OperationVariables> = ApolloReact.QueryHookOptions<TData, TVariables>;
+  export type LazyQueryHookOptions<TData, TVariables extends OperationVariables> = ApolloReact.LazyQueryHookOptions<TData, TVariables>;
+  export type QueryResult<TData, TVariables extends OperationVariables> = ApolloReact.QueryResult<TData, TVariables>;
+  export type MutationHookOptions<TData, TVariables extends OperationVariables> = ApolloReact.MutationHookOptions<TData, TVariables>;
+  export type MutationResult<TData> = ApolloReact.MutationResult<TData>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  export type MutationFunction<TData, TVariables extends OperationVariables, _TCache = any> = useMutation.MutationFunction<TData, TVariables>;
+  export type BaseMutationOptions<TData, TVariables extends OperationVariables = OperationVariables> = useMutation.Options<TData, TVariables>;
+}
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };

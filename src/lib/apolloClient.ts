@@ -1,12 +1,9 @@
-import {
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from '@apollo/client'
+import { ApolloClient } from '@apollo/client/core'
+import { HttpLink } from '@apollo/client/link/http'
+import { InMemoryCache } from '@apollo/client/cache'
 import 'cross-fetch/polyfill'
 
-let apolloClient: ApolloClient<NormalizedCacheObject> | undefined
+let apolloClient: ApolloClient | undefined
 const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',

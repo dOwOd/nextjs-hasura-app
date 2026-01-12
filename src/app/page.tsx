@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 const Page = async () => {
-  const { data } = await initializeApollo().query<GetArticlesByStatusQuery>({
+  const result = await initializeApollo().query<GetArticlesByStatusQuery>({
     query: GET_ARTICLES_BY_STATUS,
     variables: { status: 'public' },
     context: {
@@ -24,6 +24,7 @@ const Page = async () => {
       },
     },
   })
+  const data = result.data as GetArticlesByStatusQuery
 
   return (
     <div className={style.topList}>
@@ -33,17 +34,17 @@ const Page = async () => {
 
       <h2>Blog</h2>
       <div>
-        {data.articles.map(({ id, slug, title, created_at }) => (
-          <article key={id}>
+        {data.articles.map((article) => (
+          <article key={article.id}>
             <>
               <h3>
-                <Link href={`/blog/${slug}`} key={id}>
-                  {title}
+                <Link href={`/blog/${article.slug}`} key={article.id}>
+                  {article.title}
                 </Link>
               </h3>
               <cite>
                 <small>
-                  <FaPencilAlt /> {dateFromat(created_at, '-')}
+                  <FaPencilAlt /> {dateFromat(article.created_at, '-')}
                 </small>
               </cite >
             </>
