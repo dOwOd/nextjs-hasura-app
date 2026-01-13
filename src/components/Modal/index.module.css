@@ -33,6 +33,7 @@
 @media (max-width: 768px) {
   .content {
     max-width: 95%;
+    max-height: 80vh;
     padding: 1rem;
     border-radius: 4px;
   }
