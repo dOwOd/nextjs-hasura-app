@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Modal: FC<Props> = ({ children }) => {
-  const { onClick, overlay } = useCloseModal()
+  const { onClick, overlay, onDismiss } = useCloseModal()
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -27,6 +27,14 @@ export const Modal: FC<Props> = ({ children }) => {
       className={styles.dialog}
     >
       <div className={styles.content} onClick={(e) => e.stopPropagation()}>
+        <button
+          type="button"
+          className={styles.mobileCloseButton}
+          onClick={onDismiss}
+          aria-label="閉じる"
+        >
+          閉じる
+        </button>
         {children}
       </div>
     </dialog>

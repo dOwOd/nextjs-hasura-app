@@ -31,5 +31,5 @@ export const useCloseModal = () => {
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [onKeyDown])
 
-  return { onClick, overlay }
+  return { onClick, overlay, onDismiss }
 }
