@@ -37,7 +37,7 @@
     "@graphql-codegen/client-preset": "5.2.2",
     "@graphql-codegen/typescript": "5.0.7",
     "@graphql-codegen/typescript-operations": "5.0.7",
-    "@graphql-codegen/typescript-react-apollo": "^4.4.0",
+    "@graphql-codegen/typescript-react-apollo": "4.4.0",
     "@types/node": "24.10.7",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0",
