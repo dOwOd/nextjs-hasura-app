@@ -33,7 +33,7 @@ export const Modal: FC<Props> = ({ children }) => {
           onClick={onDismiss}
           aria-label="閉じる"
         >
-          閉じる
+          ✕
         </button>
         {children}
       </div>
