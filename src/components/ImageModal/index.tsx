@@ -52,7 +52,7 @@ export const ImageModal: FC = () => {
     const maxHeight = window.innerHeight * 0.85
 
     // アスペクト比を保って最大サイズに収める
-    const ratio = Math.min(maxWidth / naturalWidth, maxHeight / naturalHeight, 1)
+    const ratio = Math.min(maxWidth / naturalWidth, maxHeight / naturalHeight)
 
     setImageSize({
       width: naturalWidth * ratio,
