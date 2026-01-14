@@ -30,12 +30,15 @@ export const ImageModal: FC = () => {
     }
   }, [state.isOpen])
 
-  // オーバーレイクリックで閉じる
-  const handleOverlayClick: MouseEventHandler = useCallback((e) => {
-    if (e.target === overlayRef.current) {
-      closeImageModal()
-    }
+  // オーバーレイクリックで閉じる（画像以外）
+  const handleOverlayClick: MouseEventHandler = useCallback(() => {
+    closeImageModal()
   }, [closeImageModal])
+
+  // 画像クリック時は閉じないようにイベント伝播を止める
+  const handleImageClick: MouseEventHandler = useCallback((e) => {
+    e.stopPropagation()
+  }, [])
 
   if (!state.isOpen || !state.src) return null
 
@@ -46,7 +49,7 @@ export const ImageModal: FC = () => {
       onClick={handleOverlayClick}
       className={styles.dialog}
     >
-      <div className={styles.content}>
+      <div className={styles.content} onClick={handleOverlayClick}>
         <button
           type="button"
           className={styles.closeButton}
@@ -61,6 +64,7 @@ export const ImageModal: FC = () => {
           fill
           style={{ objectFit: 'contain' }}
           className={styles.image}
+          onClick={handleImageClick}
         />
       </div>
     </dialog>

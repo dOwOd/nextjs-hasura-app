@@ -21,7 +21,6 @@
   width: 90vw;
   height: 90vh;
   max-width: 1400px;
-  pointer-events: none;
 }
 
 .closeButton {
@@ -42,7 +41,6 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s;
-  pointer-events: auto;
 }
 
 .closeButton:hover {
@@ -51,7 +49,6 @@
 
 .image {
   border-radius: 4px;
-  pointer-events: auto;
 }
 
 @media (max-width: 768px) {
