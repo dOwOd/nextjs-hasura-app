@@ -1,5 +1,8 @@
+'use client'
+
 import { FC, ImgHTMLAttributes } from 'react'
 import Image from 'next/image'
+import { useImageModal } from 'src/lib/context/ImageModalContext'
 import styles from './index.module.css'
 
 export const CustomImage: FC<ImgHTMLAttributes<HTMLImageElement>> = ({
@@ -8,23 +11,26 @@ export const CustomImage: FC<ImgHTMLAttributes<HTMLImageElement>> = ({
   width,
   height,
 }) => {
+  const { openImageModal } = useImageModal()
+
   if (src === undefined) return null
 
-  return width && alt ? (
-    <Image
-      src={src}
-      alt={alt}
-      width={Number(width)}
-      height={Number(height)}
-      className={styles.customImage}
-    />
-  ) : (
+  const handleClick = () => {
+    openImageModal(src, alt || '')
+  }
+
+  const imageProps = width && alt
+    ? { width: Number(width), height: Number(height) }
+    : { width: 400, height: 400 }
+
+  return (
     <Image
       src={src}
       alt={alt || ''}
-      width={400}
-      height={400}
+      {...imageProps}
       className={styles.customImage}
+      onClick={handleClick}
+      style={{ cursor: 'pointer' }}
     />
   )
 }

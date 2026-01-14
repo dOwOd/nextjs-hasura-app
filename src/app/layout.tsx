@@ -4,6 +4,8 @@ import { Analytics } from '@vercel/analytics/react'
 import { GoogleAnalytics } from 'src/components/GoogleAnalytics'
 import { Layout } from 'src/components/Layout'
 import { Session } from 'src/components/Providers/Session'
+import { ImageModalProvider } from 'src/lib/context/ImageModalContext'
+import { ImageModal } from 'src/components/ImageModal'
 
 export const metadata: Metadata = {
   title: {
@@ -23,11 +25,14 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <Session>
-          <Layout>
-            {children}
-            {modal}
-            <Analytics />
-          </Layout>
+          <ImageModalProvider>
+            <Layout>
+              {children}
+              {modal}
+              <Analytics />
+            </Layout>
+            <ImageModal />
+          </ImageModalProvider>
         </Session>
         {process.env.NEXT_PUBLIC_GA4_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />
