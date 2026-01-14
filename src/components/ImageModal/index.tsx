@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useRef, useCallback, MouseEventHandler } from 'react'
+import { FC, useEffect, useRef, useCallback, MouseEventHandler, useState } from 'react'
 import Image from 'next/image'
 import { useImageModal } from 'src/lib/context/ImageModalContext'
 import styles from './index.module.css'
@@ -8,6 +8,7 @@ import styles from './index.module.css'
 export const ImageModal: FC = () => {
   const { state, closeImageModal } = useImageModal()
   const overlayRef = useRef<HTMLDialogElement>(null)
+  const [imageSize, setImageSize] = useState<{ width: number; height: number } | null>(null)
 
   // Escapeキーで閉じる
   useEffect(() => {
@@ -40,6 +41,31 @@ export const ImageModal: FC = () => {
     e.stopPropagation()
   }, [])
 
+  // 画像読み込み時にサイズを計算
+  const handleImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget
+    const naturalWidth = img.naturalWidth
+    const naturalHeight = img.naturalHeight
+
+    // 画面の最大サイズ（90vw x 85vh、余白を考慮）
+    const maxWidth = window.innerWidth * 0.9
+    const maxHeight = window.innerHeight * 0.85
+
+    // アスペクト比を保って最大サイズに収める
+    const ratio = Math.min(maxWidth / naturalWidth, maxHeight / naturalHeight, 1)
+
+    setImageSize({
+      width: naturalWidth * ratio,
+      height: naturalHeight * ratio,
+    })
+  }, [])
+
+  // 画像が変わった時にサイズをリセット
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setImageSize(null)
+  }, [state.src])
+
   if (!state.isOpen || !state.src) return null
 
   return (
@@ -61,10 +87,15 @@ export const ImageModal: FC = () => {
         <Image
           src={state.src}
           alt={state.alt || ''}
-          fill
-          style={{ objectFit: 'contain' }}
-          className={styles.image}
+          width={imageSize?.width || 100}
+          height={imageSize?.height || 100}
+          onLoad={handleImageLoad}
           onClick={handleImageClick}
+          className={styles.image}
+          style={{
+            objectFit: 'contain',
+            visibility: imageSize ? 'visible' : 'hidden',
+          }}
         />
       </div>
     </dialog>
