@@ -16,7 +16,8 @@ const ISSUE_NUMBER = process.env.ISSUE_NUMBER;
 const COMMENT_ISSUE_NUMBER = process.env.COMMENT_ISSUE_NUMBER;
 
 // Gemini API設定
-const GEMINI_MODEL = 'gemini-2.0-flash';
+// 無料枠で使える安定版モデル
+const GEMINI_MODEL = 'gemini-1.5-flash-001';
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 /**
