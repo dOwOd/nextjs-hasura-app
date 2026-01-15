@@ -16,8 +16,9 @@ const ISSUE_NUMBER = process.env.ISSUE_NUMBER;
 const COMMENT_ISSUE_NUMBER = process.env.COMMENT_ISSUE_NUMBER;
 
 // Gemini API設定
-const GEMINI_MODEL = 'gemini-1.5-flash';
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+// ListModels APIで確認済みの最新安定版モデル
+const GEMINI_MODEL = 'gemini-2.5-flash';
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 /**
  * HTTPS GETリクエストを実行
@@ -60,6 +61,7 @@ async function callGeminiAPI(prompt) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-goog-api-key': GEMINI_API_KEY,
         'Content-Length': Buffer.byteLength(requestBody)
       }
     };
