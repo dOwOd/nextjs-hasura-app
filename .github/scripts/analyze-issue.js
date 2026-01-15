@@ -17,7 +17,7 @@ const COMMENT_ISSUE_NUMBER = process.env.COMMENT_ISSUE_NUMBER;
 
 // Gemini API設定
 const GEMINI_MODEL = 'gemini-1.5-flash';
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+const API_URL = `https://generativelanguage.googleapis.com/v1/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
 /**
  * HTTPS GETリクエストを実行
