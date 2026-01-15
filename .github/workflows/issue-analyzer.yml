@@ -1,0 +1,109 @@
+name: Issue Analyzer
+
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  contents: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    # 初回分析: 実装依頼テンプレートから作成されたIssueのみ
+    # 再分析: /reanalyze コマンドが含まれるコメントのみ
+    if: |
+      (github.event_name == 'issues' && contains(github.event.issue.body, '## 概要') && contains(github.event.issue.body, '## 実現したいこと')) ||
+      (github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/reanalyze'))
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Collect project structure
+        id: structure
+        run: |
+          echo "## Project Structure" > project-structure.txt
+          echo "" >> project-structure.txt
+          echo "### Source Files (Top 50)" >> project-structure.txt
+          find src -type f \( -name "*.ts" -o -name "*.tsx" \) | head -50 >> project-structure.txt
+          echo "" >> project-structure.txt
+          echo "### Package.json dependencies" >> project-structure.txt
+          cat package.json | head -60 >> project-structure.txt
+
+      - name: Analyze issue with Gemini
+        id: analyze
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          EVENT_NAME: ${{ github.event_name }}
+          # 初回分析
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          # 再分析（issue_comment イベント時）
+          COMMENT_ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: node .github/scripts/analyze-issue.js
+
+      - name: Comment on issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const analysis = fs.readFileSync('analysis-result.md', 'utf8');
+
+            const issueNumber = context.eventName === 'issues'
+              ? context.issue.number
+              : context.payload.issue.number;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: analysis
+            });
+
+      - name: Create feature branch
+        # ブランチ作成は初回分析時のみ
+        if: github.event_name == 'issues'
+        run: |
+          BRANCH_NAME="feature/issue-${{ github.event.issue.number }}"
+
+          # ブランチが既に存在するか確認
+          if git ls-remote --heads origin "$BRANCH_NAME" | grep -q "$BRANCH_NAME"; then
+            echo "Branch $BRANCH_NAME already exists, skipping creation"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH_NAME"
+          git push origin "$BRANCH_NAME"
+          echo "Created branch: $BRANCH_NAME"
+
+      - name: Update issue with branch info
+        # ブランチ情報コメントも初回のみ
+        if: github.event_name == 'issues'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branchName = `feature/issue-${{ github.event.issue.number }}`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## :rocket: 作業用ブランチを作成しました\n\n\`\`\`bash\ngit fetch origin\ngit checkout ${branchName}\n\`\`\`\n\nブランチ名: \`${branchName}\``
+            });
