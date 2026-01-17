@@ -7,13 +7,12 @@ import { PageTitle } from 'src/components/PageTitle'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: Promise<{
+  params: {
     slug: string
-  }>
+  }
 }
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
     query: GET_ARTICLE_BY_SLUG,
     variables: { slug: params.slug },
@@ -29,16 +28,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 }
 
-const Page = async (props: Props) => {
-  const params = await props.params;
+const Page = async ({ params }: Props) => {
   const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
     query: GET_ARTICLE_BY_SLUG,
     variables: { slug: params.slug },
-    context: {
-      fetchOptions: {
-        next: { revalidate: 1 },
-      }
-    },
   })
 
   const article = data?.articles[0]

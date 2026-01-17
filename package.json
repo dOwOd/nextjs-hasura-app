@@ -7,18 +7,20 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
   "dependencies": {
     "@apollo/client": "^4.0.0",
     "@apollo/experimental-nextjs-app-support": "^0.14.0",
+    "@opennextjs/cloudflare": "latest",
     "@picocss/pico": "^2.0.0-alpha1",
-    "@vercel/analytics": "^1.0.2",
     "cdate": "^0.0.7",
     "cross-fetch": "^4.0.0",
     "graphql": "^16.6.0",
-    "next": "^16.0.0",
-    "next-auth": "^4.22.1",
+    "next": "15.1.7",
+    "next-auth": "beta",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-icons": "^5.0.0",
@@ -47,7 +49,8 @@
     "eslint-config-prettier": "10.1.8",
     "graphql-tag": "2.12.6",
     "prettier": "3.7.4",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "wrangler": "latest"
   },
   "resolutions": {
     "@types/react": "npm:types-react@19.0.0-rc.1",

@@ -1,6 +1,5 @@
 import '@picocss/pico'
 import { Metadata } from 'next'
-import { Analytics } from '@vercel/analytics/react'
 import { GoogleAnalytics } from 'src/components/GoogleAnalytics'
 import { Layout } from 'src/components/Layout'
 import { Session } from 'src/components/Providers/Session'
@@ -29,7 +28,6 @@ export default function RootLayout({
             <Layout>
               {children}
               {modal}
-              <Analytics />
             </Layout>
             <ImageModal />
           </ImageModalProvider>
