@@ -6,6 +6,7 @@ import { Layout } from 'src/components/Layout'
 import { Session } from 'src/components/Providers/Session'
 import { ImageModalProvider } from 'src/lib/context/ImageModalContext'
 import { ImageModal } from 'src/components/ImageModal'
+import { ThemeProvider } from 'src/lib/context/ThemeContext'
 
 export const metadata: Metadata = {
   title: {
@@ -22,17 +23,32 @@ export default function RootLayout({
   modal: React.ReactNode
 }) {
   return (
-    <html lang="ja">
+    <html lang="ja" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var stored = localStorage.getItem('theme');
+                var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+              })();
+            `,
+          }}
+        />
+      </head>
       <body>
         <Session>
-          <ImageModalProvider>
-            <Layout>
-              {children}
-              {modal}
-              <Analytics />
-            </Layout>
-            <ImageModal />
-          </ImageModalProvider>
+          <ThemeProvider>
+            <ImageModalProvider>
+              <Layout>
+                {children}
+                {modal}
+                <Analytics />
+              </Layout>
+              <ImageModal />
+            </ImageModalProvider>
+          </ThemeProvider>
         </Session>
         {process.env.NEXT_PUBLIC_GA4_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />

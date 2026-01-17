@@ -6,6 +6,7 @@ import { Metadata } from 'next'
 import { SignoutButton } from '../Button/SignoutButton'
 import { PropsWithChildren } from 'react'
 import { ArticlesButton } from 'src/components/Button/ArticlesButton'
+import { ThemeToggleButton } from 'src/components/Button/ThemeToggleButton'
 
 export const metadata: Metadata = {
   title: "dOwOd's logs",
@@ -23,6 +24,9 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
           </li>
         </ul>
         <ul>
+          <li>
+            <ThemeToggleButton />
+          </li>
           <li>
             <ArticlesButton />
           </li>
