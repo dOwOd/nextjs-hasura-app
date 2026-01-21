@@ -46,7 +46,7 @@
     "eslint-config-next": "16.1.1",
     "eslint-config-prettier": "10.1.8",
     "graphql-tag": "2.12.6",
-    "prettier": "3.8.0",
+    "prettier": "3.8.1",
     "typescript": "5.9.3"
   },
   "resolutions": {
