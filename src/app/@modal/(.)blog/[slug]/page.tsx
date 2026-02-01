@@ -7,15 +7,16 @@ import { ArticleModalProvider } from 'src/lib/context/ArticleModalContext'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 const InterceptedBlogPage = async ({ params }: Props) => {
+  const { slug } = await params
   const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
     query: GET_ARTICLE_BY_SLUG,
-    variables: { slug: params.slug },
+    variables: { slug },
   })
 
   const article = data?.articles[0]

@@ -1,20 +1,21 @@
 'use client'
 
-import { useState, FormEvent } from 'react';
+import { use, useState, FormEvent } from 'react';
 import { GetArticleByIdQuery, UpdateArticleMutation } from 'src/gql/graphql'
 import { GET_ARTICLE_BY_ID, UPDATE_ARTICLE } from 'src/queries/queries'
 import { useMutation, useSuspenseQuery } from '@apollo/client/react'
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 const status = ['draft', 'public']
 const Page = ({ params }: Props) => {
+  const { id } = use(params)
   const { data } = useSuspenseQuery<GetArticleByIdQuery>(GET_ARTICLE_BY_ID, {
-    variables: { id: params.id },
+    variables: { id },
   })
   const article = data.articles_by_pk
   const [editedArticle, setEditedArticle] = useState(article)
