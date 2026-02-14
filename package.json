@@ -23,7 +23,8 @@
     "rehype-react": "^8.0.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
-    "remark-rehype": "^11.0.0"
+    "remark-rehype": "^11.0.0",
+    "rxjs": "^7.8.2"
   },
   "devDependencies": {
     "@babel/core": "7.28.6",
