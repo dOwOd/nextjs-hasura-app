@@ -18,11 +18,6 @@ const Page = async () => {
   const result = await initializeApollo().query<GetArticlesByStatusQuery>({
     query: GET_ARTICLES_BY_STATUS,
     variables: { status: 'public' },
-    context: {
-      fetchOptions: {
-        next: { revalidate: 1 },
-      },
-    },
   })
   const data = result.data as GetArticlesByStatusQuery
 
