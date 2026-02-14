@@ -52,7 +52,7 @@ npm run build                # 本番ビルド（out/ に静的ファイル生�
 ## アーキテクチャ
 
 - **完全静的サイト (SSG)**: ビルド時に Hasura GraphQL API から記事データを取得し、静的 HTML を生成
-- **認証なし**: 記事管理は Hasura コンソールから直接行い、リビルドで反映
+- **記事管理**: Directus CMS（[dowo-cms](https://github.com/dOwOd/dowo-cms)）から編集。既存の Hasura PostgreSQL に直接接続
 - **サーバーランタイム不要**: Cloudflare Pages に純粋な静的ファイルとしてデプロイ
 - **Turbopack**: Next.js 16 のデフォルトバンドラー。Apollo Client 4 との互換性のため `transpilePackages` が必要
 
@@ -136,14 +136,17 @@ remark + rehype パイプライン（markdownToReactElement.ts）
 ## 記事更新フロー
 
 ```
-Hasura コンソールで記事を更新
-  ↓
-GitHub Actions workflow_dispatch で手動リビルド
-  ↓
+Directus CMS で記事を編集（dowo-cms）
+  ↓ PostgreSQL に直接書き込み
+Hasura PostgreSQL（原本）
+  ↓ Directus Flows → GitHub Actions repository_dispatch（予定）
 npm run build → out/ に静的ファイル生成
   ↓
 Cloudflare Pages にデプロイ
 ```
+
+> **注**: 現在は Hasura コンソールから直接編集 + `workflow_dispatch` で手動リビルド。
+> Directus CMS への移行は #557 で計画中。
 
 ## 環境変数
 
