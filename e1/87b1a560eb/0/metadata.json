@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "e187b1a560eb",
+  "session_id": "df17afb6-73e0-49e1-b9ab-3f42a849a2c3",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-14T13:18:31.931138Z",
+  "branch": "docs/issue-558-update-readme",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "README.md"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "0a20a84c-b9d1-4b07-aabc-63a540c123f2",
+  "checkpoint_transcript_start": 264,
+  "transcript_lines_at_start": 264,
+  "token_usage": {
+    "input_tokens": 29,
+    "cache_creation_tokens": 14703,
+    "cache_read_tokens": 1779831,
+    "output_tokens": 1542,
+    "api_call_count": 21
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-14T13:18:31.799307Z",
+    "agent_lines": 61,
+    "human_added": 372,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 433,
+    "agent_percentage": 14.087759815242496
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/df17afb6-73e0-49e1-b9ab-3f42a849a2c3.jsonl"
+}
