@@ -40,13 +40,13 @@ npm run build                # 本番ビルド（out/ に静的ファイル生�
 
 | カテゴリ | 技術 |
 | --- | --- |
-| フレームワーク | Next.js（App Router, `output: 'export'`） |
+| フレームワーク | Next.js 16（App Router, `output: 'export'`） |
 | UI | React 19 + Pico CSS v2 |
 | データ | Apollo Client 4 + Hasura GraphQL |
 | コンテンツ | remark + rehype（Markdown → React） |
-| デプロイ | Cloudflare Pages（静的サイト） |
+| デプロイ | Cloudflare Pages（静的サイト, カスタムドメイン: dowo.dev） |
 | 型生成 | GraphQL Code Generator |
-| CI/CD | GitHub Actions（Cloudflare Pages自動デプロイ + 手動リビルド） |
+| CI/CD | GitHub Actions（手動リビルド `workflow_dispatch`）+ Cloudflare Pages Git連携（自動プレビュー） |
 | 依存関係管理 | Renovate |
 
 ## アーキテクチャ
@@ -54,6 +54,7 @@ npm run build                # 本番ビルド（out/ に静的ファイル生�
 - **完全静的サイト (SSG)**: ビルド時に Hasura GraphQL API から記事データを取得し、静的 HTML を生成
 - **認証なし**: 記事管理は Hasura コンソールから直接行い、リビルドで反映
 - **サーバーランタイム不要**: Cloudflare Pages に純粋な静的ファイルとしてデプロイ
+- **Turbopack**: Next.js 16 のデフォルトバンドラー。Apollo Client 4 との互換性のため `transpilePackages` が必要
 
 ## ファイル構造
 
@@ -101,7 +102,7 @@ npm run build                # 本番ビルド（out/ に静的ファイル生�
 
 ### 設定
 
-- **next.config.js** - Next.js設定（`output: 'export'`, `images.unoptimized`）
+- **next.config.js** - Next.js設定（`output: 'export'`, `transpilePackages: ['@apollo/client']`, `images.unoptimized`）
 - **codegen.ts** - GraphQL Code Generator設定
 - **eslint.config.mjs** - ESLint設定（Next.js + Prettier）
 - **prettier.config.js** - Prettier設定（セミコロンなし、シングルクォート）
@@ -110,7 +111,7 @@ npm run build                # 本番ビルド（out/ に静的ファイル生�
 
 ### CI/CD（.github/workflows/）
 
-- **cloudflare-pages.yml** - Cloudflare Pagesデプロイ（main push / 手動 workflow_dispatch）
+- **cloudflare-pages.yml** - Cloudflare Pagesデプロイ（手動 workflow_dispatch のみ）
 - **issue-analyzer.yml** - Issue自動分析（Gemini API）
 
 ### Docker
