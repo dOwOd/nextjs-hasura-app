@@ -1,34 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# nextjs-hasura-app
 
-## Getting Started
+Next.js + Hasura GraphQL の静的ブログサイト（SSG）
 
-First, run the development server:
+https://dowo.dev
 
-```bash
-npm run dev
-# or
-yarn dev
+## テックスタック
+
+| カテゴリ | 技術 |
+| --- | --- |
+| フレームワーク | Next.js 16（App Router, `output: 'export'`） |
+| UI | React 19 + Pico CSS v2 |
+| データ | Apollo Client 4 + Hasura GraphQL |
+| コンテンツ | remark + rehype（Markdown → React） |
+| デプロイ | Cloudflare Pages |
+| 型生成 | GraphQL Code Generator |
+| CI/CD | GitHub Actions + Cloudflare Pages Git 連携 |
+
+## アーキテクチャ
+
+完全静的サイト（SSG）。ビルド時に Hasura GraphQL API から記事データを取得し、静的 HTML を生成して Cloudflare Pages にデプロイする。サーバーランタイムは不要。
+
+```
+Hasura GraphQL API（ビルド時にデータ取得）
+  ↓ Apollo Client
+Next.js SSG（generateStaticParams）
+  ↓ Markdown 記事の場合
+remark + rehype パイプライン
+  ↓
+静的 HTML 生成（out/）→ Cloudflare Pages
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## セットアップ
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 必要なもの
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Node.js 24
+- npm
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 環境変数
 
-## Learn More
+`.env.local` を作成:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+NEXT_PUBLIC_HASURA_URL=   # Hasura GraphQL エンドポイント
+NEXT_PUBLIC_HASURA_KEY=   # Hasura 管理者シークレット
+NEXT_PUBLIC_GA4_ID=       # GA4 Measurement ID
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 開発
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
+http://localhost:3000 で確認できます。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ビルド
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run build
+```
+
+`out/` ディレクトリに静的ファイルが生成されます。
+
+### その他のコマンド
+
+```bash
+npm run lint      # ESLint
+npm run codegen   # GraphQL Code Generator
+```
+
+## 関連リポジトリ
+
+- [dowo-cms](https://github.com/dOwOd/dowo-cms) - 記事管理用 CMS（Directus）
