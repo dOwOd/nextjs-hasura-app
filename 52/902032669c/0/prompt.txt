@@ -1,0 +1,165 @@
+Implement the following plan:
+
+# Agent Team 作成プラン
+
+## Context
+
+このプロジェクト（Next.js + Hasura GraphQL 静的ブログサイト）に `.claude/agents/` を作成し、開発ワークフロー全体をカバーする7つのカスタムエージェントを配置する。既存スキル（`/commit`, `/pr`, `/issue`）と重複しない設計。
+
+## 作成するエージェント一覧
+
+| # | Agent | ファイル | Model | ツール | 役割 |
+|---|-------|---------|-------|--------|------|
+| 1 | researcher | `researcher.md` | sonnet | Read, Glob, Grep, Bash, WebSearch, WebFetch | コードベース調査・Issue分析 |
+| 2 | implementer | `implementer.md` | opus | Read, Glob, Grep, Bash, Edit, Write | 規約準拠の実装 |
+| 3 | validator | `validator.md` | haiku | Read, Glob, Grep, Bash | lint/codegen/build の検証 |
+| 4 | reviewer | `reviewer.md` | sonnet | Read, Glob, Grep | 規約遵守のコードレビュー |
+| 5 | ui-designer | `ui-designer.md` | sonnet | Read, Glob, Grep, Edit, Write | UI/スタイリング設計・実装 |
+| 6 | seo-specialist | `seo-specialist.md` | sonnet | Read, Glob, Grep, Bash, Edit, Write, WebSearch | SEO最適化 |
+| 7 | a11y-specialist | `a11y-specialist.md` | sonnet | Read, Glob, Grep, Bash, Edit, Write | アクセシビリティ改善 |
+
+## 設計方針
+
+1. **ツール制限で安全性を確保**: reviewer と researcher は読み取り専用。validator は Bash あるが修正不可。実装系エージェントのみファイル変更可能
+2. **モデル選択は認知負荷に合わせる**: haiku（コマンド実行）、sonnet（分析・専門領域）、opus（汎用実装）
+3. **プロジェクト固有の規約を埋め込む**: 実際のファイルパス・パターン・コード例を記載
+4. **日本語**: すべてのエージェント指示は日本語
+
+## 各エージェントの詳細
+
+### 1. researcher（調査エージェント）
+- データフロー追跡（GraphQL → Apollo → Server Component → remark/rehype → React）
+- コンポーネントパターン分析、依存関係・互換性調査
+- GitHub Issue 調査、Git 履歴調査
+
+### 2. implementer（実装エージェント）
+- `const` + アロー関数、型ガード優先、セミコロンなし等の規約を厳守
+- コンポーネント作成テンプレート（`src/components/{Name}/index.tsx`）
+- GraphQL クエリ追加フロー、SSG 互換性チェック
+- 実装後に lint/codegen/build を実行して検証
+
+### 3. validator（検証エージェント）
+- 3ステップ検証: `npm run lint` → `npm run codegen` → `npm run build`
+- 各ステップの結果をテーブル形式で報告。修正は行わない
+
+### 4. reviewer（レビューエージェント）
+- TypeScript 規約チェック（関数定義、型アサーション、型の正確性）
+- プロジェクトパターン（コンポーネント構造、インポートパス、Apollo Client 4）
+- セキュリティ・生成ファイル保護チェック
+
+### 5. ui-designer（UIデザインエージェント）
+- **Pico CSS v2 + CSS Modules** のハイブリッド手法を熟知
+- Pico CSS のセマンティックスタイリングを最大活用し、CSS Modules でカスタム調整
+- Pico CSS 変数（`--pico-*`）の活用でテーマ一貫性を維持
+- レスポンシブデザイン（モバイルファースト、ブレークポイント: 768px, 1024px）
+- 既存パターン: `max-width` コンテナ、`border-radius: 50%` アイコン、固定位置モーダル
+
+### 6. seo-specialist（SEOスペシャリスト）
+- **現状の課題を把握済み**: OG タグなし、description なし、sitemap.xml/robots.txt なし、構造化データなし
+- **既存の良い点**: SSG、セマンティック HTML、`<html lang="ja">`、クリーンURL
+- Next.js Metadata API を活用した OG/Twitter Card 実装
+- sitemap.xml、robots.txt の生成（`output: 'export'` 対応）
+- JSON-LD 構造化データ（BlogPosting スキーマ）
+- カスタムドメイン `dowo.dev` を前提とした canonical URL
+
+### 7. a11y-specialist（アクセシビリティスペシャリスト）
+- **現状の課題を把握済み**: クリック可能な画像に button セマンティクスなし、スキップリンクなし、見出し階層未検証
+- **既存の良い点**: セマンティック HTML ランドマーク、`aria-label`（breadcrumb, 閉じるボタン）、Escape キー対応
+- WCAG 2.1 AA 準拠を目標
+- キーボードナビゲーション改善（`tabindex`, `role="button"`, `onKeyDown`）
+- フォーカス管理（モーダル開閉時のフォーカストラップ）
+- スクリーンリーダー対応（`aria-live`, `aria-expanded`, `sr-only` テキスト）
+
+## 作成ファイル
+
+```
+.claude/agents/       ← 新規ディレクトリ
+  researcher.md
+  implementer.md
+  validator.md
+  reviewer.md
+  ui-designer.md
+  seo-specialist.md
+  a11y-specialist.md
+```
+
+## 検証方法
+
+- 各ファイル作成後、`ls -la .claude/agents/` でファイルの存在を確認
+- YAML frontmatter の構文を目視確認
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/sksn/.REDACTED.jsonl
+
+If this plan can be broken down into multiple independent tasks, consider using the TeamCreate tool to create a team and parallelize the work.
+
+---
+
+Base directory for this skill: /Users/sksn/Development/nextjs-hasura-app/.claude/skills/pr
+
+## Create PR Workflow
+
+1. Verify current branch is NOT main: `git branch --show-current`
+2. If on main, create and checkout a new branch: `git checkout -b feature/issue-{number}-{description}`
+3. Stage and commit all changes with a descriptive message
+4. Push the branch: `git push -u origin HEAD`
+5. Create PR with `gh pr create --fill --base main`
+6. Body に `Closes #{番号}` を含める（Issue自動クローズ）
+7. 必要に応じて CLAUDE.md やドキュメントの更新を確認
+8. Report the PR URL
+
+---
+
+#555 についてです。中期: 専用 CMS の構築（別プロジェクト）を実施したいです。それに向けての計画Issueを作成して
+
+---
+
+CMSはヘッドレスCMSを導入するなど考えていますか？現状どのように考えていましたか
+
+---
+
+外部のCMSツールを使いながら既存のDBを使うことは出来ないということでしょうか
+
+---
+
+Directusが気になります。具体的に教えて下さい
+
+---
+
+Directusの方向で進めたいです。#557 の計画をDirectsベースにしてほしいが、他にもいくつかの候補を検討していた旨を記載しておいてほしいです
+
+---
+
+ホスティングについては今決める必要はない？
+
+---
+
+開発環境から本番のHasuraに接続すればローカルのDocker環境から記事を編集できるという理解で合ってい？
+
+---
+
+[Request interrupted by user]
+
+---
+
+開発環境から本番のHasuraに接続すればローカルのDocker環境から記事を編集できるという理解で合っている？
+
+---
+
+自体の接続情報（ホスト、ポート、DB名、ユーザー、パスワード）はHasuraのコンソールを見たら分かる？
+
+---
+
+このCMSをのプロジェクトは別リポジトリで構築するべき？
+
+---
+
+では別リポジトリに作成します。リポジトリ名の案を出して。
+
+---
+
+ヘッドレスCMSというものそもそも分かっていないので教えて。WordpressのようなCMSとは何が違う？
+
+---
+
+dowo-cmsにします。これでプライベートリポジトリをGitHubに作成して。最後にこの方針で決定したことを各ドキュメントに記載してコミットして

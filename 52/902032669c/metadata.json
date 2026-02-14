@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "52902032669c",
+  "strategy": "manual-commit",
+  "branch": "docs/update-claude-md",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".claude/agents/a11y-specialist.md",
+    ".claude/agents/implementer.md",
+    ".claude/agents/researcher.md",
+    ".claude/agents/reviewer.md",
+    ".claude/agents/seo-specialist.md",
+    ".claude/agents/ui-designer.md",
+    ".claude/agents/validator.md",
+    "CLAUDE.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/52/902032669c/0/metadata.json",
+      "transcript": "/52/902032669c/0/full.jsonl",
+      "context": "/52/902032669c/0/context.md",
+      "content_hash": "/52/902032669c/0/content_hash.txt",
+      "prompt": "/52/902032669c/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 52,
+    "cache_creation_tokens": 49837,
+    "cache_read_tokens": 1750859,
+    "output_tokens": 6838,
+    "api_call_count": 28
+  }
+}
