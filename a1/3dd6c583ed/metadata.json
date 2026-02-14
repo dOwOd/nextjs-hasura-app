@@ -1,0 +1,39 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "a13dd6c583ed",
+  "strategy": "manual-commit",
+  "branch": "docs/update-claude-md",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".claude/agents/a11y-specialist.md",
+    ".claude/agents/implementer.md",
+    ".claude/agents/researcher.md",
+    ".claude/agents/reviewer.md",
+    ".claude/agents/seo-specialist.md",
+    ".claude/agents/ui-designer.md",
+    ".claude/agents/validator.md",
+    ".claude/rules/git-workflow.md",
+    ".claude/rules/session-update.md",
+    ".claude/settings.json",
+    ".claude/settings.local.json",
+    ".claude/skills/commit/SKILL.md",
+    ".claude/skills/issue/SKILL.md",
+    ".claude/skills/pr/SKILL.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/a1/3dd6c583ed/0/metadata.json",
+      "transcript": "/a1/3dd6c583ed/0/full.jsonl",
+      "context": "/a1/3dd6c583ed/0/context.md",
+      "content_hash": "/a1/3dd6c583ed/0/content_hash.txt",
+      "prompt": "/a1/3dd6c583ed/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 17,
+    "cache_creation_tokens": 23715,
+    "cache_read_tokens": 546106,
+    "output_tokens": 1135,
+    "api_call_count": 14
+  }
+}
