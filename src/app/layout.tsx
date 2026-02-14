@@ -3,7 +3,6 @@ import { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
 import { GoogleAnalytics } from 'src/components/GoogleAnalytics'
 import { Layout } from 'src/components/Layout'
-import { Session } from 'src/components/Providers/Session'
 import { ImageModalProvider } from 'src/lib/context/ImageModalContext'
 import { ImageModal } from 'src/components/ImageModal'
 
@@ -22,15 +21,13 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <Session>
-          <ImageModalProvider>
-            <Layout>
-              {children}
-              <Analytics />
-            </Layout>
-            <ImageModal />
-          </ImageModalProvider>
-        </Session>
+        <ImageModalProvider>
+          <Layout>
+            {children}
+            <Analytics />
+          </Layout>
+          <ImageModal />
+        </ImageModalProvider>
         {process.env.NEXT_PUBLIC_GA4_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />
         )}
