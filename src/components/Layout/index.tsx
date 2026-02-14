@@ -3,9 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import style from 'src/components/Layout/index.module.css'
 import { Metadata } from 'next'
-import { SignoutButton } from '../Button/SignoutButton'
 import { PropsWithChildren } from 'react'
-import { ArticlesButton } from 'src/components/Button/ArticlesButton'
 
 export const metadata: Metadata = {
   title: "dOwOd's logs",
@@ -20,14 +18,6 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
             <strong>
               <Link href="/">{`dOwOd's logs`}</Link>
             </strong>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <ArticlesButton />
-          </li>
-          <li>
-            <SignoutButton />
           </li>
         </ul>
       </nav>
