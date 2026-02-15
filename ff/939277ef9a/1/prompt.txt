@@ -1,0 +1,50 @@
+Implement the following plan:
+
+# 記事執筆 Agent Team の作成
+
+## Context
+
+ISR→SSG移行プロジェクトのブログ記事（Issue #567）を執筆するためのAgent Teamを作成する。`draft-article.md` に下書きはあるが、dowo.dev の既存記事の文体に合わせた執筆・校正を行うチームが必要。ユーザーの要望として、記事の文体・クセを分析できるメンバーを含めること。
+
+## 作成するファイル（3つ）
+
+### 1. `.claude/agents/style-analyzer.md`
+- **役割**: dowo.dev の公開記事を WebFetch で取得し、文体・文章の特徴・クセを分析
+- **モデル**: sonnet（分析・パターン抽出が主）
+- **ツール**: Read, Glob, Grep, Bash, WebSearch, WebFetch（読み取り専用）
+- **出力**: 構造化された文体分析結果（文末表現、一人称、口語/フォーマル比、構造パターン、Markdownスタイルガイド、再現チェックリスト）
+- **参考パターン**: `researcher.md`（読み取り専用 + Web アクセス）
+
+### 2. `.claude/agents/article-writer.md`
+- **役割**: 分析された文体に従って記事を執筆・編集
+- **モデル**: opus（文体再現と創造的執筆に高品質モデルが必要）
+- **ツール**: Read, Glob, Grep, Bash, Edit, Write, WebSearch, WebFetch
+- **内容**: dowo.dev の文体ルール（ます調ベース + 口語混在、一人称省略、体験ベース、自虐的ユーモア等）、セルフチェックリスト付き
+- **参考パターン**: `implementer.md`（opus + 編集権限）
+
+### 3. `.claude/agents/article-editor.md`
+- **役割**: 記事の文体一貫性・技術的正確性・読みやすさをレビュー（読み取り専用）
+- **モデル**: opus（文体ニュアンスの判断に高い推論能力が必要）
+- **ツール**: Read, Glob, Grep, Bash, WebSearch, WebFetch（読み取り専用）
+- **出力**: 優先度付きレビュー報告（高/中/低）、具体的な修正案
+- **参考パターン**: `diagram-reviewer.md`（レビュー専門 + 構造化出力）
+
+## チームワークフロー
+
+```
+style-analyzer → article-writer → article-editor → article-writer（修正）
+```
+
+## 検証
+
+- 各ファイルの frontmatter が既存エージェントと同じ形式（name, description, model, tools）であること
+- `style-analyzer` が実際に dowo.dev の記事を取得・分析できること
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/sksn/.REDACTED.jsonl
+
+If this plan can be broken down into multiple independent tasks, consider using the TeamCreate tool to create a team and parallelize the work.
+
+---
+
+まずはこのAgent TeamをコミットしてPRを作成して。その後に記事の下書きをmarkdownファイルとして作成してください。既存の下書きファイルを参考にしても良いです。まずこのAgent Teamに一つ書いてもらいそれに指示を出す、もしくは私が直接修正する’形で完成に漕ぎ着きたいです
