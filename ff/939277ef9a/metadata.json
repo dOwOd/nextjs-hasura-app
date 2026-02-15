@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "ff939277ef9a",
+  "strategy": "manual-commit",
+  "branch": "docs/issue-567-architecture-diagrams",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".claude/agents/diagram-architect.md",
+    ".claude/agents/diagram-reviewer.md",
+    "scripts/generate-diagrams.mjs"
+  ],
+  "sessions": [
+    {
+      "metadata": "/ff/939277ef9a/0/metadata.json",
+      "transcript": "/ff/939277ef9a/0/full.jsonl",
+      "context": "/ff/939277ef9a/0/context.md",
+      "content_hash": "/ff/939277ef9a/0/content_hash.txt",
+      "prompt": "/ff/939277ef9a/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 24,
+    "cache_creation_tokens": 23757,
+    "cache_read_tokens": 874227,
+    "output_tokens": 4248,
+    "api_call_count": 14
+  }
+}
