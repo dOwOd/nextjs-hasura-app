@@ -139,14 +139,13 @@ remark + rehype パイプライン（markdownToReactElement.ts）
 Directus CMS で記事を編集（dowo-cms）
   ↓ PostgreSQL に直接書き込み
 Hasura PostgreSQL（原本）
-  ↓ Directus Flows → GitHub Actions repository_dispatch（予定）
+  ↓ Directus Flows → Cloudflare Pages Deploy Hooks
 npm run build → out/ に静的ファイル生成
   ↓
 Cloudflare Pages にデプロイ
 ```
 
-> **注**: 現在は Hasura コンソールから直接編集 + `workflow_dispatch` で手動リビルド。
-> Directus CMS への移行は #557 で計画中。
+> **手動リビルド**: GitHub Actions の `workflow_dispatch` からも実行可能
 
 ## 環境変数
 
