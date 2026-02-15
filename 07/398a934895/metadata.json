@@ -1,0 +1,38 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "07398a934895",
+  "strategy": "manual-commit",
+  "branch": "docs/issue-567-architecture-diagrams",
+  "checkpoints_count": 6,
+  "files_touched": [
+    ".claude/agents/article-editor.md",
+    ".claude/agents/article-writer.md",
+    ".claude/agents/diagram-architect.md",
+    ".claude/agents/diagram-reviewer.md",
+    ".claude/agents/style-analyzer.md",
+    ".claude/rules/git-workflow.md",
+    ".claude/rules/session-update.md",
+    ".claude/settings.json",
+    ".claude/settings.local.json",
+    ".claude/skills/commit/SKILL.md",
+    ".claude/skills/issue/SKILL.md",
+    ".claude/skills/pr/SKILL.md",
+    "draft-article.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/07/398a934895/0/metadata.json",
+      "transcript": "/07/398a934895/0/full.jsonl",
+      "context": "/07/398a934895/0/context.md",
+      "content_hash": "/07/398a934895/0/content_hash.txt",
+      "prompt": "/07/398a934895/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 33,
+    "cache_creation_tokens": 23456,
+    "cache_read_tokens": 1043754,
+    "output_tokens": 2957,
+    "api_call_count": 17
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "07398a934895",
+  "session_id": "2eff7679-b3c9-4a9e-95ff-d6e414f9a685",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-15T16:02:06.440682Z",
+  "branch": "docs/issue-567-architecture-diagrams",
+  "checkpoints_count": 6,
+  "files_touched": [
+    ".claude/agents/article-editor.md",
+    ".claude/agents/article-writer.md",
+    ".claude/agents/diagram-architect.md",
+    ".claude/agents/diagram-reviewer.md",
+    ".claude/agents/style-analyzer.md",
+    ".claude/rules/git-workflow.md",
+    ".claude/rules/session-update.md",
+    ".claude/settings.json",
+    ".claude/settings.local.json",
+    ".claude/skills/commit/SKILL.md",
+    ".claude/skills/issue/SKILL.md",
+    ".claude/skills/pr/SKILL.md",
+    "draft-article.md"
+  ],
+  "agent": "Claude Code",
+  "checkpoint_transcript_start": 105,
+  "transcript_lines_at_start": 105,
+  "token_usage": {
+    "input_tokens": 33,
+    "cache_creation_tokens": 23456,
+    "cache_read_tokens": 1043754,
+    "output_tokens": 2957,
+    "api_call_count": 17
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-15T16:02:06.30955Z",
+    "agent_lines": 144,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 579,
+    "total_committed": 144,
+    "agent_percentage": 100
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/2eff7679-b3c9-4a9e-95ff-d6e414f9a685.jsonl"
+}
