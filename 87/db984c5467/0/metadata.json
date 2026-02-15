@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "87db984c5467",
+  "session_id": "e3a21ee7-daee-4927-a785-e6f84dbffa2d",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-15T04:36:14.233751Z",
+  "branch": "fix/revert-repository-dispatch",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".github/workflows/cloudflare-pages.yml"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "0456647c-ea72-431a-b860-ab0c93a38ae8",
+  "checkpoint_transcript_start": 63,
+  "transcript_lines_at_start": 63,
+  "token_usage": {
+    "input_tokens": 49,
+    "cache_creation_tokens": 31134,
+    "cache_read_tokens": 1590249,
+    "output_tokens": 3092,
+    "api_call_count": 27
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-15T04:36:14.109394Z",
+    "agent_lines": 0,
+    "human_added": 67,
+    "human_modified": 2,
+    "human_removed": 0,
+    "total_committed": 67,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/e3a21ee7-daee-4927-a785-e6f84dbffa2d.jsonl"
+}

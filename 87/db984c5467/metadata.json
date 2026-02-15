@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "87db984c5467",
+  "strategy": "manual-commit",
+  "branch": "fix/revert-repository-dispatch",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".github/workflows/cloudflare-pages.yml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/87/db984c5467/0/metadata.json",
+      "transcript": "/87/db984c5467/0/full.jsonl",
+      "context": "/87/db984c5467/0/context.md",
+      "content_hash": "/87/db984c5467/0/content_hash.txt",
+      "prompt": "/87/db984c5467/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 49,
+    "cache_creation_tokens": 31134,
+    "cache_read_tokens": 1590249,
+    "output_tokens": 3092,
+    "api_call_count": 27
+  }
+}

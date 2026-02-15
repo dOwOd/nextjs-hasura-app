@@ -1,0 +1,64 @@
+teamを起動して #561 の内容を確認して
+
+---
+
+実装に進んで
+
+---
+
+Base directory for this skill: /Users/sksn/Development/nextjs-hasura-app/.claude/skills/pr
+
+## Create PR Workflow
+
+1. Verify current branch is NOT main: `git branch --show-current`
+2. If on main, create and checkout a new branch: `git checkout -b feature/issue-{number}-{description}`
+3. Stage and commit all changes with a descriptive message
+4. Push the branch: `git push -u origin HEAD`
+5. Create PR with `gh pr create --fill --base main`
+6. Body に `Closes #{番号}` を含める（Issue自動クローズ）
+7. 必要に応じて CLAUDE.md やドキュメントの更新を確認
+8. Report the PR URL
+
+---
+
+今このプロジェクトで使えるAgent Teamを確認したいです
+
+---
+
+このPRはmergeしても良い？なにか確認するべきことはある？
+
+---
+
+この GitHub PATはどのように作ってどこに設定すればよいか具体的に教えて
+
+---
+
+Directus Flows での設定をPATの貼り付け以外あなたにやってもらうことはできますか？
+
+---
+
+ワークフローを作成しました。確認できますか
+
+---
+
+GitHub Actionsを使わない場合、どのようなアプローチが考えられますか？
+
+---
+
+Cloudflare Pages Deploy Hooksは無料での GitHub Actionsの使用制限に引っかかっていても使えるアプローチということ？
+
+---
+
+今検討していた方法とCloudflare Pages Deploy Hooksによる方法を比較して
+
+---
+
+Cloudflare Pages Deploy Hooksにする場合、具体的な実施内容を教えて。コードを書く必要などがある場合、別のリポジトリを作成する必要があるのか、これらのドキュメントはどこに記載するべきかなどが判断ついていないです
+
+---
+
+Deploy Hooksに切り替える。PR #562はクローズして
+
+---
+
+revert PRを作成して
