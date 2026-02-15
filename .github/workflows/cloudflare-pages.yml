@@ -2,8 +2,6 @@ name: Rebuild and Deploy to Cloudflare Pages
 
 on:
   workflow_dispatch:
-  repository_dispatch:
-    types: [content-update]
 
 jobs:
   deploy:
