@@ -1,0 +1,40 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "30e09ee6f41d",
+  "strategy": "manual-commit",
+  "branch": "docs/issue-567-architecture-diagrams",
+  "checkpoints_count": 31,
+  "files_touched": [
+    ".claude/agents/diagram-architect.md",
+    ".claude/agents/diagram-reviewer.md",
+    ".claude/rules/git-workflow.md",
+    ".claude/rules/session-update.md",
+    ".claude/settings.json",
+    ".claude/settings.local.json",
+    ".claude/skills/commit/SKILL.md",
+    ".claude/skills/issue/SKILL.md",
+    ".claude/skills/pr/SKILL.md",
+    "draft-article.md",
+    "public/images/isr-to-ssg/architecture-after.svg",
+    "public/images/isr-to-ssg/architecture-before-v1.svg",
+    "public/images/isr-to-ssg/architecture-before-v3.svg",
+    "public/images/isr-to-ssg/architecture-before.svg",
+    "scripts/generate-diagrams.mjs"
+  ],
+  "sessions": [
+    {
+      "metadata": "/30/e09ee6f41d/0/metadata.json",
+      "transcript": "/30/e09ee6f41d/0/full.jsonl",
+      "context": "/30/e09ee6f41d/0/context.md",
+      "content_hash": "/30/e09ee6f41d/0/content_hash.txt",
+      "prompt": "/30/e09ee6f41d/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 10371,
+    "cache_creation_tokens": 591562,
+    "cache_read_tokens": 26417036,
+    "output_tokens": 46225,
+    "api_call_count": 246
+  }
+}
