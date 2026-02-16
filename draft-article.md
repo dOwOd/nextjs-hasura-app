@@ -109,41 +109,34 @@ config: {
 | レンダリング | ISR                    | SSG                                        |
 | ホスティング | Vercel                 | Cloudflare Pages                           |
 | 認証         | NextAuth               | なし                                       |
-| 記事管理     | 自作 CMS               | Directus CMS（計画中）                     |
+| 記事管理     | 自作 CMS               | Directus CMS                               |
 | バンドラー   | Webpack                | Turbopack                                  |
-| ドメイン管理 | Vercel + 外部 DNS      | Cloudflare DNS                             |
 | デプロイ     | Git push → Vercel 自動 | Git push → Cloudflare Pages + Deploy Hooks |
 
-## 今のアーキテクチャ
+Cloudflare のエコシステム（Pages + R2 + DNS + Deploy Hooks）に寄せたことで、全体がスッキリした。HasuraとPostgreSQLはそのまま残しているので、データ層の柔軟性は維持できている。サーバーランタイムは不要。ビルドして `out/` に吐かれた静的ファイルをそのまま配信するだけとなった。
 
-![移行後のアーキテクチャ: Directus CMSからCloudflare Pages経由で静的配信するSSG構成](/images/isr-to-ssg/architecture-after.svg)
+## 自作CMSからDirectusへ（Directusという選択肢）
 
-Cloudflare のエコシステム（Pages + R2 + DNS + Deploy Hooks）に寄せたことで、全体がスッキリした。Hasura と PostgreSQL はそのまま残しているので、データ層の柔軟性は維持できている。
+自作CMSをやめてDirectus CMSに移行することにした。
 
-サーバーランタイムは不要。ビルドして `out/` に吐かれた静的ファイルをそのまま配信するだけ。
+自作CMSは「作ること自体が目的」みたいなところが正直なところあり、実用性は皆無だった。Directusは[データベースファースト](https://directus.io/blog/database-first-or-api-first)のヘッドレスCMSで、既存のDBスキーマをそのまま読み取って管理画面とAPIを自動生成してくれる。だからDBスキーマを変えずにCMSだけ乗り換えられる。管理画面も標準で提供されており、Webhook（Directus Flows）で外部連携もできる。
 
-## 自作 CMS から Directus へ（Directusという選択肢）
-
-自作 CMS をやめて Directus CMS に移行することにした。地味に大きな変化。
-
-自作 CMS は「作ること自体が目的」みたいなところがあって、実用性は正直微妙だった。Directus は既存の PostgreSQL にそのまま接続できるので、DB スキーマを変えずに CMS だけ乗り換えられる。管理画面も最初からちゃんとしているし、Webhook（Directus Flows）で外部連携もできる。
-
-自分で全部作りたいという気持ちはあったけど、使うツールと作るツールは分けたほうがいい。
+もうCMSを作るのはやらなくていいかな。でも既存のDBとスキーマはそのまま活かしたいなと思っていたのでデータベースファーストのDirectusはこの要件にちょうど合っていた。
 
 ## 今後やりたいこと
 
 - タグ機能の追加
-- OGP 画像の対応
-- ダークモード
+- OGP画像の対応
+- ダーク / ライトのテーマ切り替え
 
 どれも「あったらいいな」レベルなので、気が向いたらやる。
 
 ## おわりに
 
-ISR + 自作 CMS + Vercel という「できることが多い構成」から、SSG + Directus + Cloudflare Pages という「必要十分な構成」に移行した。機能は減ったけど、運用はラクになったし、コードもシンプルになった。
+ISR + 自作 CMS + Vercel という「できることが多い構成」から、SSG + Directus + Cloudflare Pagesという「必要十分な構成」に移行した。機能は減ったが運用はラクになり、コードもシンプルになった。
 
-ちなみに、移行中のダウンタイムはゼロだった。Cloudflare Pages の Git 連携で新環境を先に立ち上げて、`*.pages.dev` で動作確認してから DNS を切り替え、最後に Vercel を停止する順番で進めたので、サイトが見れない時間は発生していない。Cloudflare DNS なら切り替えも即時反映されるし、並行運用期間を設けておけば安心。
+ちなみに、移行中のダウンタイムはゼロだった。Cloudflare PagesのGit連携で新環境を先に立ち上げて、`*.pages.dev` で動作確認してからDNSの向き先をVercelからCloudflare Pagesに切り替え、最後にVercelを停止する順番で進めたので、サイトが見れない時間は発生していない。
 
-オーバーエンジニアリングに気づいて、ちゃんとシンプルにできたのは良かったと思う。ただ、ISR も自作 CMS も Intercepting Route も、気になった機能を実際に触って試せたこと自体は無駄じゃなかった。使ってみて初めて「これは自分のユースケースには合わない」と判断できるようになるし、技術選定を失敗したと思える経験ができたのは大きい。失敗しないとわからないことって結構ある。
+ISRも自作CMSもIntercepting Routeも、触っているときは純粋に楽しかった。使ってみて初めて「これは自分のユースケースには合わない」と判断できるようになるし、技術選定を失敗したと思える経験ができたのは大きい。失敗しないとわからないことって結構ある。
 
 では。
