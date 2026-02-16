@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "27019ad0e9db",
+  "strategy": "manual-commit",
+  "branch": "docs/issue-567-architecture-diagrams",
+  "checkpoints_count": 8,
+  "files_touched": [
+    ".claude/agents/article-editor.md",
+    ".claude/agents/article-writer.md",
+    ".claude/agents/style-analyzer.md",
+    ".claude/handoff-issue567-article.md",
+    "draft-article.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/27/019ad0e9db/0/metadata.json",
+      "transcript": "/27/019ad0e9db/0/full.jsonl",
+      "context": "/27/019ad0e9db/0/context.md",
+      "content_hash": "/27/019ad0e9db/0/content_hash.txt",
+      "prompt": "/27/019ad0e9db/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 80,
+    "cache_creation_tokens": 452198,
+    "cache_read_tokens": 5985114,
+    "output_tokens": 7159,
+    "api_call_count": 54
+  }
+}

@@ -1,0 +1,526 @@
+Implement the following plan:
+
+# 記事執筆 Agent Team の作成
+
+## Context
+
+ISR→SSG移行プロジェクトのブログ記事（Issue #567）を執筆するためのAgent Teamを作成する。`draft-article.md` に下書きはあるが、dowo.dev の既存記事の文体に合わせた執筆・校正を行うチームが必要。ユーザーの要望として、記事の文体・クセを分析できるメンバーを含めること。
+
+## 作成するファイル（3つ）
+
+### 1. `.claude/agents/style-analyzer.md`
+- **役割**: dowo.dev の公開記事を WebFetch で取得し、文体・文章の特徴・クセを分析
+- **モデル**: sonnet（分析・パターン抽出が主）
+- **ツール**: Read, Glob, Grep, Bash, WebSearch, WebFetch（読み取り専用）
+- **出力**: 構造化された文体分析結果（文末表現、一人称、口語/フォーマル比、構造パターン、Markdownスタイルガイド、再現チェックリスト）
+- **参考パターン**: `researcher.md`（読み取り専用 + Web アクセス）
+
+### 2. `.claude/agents/article-writer.md`
+- **役割**: 分析された文体に従って記事を執筆・編集
+- **モデル**: opus（文体再現と創造的執筆に高品質モデルが必要）
+- **ツール**: Read, Glob, Grep, Bash, Edit, Write, WebSearch, WebFetch
+- **内容**: dowo.dev の文体ルール（ます調ベース + 口語混在、一人称省略、体験ベース、自虐的ユーモア等）、セルフチェックリスト付き
+- **参考パターン**: `implementer.md`（opus + 編集権限）
+
+### 3. `.claude/agents/article-editor.md`
+- **役割**: 記事の文体一貫性・技術的正確性・読みやすさをレビュー（読み取り専用）
+- **モデル**: opus（文体ニュアンスの判断に高い推論能力が必要）
+- **ツール**: Read, Glob, Grep, Bash, WebSearch, WebFetch（読み取り専用）
+- **出力**: 優先度付きレビュー報告（高/中/低）、具体的な修正案
+- **参考パターン**: `diagram-reviewer.md`（レビュー専門 + 構造化出力）
+
+## チームワークフロー
+
+```
+style-analyzer → article-writer → article-editor → article-writer（修正）
+```
+
+## 検証
+
+- 各ファイルの frontmatter が既存エージェントと同じ形式（name, description, model, tools）であること
+- `style-analyzer` が実際に dowo.dev の記事を取得・分析できること
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/sksn/.REDACTED.jsonl
+
+If this plan can be broken down into multiple independent tasks, consider using the TeamCreate tool to create a team and parallelize the work.
+
+---
+
+まずはこのAgent TeamをコミットしてPRを作成して。その後に記事の下書きをmarkdownファイルとして作成してください。既存の下書きファイルを参考にしても良いです。まずこのAgent Teamに一つ書いてもらいそれに指示を出す、もしくは私が直接修正する’形で完成に漕ぎ着きたいです
+
+---
+
+<teammate-message teammate_id="style-analyzer" color="blue" summary="dowo.dev 文体分析レポート完成">
+
+# dowo.dev 文体分析レポート
+
+全5記事 + 下書き1本を分析しました。
+
+---
+
+## 1. 文末表現パターン
+
+### 基本スタイル: **「です・ます」と「だ・である」の混在（意図的）**
+
+著者は**地の文では「だ・である」調を主体**とし、**読者への語りかけや冒頭・締めで「です・ます」調**を使う独特のスタイルを持っています。
+
+**「だ・である」調（地の文の大半）:**
+- 「ISR（Incremental Static Regeneration）で動いていた。」
+- 「改善のモチベーションがまったく湧かなかった。」
+- 「プラットフォームに縛られている感じがしていた。」
+- 「即座に購入することにしました。」→ 実はこの記事は「ました」寄り
+
+**「です・ます」調（冒頭・締め・読者向け）:**
+- 「こんにちは。」（Steam記事、Cloudflare記事の冒頭）
+- 「その経緯をまとめておきます。」
+- 「正確な金額を知りたい方は公式のページを見ましょう。」
+
+**特徴的な混在パターン:**
+- 同一段落内でも切り替わる: 「困ったからこそ学べたところもあるんですけどね。」（である調の文章の末尾で突然ですます調に）
+- 下書きは**である調8割、ですます調2割**という配分
+
+### 体言止め・名詞止め
+多用はしないが、強調したい箇所で使う:
+- 「バックエンドのコード量は最小限で済むし。」
+- 「自己満ですね。」
+
+---
+
+## 2. 一人称
+
+- **「自分」** が最も多い: 「ずぼらな自分にとって」「自分でブログ開発するやつ」
+- **「僕」** もたまに使う: 「僕は気になりました。」（Steam記事）
+- 「私」は**使わない**
+- 一人称を省略することが多い（主語なし文）
+
+---
+
+## 3. 口語度・フォーマル比
+
+**口語寄りのカジュアルな文体**。技術ブログとしてはかなりくだけている。
+
+### 口語的表現の例:
+- 「〜しちゃてます」「出来ちゃう」
+- 「〜じゃん、という。」
+- 「〜っぽい」
+- 「地味にキツかった」
+- 「ほんま仕事無くなる」（関西弁の挿入）
+- 「やりもしないのにゲームを買ってしまうことはあるあるかと思います」
+- 「楽ちん」
+- 「サクッと」
+- 「宣言駆動や。」（関西弁）
+
+### フォーマル寄りの表現:
+- 技術的な説明部分では比較的整った文章
+- テーブルや箇条書きは簡潔かつ正確
+
+**口語:フォーマル比 = 約 7:3**
+
+---
+
+## 4. 構造パターン
+
+### 記事の基本構成:
+1. **冒頭の挨拶・導入**: 「こんにちは。」or いきなり本題
+2. **背景・動機の説明**: なぜこれをやったのか
+3. **技術的な本題**: 手順や実装の詳細
+4. **ハマりポイント・反省**: 技術的なつまずき
+5. **まとめ・今後**: 短い振り返り
+6. **締めの一言**: 「では。」
+
+### 見出しレベル:
+- `##` が主力（セクション分け）
+- `###` はサブセクション
+- `#` はタイトルのみ
+
+### 段落の長さ:
+- **1〜3文の短い段落**が多い
+- 長い段落は避ける傾向
+- 一文一段落も頻繁にある
+
+---
+
+## 5. Markdownスタイル
+
+### 太字 (`**`)
+- 強調したいキーフレーズに使う: 「**サイトをシンプルにしたかった。**」「**ISR を実践で使ってみたかった**」
+- Phase説明で見出し代わりに使う: 「**Phase 1 - 基盤整備**:」
+
+### テーブル
+- Before/After比較や機能比較で積極的に使用
+- シンプルな3列程度のテーブルを好む
+
+### コードブロック
+- インラインコード（`` ` ``）は技術用語・コマンド・設定値に使用
+- フルコードブロックは記事内にあまり多くない（手順記事でも最小限）
+
+### リンク
+- URLの直貼り（`https://...`）とMarkdownリンク（`[テキスト](URL)`）の両方を使用
+- GitHubリポジトリはURL直貼りが多い
+
+### 画像
+- `![alt](/images/...)` 形式
+- alt テキストは日本語で説明的
+
+### 絵文字
+- **タイトルに絵文字を使う**: ☁️、🚀、🖥、📝
+- 本文中では使わない（タイトル限定）
+
+---
+
+## 6. 著者の個性的なクセ
+
+### (a) 「では。」で締める
+最も特徴的なクセ。複数記事で確認:
+- first-post: 「では。」
+- 下書き: 「では。」
+- これが著者のシグネチャ的な締め方
+
+### (b) 自問自答・ツッコミ
+自分の行動や判断に対してツッコミを入れる:
+- 「それ CMS である必要ある？という話になってくる。」
+- 「〜という運用になっていた。CMS の記事エディタ、最初に実装して以来一度も改修してない。」
+- 「そもそもNext.js v13で始めたのに何故Pages Routerで開発を進めたのだろうか…。」
+- 「絶対全部は書かないなと思いました。」
+
+### (c) 率直な自己評価
+自分を飾らない:
+- 「ずぼらな自分」
+- 「文章を書くのは苦手」
+- 「あまり長続きしないタイプ」
+- 「突貫工事で作った」
+- 「自己満ですね。」
+
+### (d) 技術的な感想を一言で
+長々と説明せず感想をポンと置く:
+- 「これ、ドキュメントに書いてなくて地味にキツかった。」
+- 「ほんま仕事無くなる。」
+- 「Cloudflare Pages、かなり強い。」
+
+### (e) 括弧書きの補足
+括弧内に補足情報や本音を入れる:
+- 「復習（？）も兼ねて」
+- 「（90点切ってしまっているが、主に指摘されている点は〜）」
+- 「Twitter(自称: X)」
+
+### (f) 「〜かと思います」「〜なのでは？」
+断定を避ける柔らかい表現:
+- 「あるあるかと思います」
+- 「そこそこのスコアを出せたのでは無いでしょうか？」
+
+### (g) 短文の独立段落で空気を作る
+- 「で、実際どうだったかというと。」
+- 「**サイトをシンプルにしたかった。** これが一番の動機だと思う。」
+
+### (h) 「〜し」で文を終える（接続助詞止め）
+- 「バックエンドのコード量は最小限で済むし。」
+- 「管理画面も最初からちゃんとしているし、〜」
+
+---
+
+## 7. 記事ごとの文体傾向
+
+| 記事 | 文体 | 口語度 | 特記 |
+|---|---|---|---|
+| first-post | ですます主体 | 高 | 最も短い。初回なのでやや丁寧 |
+| PC組んだ | ですます主体 | 中 | ハードウェア系。比較的フォーマル |
+| Renovate | ですます主体 | 中 | 短い記事。ですます統一に近い |
+| Steam API | ですます主体 | 高 | 「こんにちは」始まり。カジュアル |
+| Cloudflare | 混在 | 高 | 手順記事だが砕けている |
+| **下書き(ISR→SSG)** | **である主体** | **高** | **最も成熟した文体。である調が基本で、要所でですますに切り替え** |
+
+**注目**: 下書き記事は過去記事と比べて**である調が大幅に増えている**。著者の文体が「ですます」→「である主体+ですます混在」に進化している可能性がある。
+
+---
+
+## 8. 再現チェックリスト
+
+下書きの文体を基準（最新の文体）として、記事を執筆する際のチェックリスト:
+
+- [ ] **文末**: 地の文は「だ・である」調。冒頭・締め・読者への語りかけで「です・ます」に切り替え
+- [ ] **一人称**: 「自分」を基本。たまに「僕」。「私」は使わない
+- [ ] **冒頭**: 背景説明から自然に入る（「こんにちは」は任意）
+- [ ] **締め**: 最終行は「では。」
+- [ ] **段落**: 短め（1〜3文）。一文段落も活用
+- [ ] **口語表現**: 「〜じゃん」「〜っぽい」「地味に〜」「サクッと」など自然に混ぜる
+- [ ] **自問自答**: 自分の判断や行動にツッコミを入れる箇所を含める
+- [ ] **率直な自己評価**: 飾らない表現（「正直微妙だった」「キツかった」など）
+- [ ] **技術感想**: 一言でポンと置く場面を作る
+- [ ] **太字**: キーフレーズの強調に使用。多用しない
+- [ ] **テーブル**: 比較には積極的に使う
+- [ ] **絵文字**: タイトルにのみ使用。本文中は不使用
+- [ ] **括弧補足**: 本音や補足を括弧内に入れるクセを再現
+- [ ] **「〜し。」止め**: 接続助詞で文を終える表現を適度に使う
+- [ ] **見出し**: `##` 主体。`###` はサブセクション
+- [ ] **Phase/ステップ説明**: 太字で「**Phase N - タイトル**:」形式
+
+</teammate-message>
+
+---
+
+<teammate-message teammate_id="style-analyzer" color="blue">
+{"type":"idle_notification","from":"style-analyzer","timestamp":"2026-02-15T15:50:12.202Z","idleReason":"available"}
+</teammate-message>
+
+<teammate-message teammate_id="style-analyzer" color="blue" summary="タスク#1は完了済み、レポート送信済み">
+タスク#1（文体分析）は既に完了しており、先ほどの詳細レポートを送信済みです。全5記事 + 下書き1本を分析し、8セクション・再現チェックリスト16項目のレポートを作成しました。他に必要なタスクがあればお知らせください。
+</teammate-message>
+
+<teammate-message teammate_id="style-analyzer" color="blue">
+{"type":"idle_notification","from":"style-analyzer","timestamp":"2026-02-15T15:50:20.065Z","idleReason":"available"}
+</teammate-message>
+
+---
+
+<teammate-message teammate_id="article-writer" color="green" summary="ISR→SSG記事執筆完了、技術的事実確認済み">
+ISR→SSG移行ブログ記事の執筆が完了しました。`/Users/sksn/Development/nextjs-hasura-app/draft-article.md` を上書きしています。
+
+## 下書きからの主な変更点
+
+1. **技術的な補足を追加**:
+   - Phase 1: Apollo Client v3→v4 のインポートパス変更について追記
+   - Phase 4: `generateStaticParams` と Apollo Client でのデータ取得フローを具体的に記述
+   - Phase 5: `wrangler pages deploy out/` の具体的なコマンドを追記
+   - Phase 7: `@vercel/analytics` を具体名として追記
+   - Phase 9: `repository_dispatch` を試して revert した経緯を追記（git log で確認済み）
+
+2. **ハマりどころセクションを強化**:
+   - 小見出し（`###`）で構造化
+   - `next.config.js` の最終形をコードブロックで掲載（ソースコードと完全一致を確認）
+   - 「repository_dispatch → Deploy Hooks」のエピソードを独立項目として追加
+
+3. **技術的正確性の確認済み項目**:
+   - `next.config.js`: `output: 'export'`, `transpilePackages: ['@apollo/client']`, `images: { unoptimized: true }` -- ソースと一致
+   - `cloudflare-pages.yml`: `workflow_dispatch` のみ、`wrangler pages deploy out/` -- ソースと一致
+   - Before/After テーブルの「Directus CMS」に「（移行中）」を追加（CLAUDE.md で #557 計画中のため）
+   - git log の時系列と Phase 順序の整合性を確認
+
+4. **文体の統一**:
+   - 「だ・である」調の地の文を維持、冒頭・締めの「です・ます」切り替えを保持
+   - 同一文末3回連続を回避
+   - 口語表現（「〜じゃん」「〜っぽい」「地味に」）を自然に配置
+   - 短い段落（1〜3文）構成を維持
+   - 「では。」のシグネチャ締め
+   - 自問自答（「それ CMS である必要ある？」）
+   - 率直な自己評価（「正直微妙だった」「キツかった」）
+   - AIっぽい定型文は一切使用していません
+
+</teammate-message>
+
+---
+
+<teammate-message teammate_id="article-writer" color="green">
+{"type":"idle_notification","from":"article-writer","timestamp":"2026-02-15T15:53:22.341Z","idleReason":"available"}
+</teammate-message>
+
+<teammate-message teammate_id="article-writer" color="green" summary="タスク#2は既に完了済み、報告済み">
+タスク #2 は既に完了済みです（タスク #6 として先に着手・完了していました）。`draft-article.md` は上書き済みで、技術的事実の照合も完了しています。前回のメッセージで詳細を報告済みです。
+</teammate-message>
+
+<teammate-message teammate_id="article-writer" color="green">
+{"type":"idle_notification","from":"article-writer","timestamp":"2026-02-15T15:53:33.765Z","idleReason":"available"}
+</teammate-message>
+
+<teammate-message teammate_id="article-writer" color="green">
+{"type":"idle_notification","from":"article-writer","timestamp":"2026-02-15T15:53:36.750Z","idleReason":"available"}
+</teammate-message>
+
+---
+
+<teammate-message teammate_id="article-editor" color="yellow" summary="ISR→SSG移行記事の校正レビュー結果">
+## 校正レビュー結果: ISR→SSG移行ブログ記事
+
+### 総評
+
+技術的な内容は実際のコードベース・コミット履歴とほぼ正確に一致しており、記事としての完成度は高い。文体も著者の個性をよく再現できている。いくつか事実関係の精度向上と文体の微調整で改善できるポイントがある。
+
+---
+
+### 問題点
+
+#### 高優先度（技術的事実の誤り・重大な不整合）
+
+**なし。** 主要な技術的記述は全て正確。
+
+#### 中優先度（正確性の向上・表現の改善が望ましい）
+
+1. **Phase 1 の記述精度**（3行目付近、49行目）
+   - 記事: 「Next.js 16 と Apollo Client 4 へのアップグレード」を Phase 1 として一括で記述
+   - 事実: コミット履歴では Next.js v16 へのアップグレード（`5c26dcb` 2026-01-11）と Apollo Client v4 アップグレード（`8706bf0` → `b728a53`）は別のタイミング。Apollo Client v4 は Renovate による自動アップグレード + 手動修正の流れ。Next.js は手動アップグレード
+   - 影響度: 読者への誤解は少ないが、「移行作業」として能動的にやったように読める。実態は Renovate が検出 → 手動対応の流れもある
+   - **提案**: そのままでも問題ないレベル。気にするなら「Renovate がキャッチしたメジャーバージョンの対応も含めて」程度の補足
+
+2. **Phase 5 の「push 時に自動デプロイ」の表現**（57行目）
+   - 記事: 「Git 連携で push 時に自動デプロイ」
+   - 事実: `cloudflare-pages.yml` は `workflow_dispatch` のみ。コミット `e223afc` で push トリガーを明示的に削除している
+   - ただし Cloudflare Pages の Git 連携（Cloudflare 側の設定）と GitHub Actions ワークフローは別物。Cloudflare Pages 自体の Git 連携で push 時自動デプロイは行われているはず
+   - **提案**: 現在の記述でも間違いではないが、「Cloudflare Pages の Git 連携で push 時に自動ビルド・デプロイ。加えて GitHub Actions の `workflow_dispatch` で手動リビルドもできるようにした」と2つの仕組みが別であることが明確だとなお良い
+
+3. **Phase 9 の Deploy Hooks 方式の記述**（65行目）
+   - 記事: 「Cloudflare の Deploy Hooks 方式に変更した」
+   - 事実: CLAUDE.md には「Directus Flows → GitHub Actions repository_dispatch（予定）」と書かれており、Deploy Hooks 方式への変更は CLAUDE.md 上ではまだ更新されていない（`fcd4324` で更新は入っているが main にはまだ未マージの可能性）。ただし記事の記述自体は方針として正しい
+   - **提案**: 問題なし。記事内で「方針」として語るのは適切
+
+4. **Before/After テーブルの「Directus CMS（移行中）」**（107行目）
+   - 記事: 「Directus CMS（移行中）」
+   - 事実: CLAUDE.md でも「#557 で計画中」と記載。Directus への移行はまだ計画段階
+   - **提案**: 「Directus CMS（計画中）」のほうがより正確。ただし「移行中」が「移行プロセスの中にいる」という意味であれば許容範囲
+
+#### 低優先度（文体の微調整・好み）
+
+1. **冒頭3行目「なかなかガチな構成で」の後の羅列がやや長い**
+   - 「NextAuth による認証や記事管理の CRUD、Intercepting Route まで入ったフルスタック構成だった」は正確だが、冒頭のつかみとしては情報量が多い
+   - **提案**: そのままでも良い。技術者向けなので具体的な方が刺さる
+
+2. **「では。」の締め**（144行目）
+   - 著者のシグネチャとして正確に再現されている。問題なし
+
+3. **同一文末の連続について**
+   - 11行目「〜と思う。」→ 次の文「〜済むし。」で変化あり。概ね文末の単調さは回避できている
+   - 68行目付近「〜おく。」一文段落の後すぐに見出し。問題なし
+
+4. **97-98行目の「一度マージまでしたけど」**
+   - 事実: コミット履歴で `27d1e86` (repository_dispatch 追加) → `80c9cd6` (マージ) → `8f13be1` (revert) → `55f2f3b` (revert マージ) の流れが確認できる。正確
+
+---
+
+### 良い点
+
+1. **`next.config.js` のコードブロック（79-89行目）が実際のファイルと完全一致**。技術記事として信頼性が高い
+2. **Phase の時系列がコミット履歴と整合**している。SSG化 → デプロイ構成 → Turbopack対応 → Vercel離脱 → Directus方針 → repository_dispatch/revert の流れが正確
+3. **OpenNext の制約に関する記述**（72-73行目）が具体的で、同じ選択を検討する読者に有益
+4. **Turbopack + Apollo Client の問題**（76-77行目）は実際のコミット `6a2f2b3` で確認できる実体験に基づいており、「ドキュメントに書いてなくて地味にキツかった」という表現は著者の口語スタイルに合致
+5. **repository_dispatch → Deploy Hooks の方針転換**（96-98行目）がコミット履歴（追加→即日revert）と完全に一致。「すぐ revert した」が事実通り
+6. **「自作 CMS をやめて Directus CMS に移行」のセクション**（122-128行目）の自己評価が率直で著者らしい
+7. **Before/After テーブル**（102-110行目）が簡潔で変更点が一目でわかる
+8. **一人称の省略**が自然。主語を明示するところ（9行目「自分のブログで」）と省略するところのバランスが良い
+
+---
+
+### 文体スコアカード
+
+| 項目 | 基準との一致度 | コメント |
+|---|---|---|
+| 文末表現（だ/である + です/ます切り替え） | 9/10 | 冒頭（5行目「まとめておきます」）、締め（142行目「〜んですけどね」）で適切に切り替え。本文は「だ/である」調。同一文末3連続なし |
+| 一人称（「自分」基本、省略多め） | 9/10 | 9行目「自分のブログで」、128行目「自分で全部作りたい」。省略も自然。「僕」「私」は未使用（省略が多いので問題なし） |
+| 口語度（7:3） | 8/10 | 「〜じゃん」(19行目)、「地味にキツかった」(59行目)、「正直微妙だった」(126行目)、「サッと」(11行目)。十分な口語感。「サクッと」や「〜っぽい」(77行目)もある。やや丁寧寄りの箇所もあるが許容範囲 |
+| 構造（短い段落、一文段落） | 10/10 | 一文段落を効果的に使用（21行目、29行目、120行目）。段落は1〜3文。`##` 主体の見出し |
+| 自問自答・ツッコミ | 9/10 | 21行目「それ CMS である必要ある？」が良い例。15行目「で、実際どうだったかというと。」も著者らしい語り口 |
+| 率直な自己評価 | 10/10 | 「完全にオーバーエンジニアリングだった」(19行目)、「正直微妙だった」(126行目)。著者の特徴を忠実に再現 |
+| 接続助詞止め（「〜し。」） | 8/10 | 11行目「〜済むし。」で確認。もう1-2箇所あるとより著者らしいが、不自然に増やす必要はない |
+| 括弧書き補足 | 7/10 | あまり使われていない。著者の過去記事ではもう少し括弧書きの本音やツッコミがある傾向だが、この記事の内容では無理に入れる必要はない |
+| 「では。」締め | 10/10 | 完璧に再現 |
+| 太字使用 | 10/10 | キーフレーズの強調のみ（9行目、29行目）。過剰な太字なし |
+| テーブル活用 | 10/10 | 比較テーブル2箇所（36-42行目、102-110行目）。積極的に活用 |
+| 絵文字 | 10/10 | タイトルのみ（1行目「🏗️」）。本文中は不使用 |
+
+**総合文体スコア: 9.2/10**
+
+---
+
+### 修正提案サマリー（対応推奨度順）
+
+| # | 箇所 | 提案 | 優先度 |
+|---|---|---|---|
+| 1 | 107行目 | 「移行中」→「計画中」 | 中 |
+| 2 | 57行目 | Git連携とGitHub Actionsが別の仕組みであることを明確に | 中（任意） |
+| 3 | 49行目 | Phase 1 のアップグレード経緯の補足 | 低（現状でも可） |
+
+全体として、技術的正確性が高く、著者の文体を忠実に再現した良質な記事です。
+
+</teammate-message>
+
+---
+
+<teammate-message teammate_id="article-editor" color="yellow">
+{"type":"idle_notification","from":"article-editor","timestamp":"2026-02-15T15:55:42.179Z","idleReason":"available"}
+</teammate-message>
+
+<teammate-message teammate_id="article-editor" color="yellow" summary="タスク #3 完了済み、追加指示待ち">
+タスク #3 の校正レビューは既に完了しており、結果は先ほど送信済みです。追加のレビューや修正が必要であればお知らせください。
+</teammate-message>
+
+<teammate-message teammate_id="article-editor" color="yellow">
+{"type":"idle_notification","from":"article-editor","timestamp":"2026-02-15T15:55:53.224Z","idleReason":"available"}
+</teammate-message>
+
+<teammate-message teammate_id="system">
+{"type":"teammate_terminated","message":"style-analyzer has shut down."}
+</teammate-message>
+
+<teammate-message teammate_id="system">
+{"type":"teammate_terminated","message":"article-writer has shut down."}
+</teammate-message>
+
+<teammate-message teammate_id="style-analyzer" color="blue">
+{"type":"shutdown_approved","requestId":"shutdown-1771170958521@style-analyzer","from":"style-analyzer","timestamp":"2026-02-15T15:56:02.124Z","paneId":"in-process","backendType":"in-process"}
+</teammate-message>
+
+<teammate-message teammate_id="article-writer" color="green">
+{"type":"shutdown_approved","requestId":"shutdown-1771170959191@article-writer","from":"article-writer","timestamp":"2026-02-15T15:56:03.343Z","paneId":"in-process","backendType":"in-process"}
+</teammate-message>
+
+<teammate-message teammate_id="system">
+{"type":"teammate_terminated","message":"article-editor has shut down."}
+</teammate-message>
+
+<teammate-message teammate_id="article-editor" color="yellow">
+{"type":"shutdown_approved","requestId":"shutdown-1771170959813@article-editor","from":"article-editor","timestamp":"2026-02-15T15:56:04.531Z","paneId":"in-process","backendType":"in-process"}
+</teammate-message>
+
+---
+
+SSGへの移行にあたり、これまでの作業の中で躓いた点などはなかったか調査して。原因不明なエラーの発生などがあり、それを解決した話とかであれば同じ事象に困った人の解決にもなるかと思うので
+
+---
+
+Apollo Client v4 で rxjs が必要 + インポートパス変更 を記事に加えたいです
+
+---
+
+そもそも今回の移行でApollo Client v3 → v4って必要だったのでしょうか？
+
+---
+
+案Aにして
+
+---
+
+画像の記事の合間に挿入したい。画像があると良い箇所とその画像の内容を記事の適切な合間に加えて。
+
+---
+
+序盤にtl;drとして要約とBeforeAfterの画像を載せたいです
+
+---
+
+ダウンタイムが恐らく無かったのでそれについても述べたいです。そもそも本当にダウンタイムはありませんでしたか？
+
+---
+
+案Cで
+
+---
+
+「Hasuraを使えば GraphQL APIがPostgreSQLの上にサッと立つので、」立つというのは何が立つというのですか？GraphQL APIが立つという意味ですか？そうだとしてGraphQL APIが立つとはどういう意味ですか
+
+---
+
+正しい表現で他の例も出して
+
+---
+
+HasuraがGraphQL APIを自動生成してくれるというのは正しいのですか？
+
+---
+
+「Hasura が PostgreSQL の前段に入って GraphQL API を提供してくれるので」にします
+
+---
+
+おわりにのところに「気になった機能などを試したこと、技術選定を失敗したと思える経験ができたこと」のようなことを書きたいです
+
+---
+
+コンテキストがいっぱいになってきたので引き継ぎドキュメントを作成して
