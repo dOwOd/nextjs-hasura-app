@@ -1,4 +1,4 @@
-# 🏗️ ISRをやめてSSGにした話 ― ブログをシンプルにするまでの道のり
+# 🏗️ ISRをやめてSSGにした話
 
 ## tl;dr
 
@@ -38,9 +38,9 @@ ISR + NextAuth + 自作 CMS + Vercel のフルスタック構成から、SSG + C
 
 ## 移行のきっかけ
 
-Vercelの機能はそれなりに使っていた。ISR、`next/image` の最適化、`@vercel/analytics`。でもSSGブログに本当に必要だったかというと、どれもなくて困らないものばかりだった。むしろ気づけば Vercel のランタイムに依存した機能がコードベースに散らばっていて、Vercel なしでは動かない状態になっていた。将来ホスティング先を変えたくなったときに、移行コストが膨らむ一方だと感じた。
+Vercelの機能はそれなりに使っていた。ISR、`next/image` の最適化、`@vercel/analytics`。でもSSGブログに本当に必要だったかというと、どれもなくて困らないものばかりだった。むしろ気づけば Vercel のランタイムに依存した機能がコードベースに散らばっていて、Vercelなしでは動かない状態になっていた。将来ホスティング先を変えたくなったときに、移行コストが膨らむ一方だと感じた。
 
-**サイトをシンプルにしたかった。** これが一番の動機だと思う。
+**サイトの構成をシンプルにしたかった。** これが一番の動機だと思う。
 
 移行先はCloudflare Pages。Pages + R2 + DNS + Deploy Hooks と、Cloudflare エコシステムに統一することで拡張性も確保できる。
 
@@ -48,51 +48,47 @@ Vercelの機能はそれなりに使っていた。ISR、`next/image` の最適�
 
 公式ドキュメントベースで比較するとこんな感じ。
 
-| 項目      | Vercel Hobby         | Cloudflare Pages Free |
-| --------- | -------------------- | --------------------- |
-| 商用利用  | 非商用のみ           | 制限なし              |
-| 帯域幅    | 100 GB/月            | 無制限                |
-| DDoS 保護 | Pro 以上（$20/月〜） | 無料で標準装備        |
+| 項目           | Vercel Hobby                                                                      | Cloudflare Pages Free                                                |
+| -------------- | --------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| 商用利用       | [非商用のみ](https://vercel.com/docs/limits/fair-use-guidelines#commercial-usage) | 制限の記載なし                                                       |
+| 帯域幅         | [100 GB/月](https://vercel.com/docs/limits/fair-use-guidelines)                   | [無制限](https://developers.cloudflare.com/pages/platform/limits/)   |
+| アナリティクス | [50,000 イベント/月](https://vercel.com/docs/analytics/limits-and-pricing)        | [無制限・無料](https://www.cloudflare.com/web-analytics/)            |
+| ビルド回数     | [制限なし（100時間/月）](https://vercel.com/docs/limits)                          | [500回/月](https://developers.cloudflare.com/pages/platform/limits/) |
+| デプロイ回数   | [100回/日](https://vercel.com/docs/limits)                                        | [無制限](https://developers.cloudflare.com/pages/platform/limits/)   |
 
 静的サイトを無料でホスティングするなら Cloudflare Pagesで十分と判断。
 
 ## 移行でやったこと
 
-移行は 8 フェーズに分けて進めた。全部書くと長くなりすぎるので要点だけ。
+移行は 7 フェーズに分けて進めた。全部書くと長くなりすぎるので要点だけ。
 
-**Phase 1 - 移行方針の検討**: 最初は [OpenNext](https://opennext.js.org/) を使って Cloudflare 上で ISR を維持する方向で検討した。でも OpenNext だと Cloudflare Pages の Git 連携（push したら自動デプロイ）が使えないことがわかって断念。方針転換して完全 SSG 化に舵を切った。
+**Phase 1 - 移行方針の検討**: ISRのメリットを活かせていなかった。記事の更新頻度は年に数回で、リクエスト時に再生成する仕組みは不要。それならSSGにして静的ファイルを配信するだけの構成にすることを決定。
 
-**Phase 2 - 計画立案**: 作業順序の策定。何を消して何を残すか整理した。
+**Phase 2 - 計画立案**: 作業順序の策定。何を消して何を残すか整理。
 
-**Phase 3 - SSG 化実装**: ここが一番大きい。NextAuth の認証、記事管理の CRUD ページ、Intercepting Route を全部削除。`next.config.js` に `output: 'export'` を設定して、`images` に `unoptimized: true` を追加。これで Next.js が純粋な静的サイトジェネレーターになる。`generateStaticParams` でビルド時に全記事のパスを生成して、Apollo Client で Hasura から記事データを取得する流れだけが残った。
+**Phase 3 - SSG 化実装**: ここが一番大きい。NextAuthの認証、記事管理のCRUDページ、Intercepting Routeを全部削除。`next.config.js` に `output: 'export'` を設定して、`images` に `unoptimized: true` を追加。これでNext.jsが純粋な静的サイトジェネレーターになる。`generateStaticParams` でビルド時に全記事のパスを生成して、Apollo ClientでHasuraから記事データを取得する流れだけは残す。
 
-**Phase 4 - デプロイ構成**: Cloudflare Pages の Git 連携で push 時に自動デプロイ。加えて GitHub Actions の `workflow_dispatch` で手動リビルドもできるようにした。ワークフロー内では `wrangler pages deploy out/` で静的ファイルをアップロードしている。
+**Phase 4 - デプロイ構成**: Cloudflare PagesのGit連携でpush時に自動デプロイ。加えてGitHub Actionsの `workflow_dispatch` で手動リビルドもできるように。ワークフロー内では `wrangler pages deploy out/` で静的ファイルをアップロード。
 
-**Phase 5 - Turbopack 対応**: Next.js 16 はデフォルトのバンドラーが Turbopack になったんだけど、Apollo Client 4 との組み合わせでハマった。`next.config.js` に `transpilePackages: ['@apollo/client']` を追加することで解決。これ、ドキュメントに書いてなくて地味にキツかった。
+**Phase 5 - Vercel 完全離脱**: `@vercel/analytics` 等のVercel関連パッケージと設定を全削除。Cloudflare DNSの向き先をVercelからCloudflare Pagesに切り替え。
 
-**Phase 6 - Vercel 完全離脱**: `@vercel/analytics` 等の Vercel 関連パッケージと設定を全削除。dowo.dev ドメインも Cloudflare DNS に移行した。
+**Phase 6 - 記事管理方針**: HasuraのPostgreSQLはそのまま維持しつつ、記事の編集は[Directus](https://directus.io/) CMSに移行する方針に決定。自作CMSにさよなら 👋。
 
-**Phase 7 - 記事管理方針**: Hasura の PostgreSQL はそのまま維持しつつ、記事の編集は [Directus](https://directus.io/) CMS に移行する方針に決定。自作 CMS にさよなら。
-
-**Phase 8 - 自動リビルド**: 最初は GitHub Actions の `repository_dispatch` で自動リビルドを組もうとしたけど、結局 Cloudflare の Deploy Hooks 方式に変更した。Directus Flows から Webhook を飛ばしてリビルドをトリガーする流れ。GitHub Actions の無料枠を消費しなくて済むし、Cloudflare 側で完結するほうがシンプル。
+**Phase 7 - 自動リビルド**: 最初はGitHub Actionsの `repository_dispatch` で自動リビルドを組もうとしたが、CloudflareのDeploy Hooks方式に変更した。Directus FlowsからWebhookを飛ばしてリビルドをトリガーする流れ。既に別プロジェクトでGitHub Actionsを動かし過ぎて月の無料枠に達し、全リポジトリでActionsが使えなくなっていたのが正直な理由。結果としてCloudflare側で完結するほうがシンプルだなとも思った。
 
 ## ハマりどころ
 
 いくつか技術的にハマったポイントを記録しておく。
 
-### OpenNext の制約
-
-Cloudflare Pages の Git 連携が使えない。つまり push しても自動デプロイされない。`wrangler pages deploy` を自前で叩く必要がある。Git 連携で自動デプロイできるのが Cloudflare Pages の良さなのに、それが使えないのは本末転倒だった。SSG に方針転換した最大の理由。
-
 ### Apollo Client v3 → v4 の破壊的変更
 
-これは SSG 移行とは直接関係ない。移行作業の少し前に Renovate が v4 のアップグレード PR を作ってくれて、対応したらビルドが出来なくなった。v3 のままでも SSG 化自体は問題なくできたはずだけど、タイミング的に重なったので一緒に片付けた形。
+これはSSG移行とは直接関係ない。移行作業の少し前にRenovateがv4のアップグレードPRを作ってくれて、対応したらビルドが出来なくなった。v3のままでもSSG化自体は問題なくできたはずだけど、タイミング的に重なったので一緒に片付けた形。
 
 <!-- TODO: rxjs の Module not found エラーのスクリーンショット -->
 
-まず `Module not found: Can't resolve 'rxjs'` で落ちる。Apollo Client v4 は rxjs を peer dependency として要求するようになっていて、明示的にインストールが必要だった。v3 では不要だったので完全に想定外。
+まず `Module not found: Can't resolve 'rxjs'` で落ちる。Apollo Client v4は内部の Observable 実装を `zen-observable-ts` から [RxJS に置き換えた](https://github.com/apollographql/apollo-client/pull/12384)ため、`rxjs` が必須のpeer dependencyになった。
 
-次にインポートパスの変更。React hooks 系のインポート先が `@apollo/client` から `@apollo/client/react` に変わっていて、全ファイルで書き換えが発生した。GraphQL Code Generator を使っている場合は `codegen.ts` にも設定が必要:
+次に[インポートパスの変更](https://www.apollographql.com/docs/react/migrating/apollo-client-4-migration)。React hooks 系のインポート先が `@apollo/client` から `@apollo/client/react` に変わっていて、全ファイルで書き換えが発生した。GraphQL Code Generatorを使っている場合は `codegen.ts` にも設定が必要:
 
 ```typescript
 config: {
@@ -100,28 +96,11 @@ config: {
 },
 ```
 
-あと `ApolloClient` の型が非ジェネリックになった。`ApolloClient<NormalizedCacheObject>` → `ApolloClient` に変わるので、Apollo Client インスタンスの型定義も修正が必要。
+あと [`ApolloClient` の型が非ジェネリックになった](https://www.apollographql.com/docs/react/migrating/apollo-client-4-migration)。`ApolloClient<NormalizedCacheObject>` → `ApolloClient` に変わるので、Apollo Clientインスタンスの型定義も修正が必要。
 
-エラーメッセージ自体は素直なので原因はわかるんだけど、修正箇所が多くて地味に大変だった。
+<!-- TODO: Type 'ApolloClient' is not generic. のエラー -->
 
-### Turbopack + Apollo Client 4
-
-<!-- TODO: Turbopack の Module not found エラーのスクリーンショット -->
-
-`transpilePackages` の設定が必要。Turbopack がモジュール解決の仕方を変えたのが原因っぽい。エラーメッセージからは原因が読み取りづらくて、解決までに結構時間がかかった。
-
-最終的な `next.config.js` はこうなっている:
-
-```js
-const nextConfig = {
-  output: 'export',
-  reactStrictMode: true,
-  transpilePackages: ['@apollo/client'],
-  images: {
-    unoptimized: true,
-  },
-}
-```
+エラーメッセージ自体は分かりやすくて助かった。どれもマイグレーションガイドに目を通してからアップグレードしていればハマらなかった話ではある。
 
 ### `output: 'export'` の制約
 
