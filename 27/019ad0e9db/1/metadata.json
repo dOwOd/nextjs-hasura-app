@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "27019ad0e9db",
+  "session_id": "50e27ee1-7f92-481f-9091-7e418438d7b2",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-16T08:57:07.695737Z",
+  "branch": "docs/issue-567-architecture-diagrams",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "draft-article.md"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "6dd9b3ae-d18d-4ebf-9c7f-6238c6ff6636",
+  "token_usage": {
+    "input_tokens": 28,
+    "cache_creation_tokens": 25676,
+    "cache_read_tokens": 541029,
+    "output_tokens": 545,
+    "api_call_count": 14
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-16T08:57:07.647747Z",
+    "agent_lines": 71,
+    "human_added": 116,
+    "human_modified": 3,
+    "human_removed": 0,
+    "total_committed": 190,
+    "agent_percentage": 37.368421052631575
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/50e27ee1-7f92-481f-9091-7e418438d7b2.jsonl"
+}
