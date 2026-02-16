@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "1edb35ce4219",
+  "strategy": "manual-commit",
+  "branch": "docs/issue-567-architecture-diagrams",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "draft-article.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/1e/db35ce4219/0/metadata.json",
+      "transcript": "/1e/db35ce4219/0/full.jsonl",
+      "context": "/1e/db35ce4219/0/context.md",
+      "content_hash": "/1e/db35ce4219/0/content_hash.txt",
+      "prompt": "/1e/db35ce4219/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 75,
+    "cache_creation_tokens": 34122,
+    "cache_read_tokens": 2881518,
+    "output_tokens": 1112,
+    "api_call_count": 35
+  }
+}
