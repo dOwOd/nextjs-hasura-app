@@ -2,7 +2,6 @@
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
-  transpilePackages: ['@apollo/client'],
   images: {
     unoptimized: true,
   },
