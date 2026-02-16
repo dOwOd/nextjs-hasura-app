@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "a923fdc43c36",
+  "strategy": "manual-commit",
+  "branch": "docs/issue-567-architecture-diagrams",
+  "checkpoints_count": 6,
+  "files_touched": [
+    "draft-article.md",
+    "next.config.js",
+    "src/lib/apolloClient.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/a9/23fdc43c36/0/metadata.json",
+      "transcript": "/a9/23fdc43c36/0/full.jsonl",
+      "context": "/a9/23fdc43c36/0/context.md",
+      "content_hash": "/a9/23fdc43c36/0/content_hash.txt",
+      "prompt": "/a9/23fdc43c36/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 75,
+    "cache_creation_tokens": 28849,
+    "cache_read_tokens": 5489063,
+    "output_tokens": 2843,
+    "api_call_count": 43
+  }
+}
