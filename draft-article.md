@@ -102,19 +102,11 @@ config: {
 
 エラーメッセージ自体は分かりやすくて助かった。どれもマイグレーションガイドに目を通してからアップグレードしていればハマらなかった話ではある。
 
-### `output: 'export'` の制約
-
-Intercepting Route が使えない、`rewrites` / `redirects` が使えない、`next/image` の最適化が使えない（`unoptimized: true` が必要）。わかっていたけど、実際に削除していくと結構な量になった。
-
-### repository_dispatch から Deploy Hooks へ
-
-最初は GitHub Actions で `repository_dispatch` イベントを受けてリビルドする構成にしていた。一度マージまでしたけど、よく考えると GitHub Actions の無料枠を毎回消費するのが微妙で、すぐ revert した。Cloudflare の Deploy Hooks なら Cloudflare 側で完結する。
-
 ## Before / After
 
 | 項目         | Before                 | After                                      |
 | ------------ | ---------------------- | ------------------------------------------ |
-| レンダリング | ISR                    | SSG（`output: 'export'`）                  |
+| レンダリング | ISR                    | SSG                                        |
 | ホスティング | Vercel                 | Cloudflare Pages                           |
 | 認証         | NextAuth               | なし                                       |
 | 記事管理     | 自作 CMS               | Directus CMS（計画中）                     |
