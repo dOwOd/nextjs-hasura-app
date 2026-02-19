@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "e826a36bcbee",
+  "session_id": "e1404f84-0962-4cb6-aabe-29a62453994f",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-19T13:09:25.150283Z",
+  "branch": "fix/issue-572-favicon",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/app/apple-icon.png",
+    "src/app/icon.png"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "aabfcadc59df",
+  "token_usage": {
+    "input_tokens": 22,
+    "cache_creation_tokens": 13735,
+    "cache_read_tokens": 579679,
+    "output_tokens": 1194,
+    "api_call_count": 17
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-19T13:09:25.134977Z",
+    "agent_lines": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 0,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/e1404f84-0962-4cb6-aabe-29a62453994f.jsonl"
+}
