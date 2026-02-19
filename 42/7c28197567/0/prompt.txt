@@ -1,0 +1,95 @@
+このブログサービスの本番環境のリソースの更新はどうしたらされますか？main mergeをするだけではリリースはされないと思っています
+
+---
+
+main mergeをトリガにCloudflare Deploy Hookは使えないのですか？GitHub Actionsは今月の無料で使用できる上限に達してしまっています
+
+---
+
+この仕組みを導入するための手順を記したIssueを作って
+
+---
+
+Base directory for this skill: /Users/sksn/Development/nextjs-hasura-app/.claude/skills/issue
+
+## Create GitHub Issue
+
+1. Ask user for: title, description, acceptance criteria
+2. Create issue with `gh issue create`
+3. Add appropriate labels
+4. Report the issue URL
+
+
+ARGUMENTS: Cloudflare Pages Git連携によるmainマージ時自動デプロイの導入
+
+## 背景
+- 現在、本番デプロイはGitHub Actionsの `workflow_dispatch`（手動実行）で行っている
+- GitHub Actionsの無料枠が上限に達しており、手動デプロイが実行できない
+- Cloudflare Pages のGit連携（自動プレビュー）は既に有効だが、productionデプロイには活用していない
+
+## やりたいこと
+mainブランチへのマージ時に、Cloudflare Pages のGit連携で自動的にビルド＆デプロイされるようにする。これによりGitHub Actionsを使わずにデプロイできるようになる。
+
+## 対応手順
+
+### 1. Cloudflare Pages ダッシュボードの設定確認・更新
+- **Settings → Builds & deployments** で以下を確認：
+  - Production branch: `main`
+  - Build command: `npm run build`
+  - Build output directory: `out`
+- **Settings → Environment variables** に以下を設定（Production環境）：
+  - `NEXT_PUBLIC_HASURA_URL`
+  - `NEXT_PUBLIC_HASURA_KEY`
+  - `NEXT_PUBLIC_GA4_ID`
+
+### 2. 動作確認
+- mainブランチに適当なコミットをマージし、Cloudflare Pages側でビルドが自動で走ることを確認
+- デプロイされたサイトが正常に動作することを確認
+
+### 3. ドキュメント更新
+- CLAUDE.md の CI/CD セクションを更新（Git連携による自動デプロイを反映）
+- GitHub Actions の `cloudflare-pages.yml` の扱いを決定（廃止 or バックアップとして残す）
+
+---
+
+Cloudflare Pageのプレビュー環境に表示される記事はどうしたら最新の記事も表示されるようになる？
+
+---
+
+Cloudflare Pagesのプレビューはブランチごとに作られていると思っています。リモートブランチぶプッシュされ、PRが作られた次点でビルドし、プレビュー環境には常に最新の情報が表示されるようには出来ませんか？
+
+---
+
+CLIから環境変数が登録されていることは確認できない？
+
+---
+
+キャッシュが原因のようでした。プレビューでも最新の記事が表示されています。
+
+---
+
+あらためてmain mergeで最新のデータを取得してビルドしてデプロイする仕組みを提示して
+
+---
+
+CLIでpreviewと本番のNODE_VERSIONを登録することはできる？
+
+---
+
+実行して
+
+---
+
+開発環境と揃えるようにすることを仕組みで解決したい。開発環境と本番とpreviewでずれることを防ぎたい
+
+---
+
+削除して
+
+---
+
+何故今回このような勘違いをした？
+
+---
+
+ドキュメントには記載されていたのですか？されていなければ更新のPRを作って

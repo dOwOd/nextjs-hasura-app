@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "427c28197567",
+  "strategy": "manual-commit",
+  "branch": "docs/node-version-cloudflare-pages",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "CLAUDE.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/42/7c28197567/0/metadata.json",
+      "transcript": "/42/7c28197567/0/full.jsonl",
+      "context": "/42/7c28197567/0/context.md",
+      "content_hash": "/42/7c28197567/0/content_hash.txt",
+      "prompt": "/42/7c28197567/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 68,
+    "cache_creation_tokens": 32815,
+    "cache_read_tokens": 1707948,
+    "output_tokens": 5652,
+    "api_call_count": 38
+  }
+}
