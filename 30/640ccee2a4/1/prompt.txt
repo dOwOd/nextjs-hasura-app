@@ -1,0 +1,118 @@
+Implement the following plan:
+
+# Issue #572: favicon を Vercel デフォルトからサイトアイコンに変更
+
+## Context
+
+現在 `public/favicon.ico` が Vercel デフォルトのままで、ブラウザタブにサイト独自のアイコンが表示されない。トップページで使用している猫の画像（`public/images/IMG_4236.png`, 480x404 PNG）をfaviconに差し替える。
+
+## 現状
+
+- `public/favicon.ico`: Vercel デフォルト（25KB, 16x16/32x32 .ico）
+- `src/app/layout.tsx`: metadata に icons 設定なし
+- `src/app/` に App Router 規約ファイル（`icon.png`, `apple-icon.png`）なし
+
+## 実装手順
+
+### 1. ブランチ作成
+
+```bash
+git stash  # 現在の docs ブランチの変更を退避
+git checkout main && git pull origin main
+git checkout -b fix/issue-572-favicon
+```
+
+### 2. favicon 画像の生成
+
+`public/images/IMG_4236.png`（480x404）から以下を生成:
+
+- `src/app/icon.png` — 32x32 PNG（ブラウザタブ用、App Router 規約ファイル）
+- `src/app/apple-icon.png` — 180x180 PNG（Apple デバイス用、App Router 規約ファイル）
+- `public/favicon.ico` — 差し替え（32x32 .ico）
+
+**画像は正方形にクロップ**（上下中央で 404x404 に切り出し）してからリサイズする。
+
+ツール: `sips`（macOS 標準）で変換。
+
+### 3. layout.tsx の metadata 更新
+
+App Router の規約ファイル（`src/app/icon.png`, `src/app/apple-icon.png`）を配置すれば、Next.js が自動的に `<link rel="icon">` と `<link rel="apple-touch-icon">` を生成するため、**metadata の手動設定は不要**。
+
+### 4. 不要ファイルの確認
+
+`public/favicon.ico` は App Router 規約ファイル（`src/app/icon.png`）があれば不要になるが、古いブラウザのフォールバックとして残す。新しいアイコン画像で上書きする。
+
+## 対象ファイル
+
+| ファイル | 操作 |
+|---------|------|
+| `src/app/icon.png` | 新規作成（32x32） |
+| `src/app/apple-icon.png` | 新規作成（180x180） |
+| `public/favicon.ico` | 上書き |
+
+## 検証
+
+```bash
+npm run build  # ビルド成功を確認
+```
+
+ビルド後、`out/` 内に favicon 関連のファイルが正しく出力されていることを確認。
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/sksn/.REDACTED.jsonl
+
+If this plan can be broken down into multiple independent tasks, consider using the TeamCreate tool to create a team and parallelize the work.
+
+---
+
+確認できました。PRを作成して
+
+---
+
+Base directory for this skill: /Users/sksn/Development/nextjs-hasura-app/.claude/skills/commit
+
+# コミットスキル
+
+このスキルは、プロジェクトのコミット規約に従ったコミットを作成します。
+
+## コミットルール
+
+- **1つの論理的変更につき1コミット**
+- コミットメッセージ形式: `Type: Subject`
+- Type: Add, Fix, Update, Remove, Refactor, Test, Docs, Chore
+- **プッシュはしない**（ユーザーが手動で行う）
+
+## Type一覧
+
+- **Add**: 新機能追加
+- **Fix**: バグ修正
+- **Update**: 既存機能の更新・変更
+- **Remove**: 機能・コードの削除
+- **Refactor**: リファクタリング
+- **Test**: テスト追加・修正
+- **Docs**: ドキュメント変更
+- **Chore**: ビルド、設定ファイルなど
+
+## コミット前の確認
+
+コミット前にプロジェクトの CLAUDE.md に記載されたテストコマンドを実行し、すべてのテストがパスすることを確認してください。
+
+---
+
+favicon以外にも変更があるようです。これはなんでですか？詳しく説明して
+
+---
+
+@src/app/apple-icon.png と @src/app/icon.png があり、 @public/favicon.icoが消えています。私の認識では favicon画像が一枚増えているだけだと思っていました
+
+---
+
+各ファイルに役割があることを知りませんでした。それもPRに記載して。
+
+---
+
+どの画像も大きさが違うだけで同じ画像である認識です。これを1枚の画像を差し替えるだけで全部変わるような実装にすることはできる？差し替え忘れを防ぐ仕組みを実装したい
+
+---
+
+今後画像を差し替えた時に画像のファイル名が変わるかもしれません。変わっても同じように動作しますか？もししなければ特定のディレクトリにある画像をscripts/generate-favicons.mjsで各ファイルを自動生成させるようにするのはどうでしょうか？もしその案で実装する場合Claude codeのドキュメントも適切に更新して
