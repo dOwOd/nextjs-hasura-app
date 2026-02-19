@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "db726f6fbd20",
+  "session_id": "201239a0-a1b2-4997-870f-1b157fe00ede",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-19T14:34:32.159468Z",
+  "branch": "fix/issue-570-mobile-article-width",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "src/components/Layout/index.module.css"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "f127ca732383",
+  "token_usage": {
+    "input_tokens": 326,
+    "cache_creation_tokens": 25788,
+    "cache_read_tokens": 1661789,
+    "output_tokens": 3310,
+    "api_call_count": 40
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-19T14:34:32.122311Z",
+    "agent_lines": 7,
+    "human_added": 35,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 42,
+    "agent_percentage": 16.666666666666664
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/201239a0-a1b2-4997-870f-1b157fe00ede.jsonl"
+}

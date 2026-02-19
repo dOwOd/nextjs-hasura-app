@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "db726f6fbd20",
+  "strategy": "manual-commit",
+  "branch": "fix/issue-570-mobile-article-width",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "src/components/Layout/index.module.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/db/726f6fbd20/0/metadata.json",
+      "transcript": "/db/726f6fbd20/0/full.jsonl",
+      "context": "/db/726f6fbd20/0/context.md",
+      "content_hash": "/db/726f6fbd20/0/content_hash.txt",
+      "prompt": "/db/726f6fbd20/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 326,
+    "cache_creation_tokens": 25788,
+    "cache_read_tokens": 1661789,
+    "output_tokens": 3310,
+    "api_call_count": 40
+  }
+}
