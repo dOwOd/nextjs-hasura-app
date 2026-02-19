@@ -107,7 +107,7 @@ npm run build                # 本番ビルド（favicon生成 → out/ に静�
 - **eslint.config.mjs** - ESLint設定（Next.js + Prettier）
 - **prettier.config.js** - Prettier設定（セミコロンなし、シングルクォート）
 - **tsconfig.json** - TypeScript設定
-- **.node-version** - Node.js バージョン管理
+- **.node-version** - Node.js バージョン管理（開発環境・GitHub Actions・Cloudflare Pages 共通。Cloudflare Pages は `.node-version` を自動検知するため、環境変数 `NODE_VERSION` の設定は不要）
 
 ### スクリプト（scripts/）
 
