@@ -21,7 +21,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
         </ul>
       </nav>
     </header>
-    <main className="container">{children}</main>
+    <main className={`container ${style.main}`}>{children}</main>
 
     <footer>
       <div className={style.footer}>
