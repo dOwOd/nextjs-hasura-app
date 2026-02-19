@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/generate-favicons.mjs && next build",
     "start": "next start",
     "lint": "eslint .",
     "codegen": "graphql-codegen --config codegen.ts"
@@ -41,6 +41,7 @@
     "eslint-config-prettier": "10.1.8",
     "graphql-tag": "2.12.6",
     "prettier": "3.8.1",
+    "sharp": "^0.34.5",
     "simple-icons": "16.9.0",
     "typescript": "5.9.3"
   },

@@ -33,7 +33,7 @@ Next.js + Hasura GraphQL の静的ブログサイト（SSG）
 npm install && npm run dev   # 開発開始
 npm run lint                 # ESLint実行
 npm run codegen              # GraphQL Code Generator実行
-npm run build                # 本番ビルド（out/ に静的ファイル生成）
+npm run build                # 本番ビルド（favicon生成 → out/ に静的ファイル生成）
 ```
 
 ## テック・スタック
@@ -108,6 +108,17 @@ npm run build                # 本番ビルド（out/ に静的ファイル生�
 - **prettier.config.js** - Prettier設定（セミコロンなし、シングルクォート）
 - **tsconfig.json** - TypeScript設定
 - **.node-version** - Node.js バージョン管理
+
+### スクリプト（scripts/）
+
+- **generate-diagrams.mjs** - アーキテクチャ図のSVG生成
+- **generate-favicons.mjs** - favicon自動生成（`public/images/favicon/` 内の画像から `icon.png`, `apple-icon.png`, `favicon.ico` を生成。`npm run build` 時に自動実行）
+
+### favicon
+
+- **ソース画像**: `public/images/favicon/` に画像を1枚だけ配置する（ファイル名は任意、PNG/JPG/WebP対応）
+- **生成ファイル**: `src/app/icon.png`, `src/app/apple-icon.png`, `public/favicon.ico`（`.gitignore` 済み）
+- **差し替え方法**: `public/images/favicon/` 内の画像を入れ替えてビルドするだけで全 favicon が更新される
 
 ### CI/CD（.github/workflows/）
 

@@ -34,3 +34,8 @@ yarn-error.log*
 next-env.d.ts
 
 .env.development
+
+# generated favicons
+/src/app/icon.png
+/src/app/apple-icon.png
+/public/favicon.ico
