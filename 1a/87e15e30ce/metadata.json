@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "1a87e15e30ce",
+  "strategy": "manual-commit",
+  "branch": "fix/issue-572-favicon",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".gitignore",
+    "package-lock.json",
+    "package.json",
+    "public/favicon.ico",
+    "scripts/generate-favicons.mjs",
+    "src/app/apple-icon.png",
+    "src/app/icon.png"
+  ],
+  "sessions": [
+    {
+      "metadata": "/1a/87e15e30ce/0/metadata.json",
+      "transcript": "/1a/87e15e30ce/0/full.jsonl",
+      "context": "/1a/87e15e30ce/0/context.md",
+      "content_hash": "/1a/87e15e30ce/0/content_hash.txt",
+      "prompt": "/1a/87e15e30ce/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 203,
+    "cache_creation_tokens": 143556,
+    "cache_read_tokens": 6366537,
+    "output_tokens": 6725,
+    "api_call_count": 99
+  }
+}
