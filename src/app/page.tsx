@@ -12,6 +12,21 @@ import { FaPencilAlt } from 'react-icons/fa'
 
 export const metadata: Metadata = {
   title: "dOwOd's logs",
+  description: 'dOwOdの技術ブログ。Web開発や日常について書いています。',
+  openGraph: {
+    title: "dOwOd's logs",
+    description: 'dOwOdの技術ブログ。Web開発や日常について書いています。',
+    url: '/',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: "dOwOd's logs",
+    description: 'dOwOdの技術ブログ。Web開発や日常について書いています。',
+  },
+  alternates: {
+    canonical: '/',
+  },
 }
 
 const Page = async () => {

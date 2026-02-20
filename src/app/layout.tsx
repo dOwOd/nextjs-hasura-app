@@ -6,9 +6,19 @@ import { ImageModalProvider } from 'src/lib/context/ImageModalContext'
 import { ImageModal } from 'src/components/ImageModal'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://dowo.dev'),
   title: {
     default: "dOwOd's logs",
     template: "%s | dOwOd's logs",
+  },
+  description: 'dOwOdの技術ブログ。Web開発や日常について書いています。',
+  openGraph: {
+    siteName: "dOwOd's logs",
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
   },
 }
 
