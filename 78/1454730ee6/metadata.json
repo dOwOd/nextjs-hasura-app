@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "781454730ee6",
+  "strategy": "manual-commit",
+  "branch": "fix/issue-582-semantic-html",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/components/Layout/index.tsx"
+  ],
+  "sessions": [
+    {
+      "metadata": "/78/1454730ee6/0/metadata.json",
+      "transcript": "/78/1454730ee6/0/full.jsonl",
+      "context": "/78/1454730ee6/0/context.md",
+      "content_hash": "/78/1454730ee6/0/content_hash.txt",
+      "prompt": "/78/1454730ee6/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 14,
+    "cache_creation_tokens": 10412,
+    "cache_read_tokens": 538802,
+    "output_tokens": 1450,
+    "api_call_count": 12
+  }
+}
