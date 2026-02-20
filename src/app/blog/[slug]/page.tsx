@@ -4,6 +4,7 @@ import { GET_ARTICLE_BY_SLUG, GET_ARTICLES_BY_STATUS } from 'src/queries/queries
 import { GetArticleBySlugQuery, GetArticlesByStatusQuery } from 'src/gql/graphql'
 import { Article } from 'src/components/Article'
 import { notFound } from 'next/navigation'
+import { extractDescription } from 'src/lib/utils/extractDescription'
 
 type Props = {
   params: Promise<{
@@ -32,8 +33,27 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return { title: 'Not Found' }
   }
 
+  const description = extractDescription(article.content)
+
   return {
     title: article.title,
+    description,
+    openGraph: {
+      title: article.title,
+      description,
+      url: `/blog/${params.slug}`,
+      type: 'article',
+      publishedTime: article.created_at,
+      modifiedTime: article.updated_at,
+    },
+    twitter: {
+      card: 'summary',
+      title: article.title,
+      description,
+    },
+    alternates: {
+      canonical: `/blog/${params.slug}`,
+    },
   }
 }
 
