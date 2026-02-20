@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "90fae0ab113c",
+  "session_id": "3f949cae-68c8-408a-9b96-f88d82a80936",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-20T22:20:13.90442Z",
+  "branch": "fix/issue-578-seo-metadata",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/app/page.tsx"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "2916b4565c55",
+  "transcript_identifier_at_start": "604eaeff-18eb-46a2-b23a-9b996038fed1",
+  "token_usage": {
+    "input_tokens": 36,
+    "cache_creation_tokens": 27181,
+    "cache_read_tokens": 1173370,
+    "output_tokens": 3753,
+    "api_call_count": 28
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-20T22:20:13.838972Z",
+    "agent_lines": 15,
+    "human_added": 47,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 62,
+    "agent_percentage": 24.193548387096776
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/3f949cae-68c8-408a-9b96-f88d82a80936.jsonl"
+}
