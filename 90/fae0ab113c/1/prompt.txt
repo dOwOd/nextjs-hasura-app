@@ -1,0 +1,173 @@
+Implement the following plan:
+
+# Issue #578: SEO メタデータの追加
+
+## Context
+
+すべてのページで `description`、OGP、Twitter Card、canonical URL が未設定。検索結果のスニペットや SNS シェア時のプレビューカードが表示されず、SEO に影響がある。Cloudflare Pages のプレビュー URL との重複コンテンツ問題もあるため、canonical URL も設定する。
+
+## 変更ファイル一覧
+
+| ファイル | 種別 | 内容 |
+|---|---|---|
+| `src/lib/utils/extractDescription.ts` | **新規** | Markdown → plain text 変換、冒頭120文字を抽出 |
+| `src/app/layout.tsx` | 変更 | `metadataBase`, `description`, `openGraph`, `twitter` 追加 |
+| `src/app/page.tsx` | 変更 | `description`, `openGraph`, `twitter`, `alternates.canonical` 追加 |
+| `src/app/blog/[slug]/page.tsx` | 変更 | `generateMetadata` を拡張（description, OGP, twitter, canonical） |
+
+## Step 1: `src/lib/utils/extractDescription.ts` を新規作成
+
+Markdown 文字列から plain text を抽出し、指定文字数で切り詰める関数。新規パッケージ追加は不要（正規表現で Markdown 記法を除去）。
+
+```typescript
+export const extractDescription = (markdown: string, length: number = 120): string => {
+  const plainText = markdown
+    .replace(/```[\s\S]*?```/g, '')        // コードブロック除去
+    .replace(/`[^`]*`/g, '')               // インラインコード除去
+    .replace(/!\[.*?\]\(.*?\)/g, '')       // 画像除去
+    .replace(/\[([^\]]*)\]\(.*?\)/g, '$1') // リンク → テキスト
+    .replace(/#{1,6}\s+/g, '')             // 見出し記号除去
+    .replace(/[*_~>]+/g, '')               // 装飾記号除去
+    .replace(/\n+/g, ' ')                  // 改行 → スペース
+    .trim()
+
+  if (plainText.length <= length) return plainText
+  return plainText.slice(0, length) + '…'
+}
+```
+
+## Step 2: `src/app/layout.tsx` を変更
+
+`metadata` に以下を追加:
+
+```typescript
+export const metadata: Metadata = {
+  metadataBase: new URL('https://dowo.dev'),
+  title: {
+    default: "dOwOd's logs",
+    template: "%s | dOwOd's logs",
+  },
+  description: 'dOwOdの技術ブログ。Web開発や日常について書いています。',
+  openGraph: {
+    siteName: "dOwOd's logs",
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+  },
+}
+```
+
+- `metadataBase` により、子ページで相対パスが使える
+- OG 画像は記事スキーマにフィールドがないため設定しない
+
+## Step 3: `src/app/page.tsx` を変更
+
+`metadata` を拡張:
+
+```typescript
+export const metadata: Metadata = {
+  title: "dOwOd's logs",
+  description: 'dOwOdの技術ブログ。Web開発や日常について書いています。',
+  openGraph: {
+    title: "dOwOd's logs",
+    description: 'dOwOdの技術ブログ。Web開発や日常について書いています。',
+    url: '/',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: "dOwOd's logs",
+    description: 'dOwOdの技術ブログ。Web開発や日常について書いています。',
+  },
+  alternates: {
+    canonical: '/',
+  },
+}
+```
+
+## Step 4: `src/app/blog/[slug]/page.tsx` を変更
+
+`generateMetadata` を拡張。`article.content`（Markdown）は既存クエリで取得済みのため追加 API コール不要:
+
+```typescript
+import { extractDescription } from 'src/lib/utils/extractDescription'
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params
+  const { data } = await initializeApollo().query<GetArticleBySlugQuery>({
+    query: GET_ARTICLE_BY_SLUG,
+    variables: { slug: params.slug },
+  })
+
+  const article = data?.articles[0]
+  if (!article) {
+    return { title: 'Not Found' }
+  }
+
+  const description = extractDescription(article.content)
+
+  return {
+    title: article.title,
+    description,
+    openGraph: {
+      title: article.title,
+      description,
+      url: `/blog/${params.slug}`,
+      type: 'article',
+      publishedTime: article.created_at,
+      modifiedTime: article.updated_at,
+    },
+    twitter: {
+      card: 'summary',
+      title: article.title,
+      description,
+    },
+    alternates: {
+      canonical: `/blog/${params.slug}`,
+    },
+  }
+}
+```
+
+## スコープ外
+
+- `not-found.tsx`, `prototypes/page.tsx` は Issue #578 の対象外（layout.tsx のデフォルトがフォールバックとして機能する）
+- OG 画像（記事スキーマに画像フィールドがない）
+- 定数ファイルの新設（既存のハードコードパターンに揃える）
+
+## 検証
+
+1. `npm run lint` — ESLint エラーなし
+2. `npm run build` — ビルド成功
+3. `out/index.html` の `<head>` に以下が存在することを確認:
+   - `<meta name="description">`
+   - `<meta property="og:title">`, `og:description`, `og:url`, `og:type`, `og:site_name`, `og:locale`
+   - `<meta name="twitter:card">`
+   - `<link rel="canonical">`
+4. `out/blog/*/index.html` で記事固有の description・OGP が出力されていることを確認
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/sksn/.REDACTED.jsonl
+
+If this plan can be broken down into multiple independent tasks, consider using the TeamCreate tool to create a team and parallelize the work.
+
+---
+
+PR作って
+
+---
+
+Base directory for this skill: /Users/sksn/Development/nextjs-hasura-app/.claude/skills/pr
+
+## Create PR Workflow
+
+1. Verify current branch is NOT main: `git branch --show-current`
+2. If on main, create and checkout a new branch: `git checkout -b feature/issue-{number}-{description}`
+3. Stage and commit all changes with a descriptive message
+4. Push the branch: `git push -u origin HEAD`
+5. Create PR with `gh pr create --fill --base main`
+6. Body に `Closes #{番号}` を含める（Issue自動クローズ）
+7. 必要に応じて CLAUDE.md やドキュメントの更新を確認
+8. Report the PR URL

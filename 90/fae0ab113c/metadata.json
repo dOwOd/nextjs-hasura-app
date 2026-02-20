@@ -3,9 +3,12 @@
   "checkpoint_id": "90fae0ab113c",
   "strategy": "manual-commit",
   "branch": "fix/issue-578-seo-metadata",
-  "checkpoints_count": 1,
+  "checkpoints_count": 2,
   "files_touched": [
-    "src/app/page.tsx"
+    "src/app/blog/[slug]/page.tsx",
+    "src/app/layout.tsx",
+    "src/app/page.tsx",
+    "src/lib/utils/extractDescription.ts"
   ],
   "sessions": [
     {
@@ -14,13 +17,20 @@
       "context": "/90/fae0ab113c/0/context.md",
       "content_hash": "/90/fae0ab113c/0/content_hash.txt",
       "prompt": "/90/fae0ab113c/0/prompt.txt"
+    },
+    {
+      "metadata": "/90/fae0ab113c/1/metadata.json",
+      "transcript": "/90/fae0ab113c/1/full.jsonl",
+      "context": "/90/fae0ab113c/1/context.md",
+      "content_hash": "/90/fae0ab113c/1/content_hash.txt",
+      "prompt": "/90/fae0ab113c/1/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 36,
-    "cache_creation_tokens": 27181,
-    "cache_read_tokens": 1173370,
-    "output_tokens": 3753,
-    "api_call_count": 28
+    "input_tokens": 58,
+    "cache_creation_tokens": 141867,
+    "cache_read_tokens": 1909351,
+    "output_tokens": 4542,
+    "api_call_count": 45
   }
 }
