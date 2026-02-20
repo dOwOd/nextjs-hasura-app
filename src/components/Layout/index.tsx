@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
-  <article>
+  <div className={style.wrapper}>
     <header>
       <nav>
         <ul>
@@ -28,5 +28,5 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
         <small>{`© ${new Date().getFullYear()} - dowod.dev`}</small>
       </div>
     </footer>
-  </article>
+  </div>
 )
