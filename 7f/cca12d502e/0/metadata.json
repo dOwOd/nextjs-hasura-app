@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "7fcca12d502e",
+  "session_id": "f3ab0be7-83e6-48e7-83a4-705a9fb2f316",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-20T12:15:53.808231Z",
+  "branch": "fix/issue-580-remove-page-title",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/app/blog/[slug]/page.tsx",
+    "src/components/PageTitle/index.tsx"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "452463e4b549",
+  "transcript_identifier_at_start": "f8c2c097-7352-4a52-ae82-21e04213b959",
+  "token_usage": {
+    "input_tokens": 26,
+    "cache_creation_tokens": 16274,
+    "cache_read_tokens": 811618,
+    "output_tokens": 1290,
+    "api_call_count": 22
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-20T12:15:53.752464Z",
+    "agent_lines": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 0,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/f3ab0be7-83e6-48e7-83a4-705a9fb2f316.jsonl"
+}
