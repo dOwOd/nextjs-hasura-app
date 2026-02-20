@@ -3,7 +3,6 @@ import { initializeApollo } from 'src/lib/apolloClient'
 import { GET_ARTICLE_BY_SLUG, GET_ARTICLES_BY_STATUS } from 'src/queries/queries'
 import { GetArticleBySlugQuery, GetArticlesByStatusQuery } from 'src/gql/graphql'
 import { Article } from 'src/components/Article'
-import { PageTitle } from 'src/components/PageTitle'
 import { notFound } from 'next/navigation'
 
 type Props = {
@@ -88,7 +87,6 @@ const Page = async (props: Props) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <PageTitle title={article.title} />
       <Article article={article} />
     </>
   )
