@@ -49,8 +49,45 @@ const Page = async (props: Props) => {
   if (!article) return notFound()
 
 
+  const blogPostingJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.title,
+    datePublished: article.created_at,
+    dateModified: article.updated_at,
+    author: { '@type': 'Person', name: 'dOwOd', url: 'https://dowo.dev' },
+    url: `https://dowo.dev/blog/${params.slug}`,
+  }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://dowo.dev',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: article.title,
+        item: `https://dowo.dev/blog/${params.slug}`,
+      },
+    ],
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <PageTitle title={article.title} />
       <Article article={article} />
     </>
