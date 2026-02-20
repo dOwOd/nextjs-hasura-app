@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
-  <div>
+  <div className={style.wrapper}>
     <header>
       <nav>
         <ul>
