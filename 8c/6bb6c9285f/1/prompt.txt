@@ -1,0 +1,65 @@
+Implement the following plan:
+
+# Plan: robots.txt と sitemap.xml の追加 (#579)
+
+## Context
+
+dowo.dev に `robots.txt` と `sitemap.xml` が存在しない。クローラーへの指示とサイトマップの提供ができておらず、新規記事のインデックス登録が遅れている。
+
+## 実装内容
+
+### 1. `public/robots.txt` を新規作成
+
+完全に静的な内容のため `public/` に直接配置する。
+
+```
+User-agent: *
+Allow: /
+Sitemap: https://dowo.dev/sitemap.xml
+```
+
+### 2. `src/app/sitemap.ts` を新規作成
+
+ビルド時に Hasura から記事一覧を取得し、サイトマップを動的生成する。既存の `generateStaticParams`（`src/app/blog/[slug]/page.tsx:15-22`）と同じパターンを再利用。
+
+- `initializeApollo()` + `GET_ARTICLES_BY_STATUS` で公開記事を取得
+- トップページ（`/`）+ 全公開記事（`/blog/{slug}`）の URL を含める
+- `lastModified` に `updated_at` を使用
+
+**再利用する既存コード:**
+- `src/lib/apolloClient.ts` → `initializeApollo()`
+- `src/queries/queries.ts` → `GET_ARTICLES_BY_STATUS`
+- `src/gql/graphql.ts` → `GetArticlesByStatusQuery`
+
+## 検証
+
+```bash
+npm run build
+```
+
+- `out/robots.txt` が生成されていること
+- `out/sitemap.xml` が生成され、全公開記事の URL が含まれていること
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/sksn/.REDACTED.jsonl
+
+If this plan can be broken down into multiple independent tasks, consider using the TeamCreate tool to create a team and parallelize the work.
+
+---
+
+PRを作成して
+
+---
+
+Base directory for this skill: /Users/sksn/Development/nextjs-hasura-app/.claude/skills/pr
+
+## Create PR Workflow
+
+1. Verify current branch is NOT main: `git branch --show-current`
+2. If on main, create and checkout a new branch: `git checkout -b feature/issue-{number}-{description}`
+3. Stage and commit all changes with a descriptive message
+4. Push the branch: `git push -u origin HEAD`
+5. Create PR with `gh pr create --fill --base main`
+6. Body に `Closes #{番号}` を含める（Issue自動クローズ）
+7. 必要に応じて CLAUDE.md やドキュメントの更新を確認
+8. Report the PR URL

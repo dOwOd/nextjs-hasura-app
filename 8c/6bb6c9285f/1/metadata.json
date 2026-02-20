@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "8c6bb6c9285f",
+  "session_id": "d80e5ed0-220d-4db3-bbe9-f1c312128a22",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-20T11:47:09.79581Z",
+  "branch": "fix/issue-579-robots-sitemap",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "public/robots.txt",
+    "src/app/sitemap.ts"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "9b18d54bb5e2",
+  "token_usage": {
+    "input_tokens": 20,
+    "cache_creation_tokens": 16574,
+    "cache_read_tokens": 554345,
+    "output_tokens": 958,
+    "api_call_count": 15
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-20T11:47:09.780444Z",
+    "agent_lines": 31,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 31,
+    "agent_percentage": 100
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/d80e5ed0-220d-4db3-bbe9-f1c312128a22.jsonl"
+}

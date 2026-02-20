@@ -3,7 +3,7 @@
   "checkpoint_id": "8c6bb6c9285f",
   "strategy": "manual-commit",
   "branch": "fix/issue-579-robots-sitemap",
-  "checkpoints_count": 1,
+  "checkpoints_count": 2,
   "files_touched": [
     "public/robots.txt",
     "src/app/sitemap.ts"
@@ -15,13 +15,20 @@
       "context": "/8c/6bb6c9285f/0/context.md",
       "content_hash": "/8c/6bb6c9285f/0/content_hash.txt",
       "prompt": "/8c/6bb6c9285f/0/prompt.txt"
+    },
+    {
+      "metadata": "/8c/6bb6c9285f/1/metadata.json",
+      "transcript": "/8c/6bb6c9285f/1/full.jsonl",
+      "context": "/8c/6bb6c9285f/1/context.md",
+      "content_hash": "/8c/6bb6c9285f/1/content_hash.txt",
+      "prompt": "/8c/6bb6c9285f/1/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 333,
-    "cache_creation_tokens": 78419,
-    "cache_read_tokens": 1863780,
-    "output_tokens": 4085,
-    "api_call_count": 45
+    "input_tokens": 353,
+    "cache_creation_tokens": 94993,
+    "cache_read_tokens": 2418125,
+    "output_tokens": 5043,
+    "api_call_count": 60
   }
 }
