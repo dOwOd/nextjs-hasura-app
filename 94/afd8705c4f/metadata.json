@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "94afd8705c4f",
+  "strategy": "manual-commit",
+  "branch": "fix/issue-581-json-ld",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/app/blog/[slug]/page.tsx",
+    "src/app/page.tsx"
+  ],
+  "sessions": [
+    {
+      "metadata": "/94/afd8705c4f/0/metadata.json",
+      "transcript": "/94/afd8705c4f/0/full.jsonl",
+      "context": "/94/afd8705c4f/0/context.md",
+      "content_hash": "/94/afd8705c4f/0/content_hash.txt",
+      "prompt": "/94/afd8705c4f/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 14,
+    "cache_creation_tokens": 16749,
+    "cache_read_tokens": 348095,
+    "output_tokens": 1309,
+    "api_call_count": 10
+  }
+}

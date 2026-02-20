@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "94afd8705c4f",
+  "session_id": "d4e9ee05-2040-4847-bb79-1930de216055",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-20T12:02:30.981932Z",
+  "branch": "fix/issue-581-json-ld",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/app/blog/[slug]/page.tsx",
+    "src/app/page.tsx"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "ea1136e39445",
+  "transcript_identifier_at_start": "be4b5be7-4e3e-4075-8cfb-f71d7a4e6ff2",
+  "token_usage": {
+    "input_tokens": 14,
+    "cache_creation_tokens": 16749,
+    "cache_read_tokens": 348095,
+    "output_tokens": 1309,
+    "api_call_count": 10
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-20T12:02:30.950053Z",
+    "agent_lines": 53,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 53,
+    "agent_percentage": 100
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/d4e9ee05-2040-4847-bb79-1930de216055.jsonl"
+}
