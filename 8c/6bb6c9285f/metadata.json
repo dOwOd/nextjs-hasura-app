@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "8c6bb6c9285f",
+  "strategy": "manual-commit",
+  "branch": "fix/issue-579-robots-sitemap",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "public/robots.txt",
+    "src/app/sitemap.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/8c/6bb6c9285f/0/metadata.json",
+      "transcript": "/8c/6bb6c9285f/0/full.jsonl",
+      "context": "/8c/6bb6c9285f/0/context.md",
+      "content_hash": "/8c/6bb6c9285f/0/content_hash.txt",
+      "prompt": "/8c/6bb6c9285f/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 333,
+    "cache_creation_tokens": 78419,
+    "cache_read_tokens": 1863780,
+    "output_tokens": 4085,
+    "api_call_count": 45
+  }
+}
