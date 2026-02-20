@@ -15,7 +15,7 @@ export const Article: FC<Props> = ({ article }) => {
     <article className={styles.article}>
       <header>
         <h1>{article.title}</h1>
-        <h6>{dateFromat(article.created_at, '-')}</h6>
+        <time dateTime={article.created_at}>{dateFromat(article.created_at, '-')}</time>
       </header>
       <div>
         {content}

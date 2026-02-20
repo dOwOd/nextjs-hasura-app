@@ -53,11 +53,9 @@ const Page = async () => {
                   {article.title}
                 </Link>
               </h3>
-              <cite>
-                <small>
-                  <FaPencilAlt /> {dateFromat(article.created_at, '-')}
-                </small>
-              </cite >
+              <small>
+                <FaPencilAlt /> <time dateTime={article.created_at}>{dateFromat(article.created_at, '-')}</time>
+              </small>
             </>
           </article>
         ))}
