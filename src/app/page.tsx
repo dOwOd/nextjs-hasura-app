@@ -21,8 +21,24 @@ const Page = async () => {
   })
   const data = result.data as GetArticlesByStatusQuery
 
+  const webSiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: "dOwOd's logs",
+    url: 'https://dowo.dev',
+    author: {
+      '@type': 'Person',
+      name: 'dOwOd',
+      sameAs: ['https://github.com/dOwOd', 'https://qiita.com/l_dOwOd_l'],
+    },
+  }
+
   return (
     <div className={style.topList}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
+      />
       <TopIcon />
       <Accounts />
       <Profile />
