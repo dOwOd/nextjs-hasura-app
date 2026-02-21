@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "68fa013ff465",
+  "strategy": "manual-commit",
+  "branch": "chore/google-adsense-meta-tag",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/app/layout.tsx"
+  ],
+  "sessions": [
+    {
+      "metadata": "/68/fa013ff465/0/metadata.json",
+      "transcript": "/68/fa013ff465/0/full.jsonl",
+      "context": "/68/fa013ff465/0/context.md",
+      "content_hash": "/68/fa013ff465/0/content_hash.txt",
+      "prompt": "/68/fa013ff465/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 16,
+    "cache_creation_tokens": 49911,
+    "cache_read_tokens": 445978,
+    "output_tokens": 1094,
+    "api_call_count": 12
+  }
+}
