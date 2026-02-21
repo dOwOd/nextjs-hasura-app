@@ -17,10 +17,14 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     {
       url: 'https://dowo.dev',
       lastModified: articles[0]?.updated_at,
+      changeFrequency: 'weekly',
+      priority: 1.0,
     },
     ...articles.map((article) => ({
       url: `https://dowo.dev/blog/${article.slug}`,
       lastModified: article.updated_at,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
     })),
   ]
 }
