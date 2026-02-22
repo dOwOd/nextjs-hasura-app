@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "ee2cde641af4",
+  "strategy": "manual-commit",
+  "branch": "chore/improve-renovate-config",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".github/renovate.json"
+  ],
+  "sessions": [
+    {
+      "metadata": "/ee/2cde641af4/0/metadata.json",
+      "transcript": "/ee/2cde641af4/0/full.jsonl",
+      "context": "/ee/2cde641af4/0/context.md",
+      "content_hash": "/ee/2cde641af4/0/content_hash.txt",
+      "prompt": "/ee/2cde641af4/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 30,
+    "cache_creation_tokens": 42765,
+    "cache_read_tokens": 721108,
+    "output_tokens": 3492,
+    "api_call_count": 20
+  }
+}
