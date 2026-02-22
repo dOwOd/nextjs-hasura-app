@@ -5,9 +5,15 @@
     "docker:pinDigests",
     "helpers:pinGitHubActionDigests",
     ":pinDevDependencies",
-    ":dependencyDashboard"
+    ":dependencyDashboard",
+    "schedule:weekly"
   ],
   "packageRules": [
+    {
+      "description": "Patch updates are auto-merged after CI passes",
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
+    },
     {
       "groupName": "graphql",
       "matchPackageNames": [
@@ -18,28 +24,35 @@
     {
       "groupName": "remark",
       "matchPackageNames": [
-        "remark",
-        "remark-gfm",
-        "remark-html",
-        "remark-rehype",
         "remark{/,}**"
       ]
     },
     {
       "groupName": "rehype",
       "matchPackageNames": [
-        "rehype-raw",
-        "rehype-react",
-        "rehype-stringify",
         "rehype{/,}**"
       ]
     },
     {
       "groupName": "apollo",
       "matchPackageNames": [
-        "@apollo/client",
-        "@apollo/experimental-nextjs-app-support",
         "@apollo{/,}**"
+      ]
+    },
+    {
+      "groupName": "eslint",
+      "matchPackageNames": [
+        "eslint{/,}**",
+        "eslint-config-{/,}**"
+      ]
+    },
+    {
+      "groupName": "react",
+      "matchPackageNames": [
+        "react",
+        "react-dom",
+        "@types/react",
+        "@types/react-dom"
       ]
     }
   ]
