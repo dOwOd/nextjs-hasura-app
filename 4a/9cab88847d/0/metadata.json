@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "4a9cab88847d",
+  "session_id": "3dde4a47-c8f4-48f3-9277-690b1e8320c7",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-23T00:34:20.89086Z",
+  "branch": "docs/issue-575-update-cicd-docs",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "CLAUDE.md"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "999f4a313679",
+  "token_usage": {
+    "input_tokens": 22,
+    "cache_creation_tokens": 24342,
+    "cache_read_tokens": 645896,
+    "output_tokens": 3489,
+    "api_call_count": 16
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-23T00:34:20.817462Z",
+    "agent_lines": 2,
+    "human_added": 46,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 48,
+    "agent_percentage": 4.166666666666666
+  },
+  "transcript_path": ".claude/projects/-Users-sksn-Development-nextjs-hasura-app/3dde4a47-c8f4-48f3-9277-690b1e8320c7.jsonl"
+}
