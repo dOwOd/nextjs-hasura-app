@@ -46,7 +46,7 @@ npm run build                # 本番ビルド（favicon生成 → out/ に静�
 | コンテンツ | remark + rehype（Markdown → React） |
 | デプロイ | Cloudflare Pages（静的サイト, カスタムドメイン: dowo.dev） |
 | 型生成 | GraphQL Code Generator |
-| CI/CD | GitHub Actions（手動リビルド `workflow_dispatch`）+ Cloudflare Pages Git連携（自動プレビュー） |
+| CI/CD | Cloudflare Pages Git連携（mainマージ時に自動デプロイ + PRプレビュー）+ GitHub Actions（手動リビルド `workflow_dispatch`） |
 | 依存関係管理 | Renovate |
 
 ## アーキテクチャ
@@ -122,7 +122,7 @@ npm run build                # 本番ビルド（favicon生成 → out/ に静�
 
 ### CI/CD（.github/workflows/）
 
-- **cloudflare-pages.yml** - Cloudflare Pagesデプロイ（手動 workflow_dispatch のみ）
+- **cloudflare-pages.yml** - Cloudflare Pagesデプロイ（手動 workflow_dispatch、バックアップ用）
 - **issue-analyzer.yml** - Issue自動分析（Gemini API）
 
 ### Docker
