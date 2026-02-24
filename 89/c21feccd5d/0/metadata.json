@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.6",
+  "checkpoint_id": "89c21feccd5d",
+  "session_id": "04f9278d-1968-4f69-87af-01bd8028c7d0",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-24T13:20:06.811806Z",
+  "branch": "fix/issue-598-remove-next-public-prefix",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".github/workflows/cloudflare-pages.yml",
+    "CLAUDE.md",
+    "README.md",
+    "src/lib/apolloClient.ts"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "55fbd6e304dc",
+  "token_usage": {
+    "input_tokens": 33,
+    "cache_creation_tokens": 34164,
+    "cache_read_tokens": 1085335,
+    "output_tokens": 3314,
+    "api_call_count": 23
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-24T13:20:06.737597Z",
+    "agent_lines": 6,
+    "human_added": 106,
+    "human_modified": 2,
+    "human_removed": 0,
+    "total_committed": 114,
+    "agent_percentage": 5.263157894736842
+  }
+}

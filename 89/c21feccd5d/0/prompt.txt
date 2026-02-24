@@ -1,0 +1,62 @@
+Implement the following plan:
+
+# Fix #598: NEXT_PUBLIC_HASURA_KEY / URL をサーバー専用環境変数に変更
+
+## Context
+
+`NEXT_PUBLIC_` プレフィックスの環境変数は Next.js のビルドでクライアントバンドルに埋め込まれる。
+このプロジェクトでは Hasura の Admin Secret と URL はビルド時の Server Component でのみ使用されており、
+クライアント側への露出は不要。`NEXT_PUBLIC_` を外してサーバー専用環境変数にする。
+
+## 変更対象ファイル
+
+### 1. `src/lib/apolloClient.ts`（メイン変更）
+- `process.env.NEXT_PUBLIC_HASURA_URL` → `process.env.HASURA_URL`
+- `process.env.NEXT_PUBLIC_HASURA_KEY` → `process.env.HASURA_KEY`
+
+### 2. `.env.development`
+- `NEXT_PUBLIC_HASURA_URL=...` → `HASURA_URL=...`
+- `NEXT_PUBLIC_HASURA_KEY=...` → `HASURA_KEY=...`
+
+### 3. `.env.local`
+- 同上
+
+### 4. `.github/workflows/cloudflare-pages.yml`
+- `NEXT_PUBLIC_HASURA_URL: ${{ secrets.NEXT_PUBLIC_HASURA_URL }}` → `HASURA_URL: ${{ secrets.HASURA_URL }}`
+- `NEXT_PUBLIC_HASURA_KEY: ${{ secrets.NEXT_PUBLIC_HASURA_KEY }}` → `HASURA_KEY: ${{ secrets.HASURA_KEY }}`
+
+### 5. `CLAUDE.md`（ドキュメント）
+- 環境変数セクションの変数名を更新
+
+### 6. `README.md`（ドキュメント）
+- セットアップセクションの変数名を更新
+
+## 変更しないもの
+
+- `NEXT_PUBLIC_GA4_ID` - GA4 はクライアントサイドで動作するため `NEXT_PUBLIC_` が必要
+- `NEXT_PUBLIC_EMAIL_ADDRESS` - 変更範囲外
+- `codegen.ts` - URL がハードコードされており環境変数を使っていない
+- Cloudflare Pages の環境変数設定 - 手動で更新が必要（PR説明に記載）
+- GitHub Actions Secrets - 手動で更新が必要（PR説明に記載）
+
+## 検証
+
+1. `npm run build` が成功すること（環境変数が正しく読み込まれること）
+2. `npm run lint` がパスすること
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/sksn/.claude/projects/-Users-sksn-Development-nextjs-hasura-app/8382c1cd-816a-4142-8a91-bc9652b3f55d.jsonl
+
+If this plan can be broken down into multiple independent tasks, consider using the TeamCreate tool to create a team and parallelize the work.
+
+---
+
+npm run lint の失敗は今修正できない？
+
+---
+
+含めなくてよいです。調査結果を新規作成したIssueに記載して
+
+---
+
+コミットにすすめて
