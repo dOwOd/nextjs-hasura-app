@@ -162,8 +162,8 @@ Cloudflare Pages にデプロイ
 
 ```bash
 # Hasura
-NEXT_PUBLIC_HASURA_URL=   # Hasura GraphQLエンドポイント
-NEXT_PUBLIC_HASURA_KEY=   # Hasura管理者シークレット
+HASURA_URL=               # Hasura GraphQLエンドポイント
+HASURA_KEY=               # Hasura管理者シークレット
 
 # Google Analytics
 NEXT_PUBLIC_GA4_ID=       # GA4 Measurement ID

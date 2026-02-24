@@ -8,9 +8,9 @@ const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: process.env.NEXT_PUBLIC_HASURA_URL,
+      uri: process.env.HASURA_URL,
       headers: {
-        'x-hasura-admin-secret': process.env.NEXT_PUBLIC_HASURA_KEY || '',
+        'x-hasura-admin-secret': process.env.HASURA_KEY || '',
       },
     }),
     cache: new InMemoryCache(),

@@ -23,8 +23,8 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NEXT_PUBLIC_HASURA_URL: ${{ secrets.NEXT_PUBLIC_HASURA_URL }}
-          NEXT_PUBLIC_HASURA_KEY: ${{ secrets.NEXT_PUBLIC_HASURA_KEY }}
+          HASURA_URL: ${{ secrets.HASURA_URL }}
+          HASURA_KEY: ${{ secrets.HASURA_KEY }}
           NEXT_PUBLIC_GA4_ID: ${{ secrets.NEXT_PUBLIC_GA4_ID }}
 
       - name: Deploy to Cloudflare Pages
