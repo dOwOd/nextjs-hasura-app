@@ -42,8 +42,8 @@ remark + rehype パイプライン
 `.env.local` を作成:
 
 ```bash
-NEXT_PUBLIC_HASURA_URL=   # Hasura GraphQL エンドポイント
-NEXT_PUBLIC_HASURA_KEY=   # Hasura 管理者シークレット
+HASURA_URL=               # Hasura GraphQL エンドポイント
+HASURA_KEY=               # Hasura 管理者シークレット
 NEXT_PUBLIC_GA4_ID=       # GA4 Measurement ID
 ```
 
