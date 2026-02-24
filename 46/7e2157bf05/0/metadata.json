@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.4.6",
+  "checkpoint_id": "467e2157bf05",
+  "session_id": "5bcf3b71-0401-49a7-86f0-d36f0e0fb154",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-24T13:24:36.793771Z",
+  "branch": "chore/issue-610-modernize-tsconfig",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "tsconfig.json"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "f9c6f671b18a",
+  "token_usage": {
+    "input_tokens": 14,
+    "cache_creation_tokens": 13224,
+    "cache_read_tokens": 368384,
+    "output_tokens": 600,
+    "api_call_count": 11
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-24T13:24:36.752363Z",
+    "agent_lines": 2,
+    "human_added": 8,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 10,
+    "agent_percentage": 20
+  }
+}
