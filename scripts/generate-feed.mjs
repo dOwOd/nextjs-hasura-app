@@ -2,6 +2,8 @@ import { writeFileSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { Feed } from 'feed'
+import { remark } from 'remark'
+import stripMarkdown from 'strip-markdown'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
@@ -54,13 +56,10 @@ const articles = data.articles
 const siteUrl = 'https://dowo.dev'
 
 const extractDescription = (markdown, length = 200) => {
-  const plainText = markdown
-    .replace(/```[\s\S]*?```/g, '')
-    .replace(/`[^`]*`/g, '')
-    .replace(/!\[.*?\]\(.*?\)/g, '')
-    .replace(/\[([^\]]*)\]\(.*?\)/g, '$1')
-    .replace(/#{1,6}\s+/g, '')
-    .replace(/[*_~>]+/g, '')
+  const plainText = remark()
+    .use(stripMarkdown)
+    .processSync(markdown)
+    .toString()
     .replace(/\n+/g, ' ')
     .trim()
 
