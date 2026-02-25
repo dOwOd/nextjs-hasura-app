@@ -1,0 +1,130 @@
+Implement the following plan:
+
+# パフォーマンス計測スクリプトの作成
+
+## Context
+
+Next.js → Vinext 移行（Issue #614）にあたり、移行前後のパフォーマンスを定量的に比較したい。現在パフォーマンス計測の仕組みはないため、再現性のある計測スクリプトを新規作成する。
+
+## 計測対象
+
+### 1. ビルドパフォーマンス（ローカル計測）
+
+| 指標 | 計測方法 |
+|------|----------|
+| ビルド時間 | `next build` / `vinext build` の実行時間を `performance.now()` で計測 |
+| 出力サイズ | `out/` ディレクトリの合計サイズ（`du -sb`） |
+| dev サーバー起動時間 | dev サーバーが「ready」を出力するまでの時間 |
+
+### 2. ページパフォーマンス（デプロイ後計測）
+
+| 指標 | 計測方法 |
+|------|----------|
+| TTFB | `curl -w` で `time_starttransfer` を取得 |
+| Lighthouse スコア | Lighthouse CLI（`Performance`, `LCP`, `FCP`, `CLS`, `TBT`） |
+
+### 3. ISR 固有（Vinext 移行後のみ）
+
+| 指標 | 計測方法 |
+|------|----------|
+| コールドスタート TTFB | キャッシュなし状態の TTFB |
+| キャッシュヒット TTFB | 2回目以降のリクエストの TTFB |
+
+## 実装計画
+
+### 作成ファイル
+
+`scripts/benchmark.mjs` — 1ファイルで完結する計測スクリプト
+
+### サブコマンド構成
+
+```bash
+node scripts/benchmark.mjs build     # ビルド時間 + 出力サイズ計測
+node scripts/benchmark.mjs dev       # dev サーバー起動時間計測
+node scripts/benchmark.mjs ttfb URL  # TTFB 計測（複数回実行して中央値）
+node scripts/benchmark.mjs all URL   # build + dev + ttfb を一括実行
+```
+
+### 設計方針
+
+- 外部依存なし（Node.js 標準モジュールのみ: `child_process`, `fs`, `path`, `http`/`https`）
+- 結果は JSON ファイル（`benchmark-results/YYYY-MM-DD-HHmmss.json`）に保存
+- 複数回の結果を比較できるよう、タイムスタンプ付きで蓄積
+- `benchmark-results/` は `.gitignore` に追加
+- Lighthouse はオプション（`lighthouse` がグローバルインストールされていれば実行）
+
+### 出力例
+
+```json
+{
+  "timestamp": "2026-02-25T12:00:00.000Z",
+  "framework": "next",
+  "node": "24.13.1",
+  "build": {
+    "duration_ms": 12345,
+    "output_size_bytes": 678900
+  },
+  "dev": {
+    "startup_ms": 2345
+  },
+  "ttfb": {
+    "url": "https://dowo.dev",
+    "runs": 5,
+    "median_ms": 45,
+    "min_ms": 30,
+    "max_ms": 80
+  }
+}
+```
+
+### package.json への追加
+
+```json
+"benchmark": "node scripts/benchmark.mjs"
+```
+
+## 対象ファイル
+
+- `scripts/benchmark.mjs` — 新規作成
+- `package.json` — `benchmark` スクリプト追加
+- `.gitignore` — `benchmark-results/` 追加
+
+## 検証方法
+
+```bash
+npm run benchmark build    # ビルド計測が成功し JSON が出力される
+npm run benchmark dev      # dev サーバー起動時間が計測される
+npm run benchmark ttfb https://dowo.dev  # TTFB が複数回計測される
+```
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/sksn/.claude/projects/-Users-sksn-Development-nextjs-hasura-app/941408f7-14f7-46c6-9571-023776e6c9a2.jsonl
+
+If this plan can be broken down into multiple independent tasks, consider using the TeamCreate tool to create a team and parallelize the work.
+
+---
+
+他に計測したほうが良い項目はない？
+
+---
+
+追加して
+
+---
+
+PRをつくって
+
+---
+
+Base directory for this skill: /Users/sksn/Development/nextjs-hasura-app/.claude/skills/pr
+
+## Create PR Workflow
+
+1. Verify current branch is NOT main: `git branch --show-current`
+2. If on main, create and checkout a new branch: `git checkout -b feature/issue-{number}-{description}`
+3. Stage and commit all changes with a descriptive message
+4. Push the branch: `git push -u origin HEAD`
+5. Create PR with `gh pr create --fill --base main`
+6. Body に `Closes #{番号}` を含める（Issue自動クローズ）
+7. 必要に応じて CLAUDE.md やドキュメントの更新を確認
+8. Report the PR URL

@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.4.7",
+  "checkpoint_id": "cee205f188ab",
+  "strategy": "manual-commit",
+  "branch": "feature/issue-614-vinext-migration",
+  "checkpoints_count": 2,
+  "files_touched": [
+    ".gitignore",
+    "package.json",
+    "scripts/benchmark.mjs"
+  ],
+  "sessions": [
+    {
+      "metadata": "/ce/e205f188ab/0/metadata.json",
+      "transcript": "/ce/e205f188ab/0/full.jsonl",
+      "context": "/ce/e205f188ab/0/context.md",
+      "content_hash": "/ce/e205f188ab/0/content_hash.txt",
+      "prompt": "/ce/e205f188ab/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 42,
+    "cache_creation_tokens": 36739,
+    "cache_read_tokens": 1511060,
+    "output_tokens": 6204,
+    "api_call_count": 33
+  }
+}
