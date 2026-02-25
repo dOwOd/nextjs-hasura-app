@@ -7,7 +7,8 @@
     "build": "node scripts/generate-favicons.mjs && next build",
     "start": "next start",
     "lint": "eslint .",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "benchmark": "node scripts/benchmark.mjs"
   },
   "dependencies": {
     "@apollo/client": "^4.0.0",
@@ -24,7 +25,9 @@
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
     "remark-rehype": "^11.0.0",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "vinext": "^0.0.5",
+    "vite": "^7.3.1"
   },
   "devDependencies": {
     "@babel/core": "7.29.0",
