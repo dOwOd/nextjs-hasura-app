@@ -1,6 +1,7 @@
 import { writeFileSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { Feed } from 'feed'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
@@ -50,14 +51,7 @@ if (errors) {
 }
 
 const articles = data.articles
-
-const escapeXml = (str) =>
-  str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;')
+const siteUrl = 'https://dowo.dev'
 
 const extractDescription = (markdown, length = 200) => {
   const plainText = markdown
@@ -74,45 +68,31 @@ const extractDescription = (markdown, length = 200) => {
   return plainText.slice(0, length) + '…'
 }
 
-const siteUrl = 'https://dowo.dev'
-const feedUpdated =
-  articles.length > 0
-    ? new Date(articles[0].updated_at).toISOString()
-    : new Date().toISOString()
+const feed = new Feed({
+  title: "dOwOd's logs",
+  description: 'dOwOdの技術ブログ。Web開発や日常について書いています。',
+  id: `${siteUrl}/`,
+  link: siteUrl,
+  feedLinks: {
+    atom: `${siteUrl}/feed.xml`,
+  },
+  author: { name: 'dOwOd' },
+  updated:
+    articles.length > 0 ? new Date(articles[0].updated_at) : new Date(),
+})
 
-const entries = articles
-  .map((article) => {
-    const createdDate = article.created_at.split('T')[0]
-    const summary = extractDescription(article.content)
-
-    return `  <entry>
-    <title>${escapeXml(article.title)}</title>
-    <link href="${siteUrl}/blog/${escapeXml(article.slug)}" rel="alternate" />
-    <id>tag:dowo.dev,${createdDate}:${escapeXml(article.slug)}</id>
-    <updated>${new Date(article.updated_at).toISOString()}</updated>
-    <published>${new Date(article.created_at).toISOString()}</published>
-    <summary>${escapeXml(summary)}</summary>
-    <author>
-      <name>dOwOd</name>
-    </author>
-  </entry>`
+for (const article of articles) {
+  feed.addItem({
+    title: article.title,
+    id: `${siteUrl}/blog/${article.slug}`,
+    link: `${siteUrl}/blog/${article.slug}`,
+    description: extractDescription(article.content),
+    date: new Date(article.updated_at),
+    published: new Date(article.created_at),
+    author: [{ name: 'dOwOd' }],
   })
-  .join('\n')
-
-const atom = `<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>dOwOd's logs</title>
-  <link href="${siteUrl}" rel="alternate" />
-  <link href="${siteUrl}/feed.xml" rel="self" />
-  <id>${siteUrl}/</id>
-  <updated>${feedUpdated}</updated>
-  <author>
-    <name>dOwOd</name>
-  </author>
-${entries}
-</feed>
-`
+}
 
 const outputPath = resolve(root, 'out/feed.xml')
-writeFileSync(outputPath, atom, 'utf-8')
+writeFileSync(outputPath, feed.atom1(), 'utf-8')
 console.log(`Generated: ${outputPath}`)
