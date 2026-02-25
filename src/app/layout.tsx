@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary',
   },
+  alternates: {
+    types: {
+      'application/atom+xml': '/feed.xml',
+    },
+  },
   other: {
     'google-adsense-account': 'ca-pub-7977717471835086',
   },

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/generate-favicons.mjs && next build",
+    "build": "node scripts/generate-favicons.mjs && next build && node scripts/generate-feed.mjs",
     "start": "next start",
     "lint": "eslint .",
     "codegen": "graphql-codegen --config codegen.ts"
@@ -23,7 +23,8 @@
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
     "remark-rehype": "^11.0.0",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "strip-markdown": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.29.0",
@@ -35,9 +36,10 @@
     "@types/node": "24.10.13",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0",
-    "eslint": "10.0.1",
+    "eslint": "9.39.3",
     "eslint-config-next": "16.1.6",
     "eslint-config-prettier": "10.1.8",
+    "feed": "^5.2.0",
     "graphql-tag": "2.12.6",
     "prettier": "3.8.1",
     "sharp": "0.34.5",
