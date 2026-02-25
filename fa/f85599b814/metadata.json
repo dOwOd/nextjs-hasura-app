@@ -1,0 +1,29 @@
+{
+  "cli_version": "0.4.7",
+  "checkpoint_id": "faf85599b814",
+  "strategy": "manual-commit",
+  "branch": "feature/issue-605-rss-feed",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "CLAUDE.md",
+    "package.json",
+    "scripts/generate-feed.mjs",
+    "src/app/layout.tsx"
+  ],
+  "sessions": [
+    {
+      "metadata": "/fa/f85599b814/0/metadata.json",
+      "transcript": "/fa/f85599b814/0/full.jsonl",
+      "context": "/fa/f85599b814/0/context.md",
+      "content_hash": "/fa/f85599b814/0/content_hash.txt",
+      "prompt": "/fa/f85599b814/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 61,
+    "cache_creation_tokens": 62144,
+    "cache_read_tokens": 1789776,
+    "output_tokens": 5256,
+    "api_call_count": 38
+  }
+}

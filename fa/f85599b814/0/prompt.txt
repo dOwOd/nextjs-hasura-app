@@ -1,0 +1,114 @@
+Implement the following plan:
+
+# Issue #605: RSS/Atom フィードの追加
+
+## Context
+
+ブログに RSS/Atom フィードが存在しないため、RSS リーダーで記事を購読できない。SSG (`output: 'export'`) では Route Handler が使えないため、ポストビルドスクリプトで Atom フィードを生成する。
+
+## 変更ファイル
+
+| ファイル | 操作 | 内容 |
+|---------|------|------|
+| `scripts/generate-feed.mjs` | 新規作成 | Hasura から記事を取得し Atom XML を生成 → `out/feed.xml` |
+| `package.json` | 修正 | build スクリプトに `&& node scripts/generate-feed.mjs` を追加 |
+| `src/app/layout.tsx` | 修正 | `alternates.types` でフィード自動検知リンクを追加 |
+
+## Step 1: `scripts/generate-feed.mjs` を作成
+
+既存の `scripts/generate-favicons.mjs` のパターンに従う（ES module, console.log, process.exit(1)）。
+
+- **データ取得**: `process.env.HASURA_URL` / `HASURA_KEY` を使い、native `fetch` で GraphQL API から公開記事を取得（content フィールド含む）
+- **サマリー抽出**: `src/lib/utils/extractDescription.ts` のロジックを複製（Markdown → プレーンテキスト、200文字）
+- **XML エスケープ**: `& < > " '` の5文字をエスケープするヘルパー
+- **Atom XML 生成**: RFC 4287 準拠。feed メタデータ + entry（title, link, id, updated, published, summary, author）
+- **エントリ ID**: `tag:dowo.dev,{created_date}:{slug}`（RFC 4151 tag URI）
+- **出力先**: `out/feed.xml`（`next build` 後に実行するため `out/` は存在する）
+
+## Step 2: `package.json` を修正
+
+```
+"build": "node scripts/generate-favicons.mjs && next build && node scripts/generate-feed.mjs"
+```
+
+favicon → next build → feed の順。feed は `out/` に書き込むため next build の後に実行。
+
+## Step 3: `src/app/layout.tsx` を修正
+
+metadata に `alternates` を追加:
+
+```typescript
+alternates: {
+  types: {
+    'application/atom+xml': '/feed.xml',
+  },
+},
+```
+
+Next.js が `<link rel="alternate" type="application/atom+xml" href="https://dowo.dev/feed.xml" />` を出力する。
+
+## 検証
+
+1. `npm run lint` — ESLint エラーなし
+2. `npm run build` — ビルドチェーン全体が成功
+3. `out/feed.xml` が生成され、valid な Atom XML であること
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/sksn/.claude/projects/-Users-sksn-Development-nextjs-hasura-app/7a688d3b-d67e-41fb-aa43-06c89f859b00.jsonl
+
+If this plan can be broken down into multiple independent tasks, consider using the TeamCreate tool to create a team and parallelize the work.
+
+---
+
+最新のmainを取り込んで作業している？
+
+---
+
+ESlintのエラーは修正された？
+
+---
+
+ここで対応して
+
+---
+
+今回起きた問題を整理して
+
+---
+
+間違ったブランチで作業をし始めた理由は何？ドキュメントに書かれているつもりだったが、実際は書かれている？
+
+---
+
+ドキュメントに書かれているのに従わなかった理由は何？どうしたら防げる？
+
+---
+
+間違ったブランチで作業をし始めたのはなぜ？ドキュメントに書いているつもりだけど実際は書かれていなかった？
+
+---
+
+ドキュメントに書かれているのに従わなかった理由は何？どうしたら防げる？
+
+---
+
+CLAUDE.md に書く案も良いがpre-commitやpre-pushなどGit hooksでも防げる？どちらのアプローチのほうが良い？CLAUDE.mdは肥大化する問題も懸念しているのだが、懸念する程の量なのかが私には判別つきません
+
+---
+
+では書き足して、今回のPRに含んで
+
+---
+
+Base directory for this skill: /Users/sksn/Development/nextjs-hasura-app/.claude/skills/pr
+
+## Create PR Workflow
+
+1. Verify current branch is NOT main: `git branch --show-current`
+2. If on main, create and checkout a new branch: `git checkout -b feature/issue-{number}-{description}`
+3. Stage and commit all changes with a descriptive message
+4. Push the branch: `git push -u origin HEAD`
+5. Create PR with `gh pr create --fill --base main`
+6. Body に `Closes #{番号}` を含める（Issue自動クローズ）
+7. 必要に応じて CLAUDE.md やドキュメントの更新を確認
+8. Report the PR URL
