@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.8",
+  "checkpoint_id": "bfb5a7add633",
+  "strategy": "manual-commit",
+  "branch": "chore/gitignore-cleanup",
+  "checkpoints_count": 2,
+  "files_touched": [
+    ".gitignore"
+  ],
+  "sessions": [
+    {
+      "metadata": "/bf/b5a7add633/0/metadata.json",
+      "transcript": "/bf/b5a7add633/0/full.jsonl",
+      "context": "/bf/b5a7add633/0/context.md",
+      "content_hash": "/bf/b5a7add633/0/content_hash.txt",
+      "prompt": "/bf/b5a7add633/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 968,
+    "cache_creation_tokens": 29939,
+    "cache_read_tokens": 1708613,
+    "output_tokens": 9764,
+    "api_call_count": 39
+  }
+}
