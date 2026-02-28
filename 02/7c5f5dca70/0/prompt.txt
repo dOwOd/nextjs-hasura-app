@@ -1,0 +1,5 @@
+https://github.com/dOwOd/nextjs-hasura-app/issues/604 このIssueの対応して
+
+---
+
+コミットしてPRつくって
