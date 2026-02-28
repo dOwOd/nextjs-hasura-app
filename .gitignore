@@ -44,5 +44,6 @@ next-env.d.ts
 .claude/rules/
 .claude/skills/
 
-# misc local files
+# entire (AI session tracking)
 .entire/
+.claude/settings.json
