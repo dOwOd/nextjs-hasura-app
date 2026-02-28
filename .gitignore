@@ -39,3 +39,10 @@ next-env.d.ts
 /src/app/icon.png
 /src/app/apple-icon.png
 /public/favicon.ico
+
+# claude shared symlinks
+.claude/rules/
+.claude/skills/
+
+# misc local files
+.entire/
