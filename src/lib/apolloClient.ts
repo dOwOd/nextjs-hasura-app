@@ -1,7 +1,6 @@
 import { ApolloClient } from '@apollo/client/core'
 import { HttpLink } from '@apollo/client/link/http'
 import { InMemoryCache } from '@apollo/client/cache'
-import 'cross-fetch/polyfill'
 
 let apolloClient: ApolloClient | undefined
 const createApolloClient = () => {
@@ -16,7 +15,7 @@ const createApolloClient = () => {
     cache: new InMemoryCache(),
   })
 }
-export const initializeApollo = (initialState = null) => {
+export const initializeApollo = () => {
   const _apolloClient = apolloClient ?? createApolloClient()
   // For SSG and SSR always create a new Apollo Client
   if (typeof window === 'undefined') return _apolloClient
